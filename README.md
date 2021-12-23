@@ -1,5 +1,5 @@
-# <h2 align="center">
-    :computer: Knowledge accounting system
+<h2 align="center">
+    # :computer: Knowledge accounting system
 </h2>
 Registered users ("programmers") indicate and evaluate their knowledge in various (grouped) areas. The "manager" user selects programmers according to the specified criteria. Ability to generate reports. User and role management. Knowledge area management .
 
