@@ -2,7 +2,7 @@
 
 Registered users ("programmers") indicate and evaluate their knowledge in various (grouped) areas. The "manager" user selects programmers according to the specified criteria. Ability to generate reports. User and role management. Knowledge area management .
 
-# Requirements for the project
+# :clipboard: Requirements for the project
 
 :small_blue_diamond:	The solution must have a three-layer architecture. The data access layer, business logic, Web application should be moved into separate projects.<br /><br />
 :small_blue_diamond:	The interface should be a separate application using HTML, CSS, js technologies + one of the frameworks (Angular, React, etc.)<br /><br />
