@@ -1,4 +1,4 @@
-# :computer: The final project of EPAM UA .Net University Program 2021
+# :computer: The final project of EPAM UA .Net University Program
 
 Registered users ("programmers") indicate and evaluate their knowledge in various (grouped) areas. The "manager" user selects programmers according to the specified criteria. Ability to generate reports. User and role management. Knowledge area management .
 
