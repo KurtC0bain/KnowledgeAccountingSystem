@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GSV6taEmip9Db6IX4cWKHZvZsiNi0kPSDxVlPj4lf/k3vuuyRLsA1S0IhEaEWhg8o7d9ACHC65g3UQmmeLdc+w==",
+  "success": true,
+  "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\esusm\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
+  ],
+  "logs": []
+}
