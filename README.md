@@ -1,8 +1,8 @@
 # :computer: The final project of EPAM UA .Net University Program
 
-<p align="center">
+<h2 align="center">
     >Knowledge accounting system<
-</p>
+</h2>
 Registered users ("programmers") indicate and evaluate their knowledge in various (grouped) areas. The "manager" user selects programmers according to the specified criteria. Ability to generate reports. User and role management. Knowledge area management .
 
 # :clipboard: Requirements for the project
