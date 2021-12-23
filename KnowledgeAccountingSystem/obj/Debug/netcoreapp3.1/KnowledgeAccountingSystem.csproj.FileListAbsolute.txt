@@ -17,3 +17,9 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\De
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\Debug\netcoreapp3.1\KnowledgeAccountingSystem.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\Debug\netcoreapp3.1\KnowledgeAccountingSystem.pdb
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\Debug\netcoreapp3.1\KnowledgeAccountingSystem.genruntimeconfig.cache
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\Debug\netcoreapp3.1\KnowledgeAccountingSystem.MvcApplicationPartsAssemblyInfo.cs
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\obj\Debug\netcoreapp3.1\KnowledgeAccountingSystem.csproj.CopyComplete

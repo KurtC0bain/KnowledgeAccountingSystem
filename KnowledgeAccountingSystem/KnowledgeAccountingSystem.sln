@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeAccountingSystem", "KnowledgeAccountingSystem.csproj", "{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemDAL", "..\SystemDAL\SystemDAL.csproj", "{DCD43982-020C-4288-87D7-13CB94B5945F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemBLL", "..\SystemBLL\SystemBLL.csproj", "{E124BE65-75D4-4643-B35F-7EF57BD51A5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCD43982-020C-4288-87D7-13CB94B5945F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD43982-020C-4288-87D7-13CB94B5945F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD43982-020C-4288-87D7-13CB94B5945F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD43982-020C-4288-87D7-13CB94B5945F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E124BE65-75D4-4643-B35F-7EF57BD51A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E124BE65-75D4-4643-B35F-7EF57BD51A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E124BE65-75D4-4643-B35F-7EF57BD51A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E124BE65-75D4-4643-B35F-7EF57BD51A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

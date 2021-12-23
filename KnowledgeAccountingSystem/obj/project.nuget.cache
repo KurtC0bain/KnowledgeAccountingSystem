@@ -1,9 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "GSV6taEmip9Db6IX4cWKHZvZsiNi0kPSDxVlPj4lf/k3vuuyRLsA1S0IhEaEWhg8o7d9ACHC65g3UQmmeLdc+w==",
+  "dgSpecHash": "6QLKpIua89w5SXQ9I81MPdbpZ9JQOfsBYeAUmoAEfOWULyOGRYZwGnHKbbDSWWjFeV62Low/7RYh+UAPPcDQ5Q==",
   "success": true,
   "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\esusm\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\esusm\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\esusm\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\esusm\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\esusm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\esusm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\esusm\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
   ],
   "logs": []
