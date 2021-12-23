@@ -18,5 +18,4 @@ Registered users ("programmers") indicate and evaluate their knowledge in variou
 :small_blue_diamond:	Classes and methods must have names that reflect their functionality and must be properly structured in the application (folders, namespaces).<br />
 :small_blue_diamond:	Code styling must comply with the C # Code Conventions (MSDN).<br />
 
-[Go To Top](#TOP)
-          section_title<a name="top"></a> 
+<a href="#TOP">Go To TOP</a>
