@@ -17,3 +17,6 @@ Registered users ("programmers") indicate and evaluate their knowledge in variou
 :small_blue_diamond:	Follow clean code rules - the internal organization and structure of the project code will be assessed no less carefully than the external compliance of the project with the task;<br />
 :small_blue_diamond:	Classes and methods must have names that reflect their functionality and must be properly structured in the application (folders, namespaces).<br />
 :small_blue_diamond:	Code styling must comply with the C # Code Conventions (MSDN).<br />
+
+[Go To Top](#TOP)
+          section_title<a name="top"></a> 
