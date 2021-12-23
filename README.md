@@ -4,16 +4,16 @@ Registered users ("programmers") indicate and evaluate their knowledge in variou
 
 # Requirements for the project
 
-:small_blue_diamond:	The solution must have a three-layer architecture. The data access layer, business logic, Web application should be moved into separate projects.
-:small_blue_diamond:	The interface should be a separate application using HTML, CSS, js technologies + one of the frameworks (Angular, React, etc.)
-:small_blue_diamond:	Access to the functionality of the application services should be organized through the web API.
-:small_blue_diamond:	Implement differentiation of system users' access rights to application components (at least 2-3 roles).
-:small_blue_diamond:	Store information about the subject area in the database, please use Entity Framework Code First for access. Use MS SQL as a DBMS
-:small_blue_diamond:	Provide validation of user input.
-:small_blue_diamond:	Pay attention to the speed of the project, freezing of the interface when performing data loading, filtering, sorting operations are undesirable;
-:small_blue_diamond:	Code should contain XML comments (all top-level classes, non-trivial methods, and constructors).
-:small_blue_diamond:	The code should be organized so that it can be reused and relatively easy to replace the implementation of logical parts;
-:small_blue_diamond:	 Provide error handling!
-:small_blue_diamond:	Follow clean code rules - the internal organization and structure of the project code will be assessed no less carefully than the external compliance of the project with the task;
-:small_blue_diamond:	Classes and methods must have names that reflect their functionality and must be properly structured in the application (folders, namespaces).
-:small_blue_diamond:	Code styling must comply with the C # Code Conventions (MSDN).
+:small_blue_diamond:	The solution must have a three-layer architecture. The data access layer, business logic, Web application should be moved into separate projects.<br />
+:small_blue_diamond:	The interface should be a separate application using HTML, CSS, js technologies + one of the frameworks (Angular, React, etc.)<br />
+:small_blue_diamond:	Access to the functionality of the application services should be organized through the web API.<br />
+:small_blue_diamond:	Implement differentiation of system users' access rights to application components (at least 2-3 roles).<br />
+:small_blue_diamond:	Store information about the subject area in the database, please use Entity Framework Code First for access. Use MS SQL as a DBMS<br />
+:small_blue_diamond:	Provide validation of user input.<br />
+:small_blue_diamond:	Pay attention to the speed of the project, freezing of the interface when performing data loading, filtering, sorting operations are undesirable;<br />
+:small_blue_diamond:	Code should contain XML comments (all top-level classes, non-trivial methods, and constructors).<br />
+:small_blue_diamond:	The code should be organized so that it can be reused and relatively easy to replace the implementation of logical parts;<br />
+:small_blue_diamond:	 Provide error handling!<br />
+:small_blue_diamond:	Follow clean code rules - the internal organization and structure of the project code will be assessed no less carefully than the external compliance of the project with the task;<br />
+:small_blue_diamond:	Classes and methods must have names that reflect their functionality and must be properly structured in the application (folders, namespaces).<br />
+:small_blue_diamond:	Code styling must comply with the C # Code Conventions (MSDN).<br />
