@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeAccountingSystem", "KnowledgeAccountingSystem.csproj", "{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeAccountingSystem", "KnowledgeAccountingSystem.csproj", "{670DB7E9-424D-4C73-B446-5ECD4D43BF1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemDAL", "..\SystemDAL\SystemDAL.csproj", "{DCD43982-020C-4288-87D7-13CB94B5945F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemBLL", "..\SystemDAL\SystemBLL.csproj", "{DCD43982-020C-4288-87D7-13CB94B5945F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemBLL", "..\SystemBLL\SystemBLL.csproj", "{E124BE65-75D4-4643-B35F-7EF57BD51A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemDAL", "..\SystemBLL\SystemDAL.csproj", "{E124BE65-75D4-4643-B35F-7EF57BD51A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

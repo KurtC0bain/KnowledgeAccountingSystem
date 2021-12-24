@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemDAL.csproj",
-      "projectName": "SystemDAL",
-      "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemDAL.csproj",
+      "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
+      "projectName": "SystemBLL",
+      "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
       "packagesPath": "C:\\Users\\esusm\\.nuget\\packages\\",
       "outputPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\obj\\",
       "projectStyle": "PackageReference",

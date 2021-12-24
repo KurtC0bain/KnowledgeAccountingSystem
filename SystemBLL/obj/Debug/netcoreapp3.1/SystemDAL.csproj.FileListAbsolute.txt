@@ -1,0 +1,13 @@
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.AssemblyInfoInputs.cache
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.AssemblyInfo.cs
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.csproj.CoreCompileInputs.cache
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\bin\Debug\netcoreapp3.1\SystemDAL.deps.json
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\bin\Debug\netcoreapp3.1\SystemDAL.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\bin\Debug\netcoreapp3.1\SystemDAL.pdb
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.csproj.AssemblyReference.cache
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.pdb
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\bin\Debug\netcoreapp3.1\SystemDAL.runtimeconfig.json
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\bin\Debug\netcoreapp3.1\SystemDAL.runtimeconfig.dev.json
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemBLL\obj\Debug\netcoreapp3.1\SystemDAL.genruntimeconfig.cache

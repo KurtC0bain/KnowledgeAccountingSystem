@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PJuw8aY7RR1s2PcX7iczePZ8DJqyxoaxeBi5M6GkH5trolbzRIa9bomi9EjjTxXDN3Z9F/TUAj/xp6B1ehHG1w==",
+  "dgSpecHash": "o1UnuxThlKtRMwTDWLJZ7dEvlAa9Z1PpERsQi7PmYiErNGeyvqOSz3gi7xHxQAypY1n5RauxjX2jTpKxFE1ssw==",
   "success": true,
-  "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemDAL.csproj",
+  "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
