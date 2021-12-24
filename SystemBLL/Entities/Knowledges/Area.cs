@@ -11,10 +11,11 @@ namespace SystemDAL.Entities.Knowledges
         [Key]
         public int Id { get; set; }
 
-
         [Required]
         [MinLength(2), MaxLength(20)]
         [CheckCapitalized]
         public string Name { get; set; }
+
+        public ICollection<Knowledge> Knowledges { get; set; }
     }
 }

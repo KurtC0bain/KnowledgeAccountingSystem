@@ -18,7 +18,7 @@ namespace SystemDAL.Attributes
                 }
                 else
                 {
-                    return new ValidationResult("Please choose a valid country eg.(India,Pakistan,Nepal");
+                    return new ValidationResult("VALIDATION");
                 }
             }
 

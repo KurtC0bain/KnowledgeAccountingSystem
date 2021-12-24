@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using static SystemDAL.Attributes.CustomValidation;
 
@@ -19,8 +20,10 @@ namespace SystemDAL.Entities.Knowledges
 
 
         [Required]
-        public Area Area { get; set; }
+        [ForeignKey("Area")]
+        public int AreaId { get; set; }
 
+        private Area Area { get; set; }
 
         [Required]
         [MinLength(100), MaxLength(500)]

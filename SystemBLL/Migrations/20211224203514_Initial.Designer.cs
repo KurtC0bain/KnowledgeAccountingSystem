@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SystemDAL.Entities.Knowledges.Context;
+using SystemDAL.Entities.Context;
 
 namespace SystemDAL.Migrations
 {
-    [DbContext(typeof(KnowladgeContext))]
-    [Migration("20211224135537_Initial")]
+    [DbContext(typeof(KnowledgeContext))]
+    [Migration("20211224203514_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,11 +70,14 @@ namespace SystemDAL.Migrations
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.Knowledge", b =>
                 {
-                    b.HasOne("SystemDAL.Entities.Knowledges.Area", "Area")
-                        .WithMany()
+                    b.HasOne("SystemDAL.Entities.Knowledges.Area", null)
+                        .WithMany("Knowledges")
                         .HasForeignKey("AreaId");
+                });
 
-                    b.Navigation("Area");
+            modelBuilder.Entity("SystemDAL.Entities.Knowledges.Area", b =>
+                {
+                    b.Navigation("Knowledges");
                 });
 #pragma warning restore 612, 618
         }

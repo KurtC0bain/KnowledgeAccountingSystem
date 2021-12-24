@@ -1580,6 +1580,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "SystemBLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "SystemDAL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SystemBLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SystemBLL.dll": {}
+        }
+      },
       "SystemDAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -5963,6 +5976,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "SystemBLL/1.0.0": {
+      "type": "project",
+      "path": "../SystemDAL/SystemBLL.csproj",
+      "msbuildProject": "../SystemDAL/SystemBLL.csproj"
+    },
     "SystemDAL/1.0.0": {
       "type": "project",
       "path": "../SystemBLL/SystemDAL.csproj",
@@ -5975,6 +5993,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.13",
       "Swashbuckle.AspNetCore >= 6.2.3",
+      "SystemBLL >= 1.0.0",
       "SystemDAL >= 1.0.0"
     ]
   },
@@ -6012,6 +6031,9 @@
           "projectReferences": {
             "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
               "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj"
+            },
+            "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj": {
+              "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj"
             }
           }
         }

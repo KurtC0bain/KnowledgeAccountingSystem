@@ -8,13 +8,18 @@
     },
     "dcd43982-020c-4288-87d7-13cb94b5945f": {
       "ProjectGuid": "dcd43982-020c-4288-87d7-13cb94b5945f",
-      "DisplayName": "SystemDAL",
+      "DisplayName": "SystemBLL",
       "ColorIndex": 1
     },
     "e124be65-75d4-4643-b35f-7ef57bd51a5b": {
       "ProjectGuid": "e124be65-75d4-4643-b35f-7ef57bd51a5b",
-      "DisplayName": "SystemBLL",
+      "DisplayName": "SystemDAL",
       "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 3

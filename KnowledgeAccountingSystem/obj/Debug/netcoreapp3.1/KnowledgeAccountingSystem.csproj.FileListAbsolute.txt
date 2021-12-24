@@ -67,3 +67,5 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\De
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\SystemDAL.pdb
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\SystemBLL.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\SystemBLL.pdb
