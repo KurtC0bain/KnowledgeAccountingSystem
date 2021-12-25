@@ -42,16 +42,10 @@ namespace SystemDAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AreaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -60,12 +54,35 @@ namespace SystemDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
                     b.ToTable("Knowledges");
                 });
 
-            modelBuilder.Entity("SystemDAL.Entities.Knowledges.Knowledge", b =>
+            modelBuilder.Entity("SystemDAL.Entities.Knowledges.KnowledgeArea", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KnowledgeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
+
+                    b.HasIndex("KnowledgeId");
+
+                    b.ToTable("KnowledgeAreas");
+                });
+
+            modelBuilder.Entity("SystemDAL.Entities.Knowledges.KnowledgeArea", b =>
                 {
                     b.HasOne("SystemDAL.Entities.Knowledges.Area", "Area")
                         .WithMany("Knowledges")
@@ -73,12 +90,25 @@ namespace SystemDAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SystemDAL.Entities.Knowledges.Knowledge", "Knowledge")
+                        .WithMany("Areas")
+                        .HasForeignKey("KnowledgeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Area");
+
+                    b.Navigation("Knowledge");
                 });
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.Area", b =>
                 {
                     b.Navigation("Knowledges");
+                });
+
+            modelBuilder.Entity("SystemDAL.Entities.Knowledges.Knowledge", b =>
+                {
+                    b.Navigation("Areas");
                 });
 #pragma warning restore 612, 618
         }

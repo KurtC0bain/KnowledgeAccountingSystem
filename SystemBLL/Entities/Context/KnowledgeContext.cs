@@ -19,5 +19,6 @@ namespace SystemDAL.Entities.Context
         }
         public DbSet<Knowledge> Knowledges { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<KnowledgeArea> KnowledgeAreas { get; set; }
     }
 }

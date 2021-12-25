@@ -20,7 +20,7 @@ namespace SystemDAL.Repositories
 
         public async Task AddAsync(Knowledge entity)
         {
-            await _knowledgeContext.AddAsync(entity);
+            await _knowledgeContext.Knowledges.AddAsync(entity);
             await _knowledgeContext.SaveChangesAsync();
         }
 
@@ -30,7 +30,6 @@ namespace SystemDAL.Repositories
             if (element != null)
             {
                 _knowledgeContext.Knowledges.Remove(element);
-                _knowledgeContext.SaveChanges(); 
             }
             await _knowledgeContext.SaveChangesAsync();
 
@@ -42,31 +41,30 @@ namespace SystemDAL.Repositories
             if (element != null)
             {
                 _knowledgeContext.Knowledges.Remove(element);
-                _knowledgeContext.SaveChanges();
             }
             await _knowledgeContext.SaveChangesAsync();
         }
 
         public IQueryable<Knowledge> FindAll()
         {
-            return _knowledgeContext.Knowledges/*.Include(x => x.Area)*/;
+            return _knowledgeContext.Knowledges.Include(x => x.Areas);
         }
 
         public async Task<Knowledge> GetByIdAsync(int id)
         {
-            return await _knowledgeContext.Knowledges/*.Include(q => q.Area)*/.FirstAsync(x => x.Id == id);
+            return await _knowledgeContext.Knowledges.Include(q => q.Areas).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(Knowledge entity)
         {
-            var element = await _knowledgeContext.Knowledges.FindAsync(entity.Id);
+            var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);
             if(element != null)
             {
-                element.Title = entity.Title;
                 element.Description = entity.Description;
-                element.AreaId = entity.AreaId;
-                element.Rating = entity.Rating;
+                element.Title = entity.Title;
+                element.Areas = entity.Areas;
             }
+            _knowledgeContext.Entry(element).State = EntityState.Modified;
             await _knowledgeContext.SaveChangesAsync();
         }
     }

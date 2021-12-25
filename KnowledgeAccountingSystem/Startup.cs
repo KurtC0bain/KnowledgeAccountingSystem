@@ -32,11 +32,17 @@ namespace KnowledgeAccountingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             services.AddDbContext<KnowledgeContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("ProjectDB")));
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IKnowledgeService, KnowledgeService>();
+            services.AddScoped<IAreaService, AreaService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

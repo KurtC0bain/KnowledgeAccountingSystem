@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,34 +18,53 @@ namespace SystemDAL.Repositories
             _knowledgeContext = knowladgeContext;
         }
 
-        public Task AddAsync(Area entity)
+        public async Task AddAsync(Area entity)
         {
-            throw new NotImplementedException();
+            await _knowledgeContext.Areas.AddAsync(entity);
+            await _knowledgeContext.SaveChangesAsync();
         }
 
-        public Task Delete(Area entity)
+        public async Task Delete(Area entity)
         {
-            throw new NotImplementedException();
+            var element = await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == entity.Id);
+            if (element != null)
+            {
+                _knowledgeContext.Areas.Remove(element);
+            }
+            await _knowledgeContext.SaveChangesAsync();
+
         }
 
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var element = await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == id);
+            if (element != null)
+            {
+                _knowledgeContext.Areas.Remove(element);
+            }
+            await _knowledgeContext.SaveChangesAsync();
         }
 
         public IQueryable<Area> FindAll()
         {
-            throw new NotImplementedException();
+            return _knowledgeContext.Areas.Include(x => x.Knowledges);
         }
 
-        public Task<Area> GetByIdAsync(int id)
+        public async Task<Area> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task UpdateAsync(Area entity)
+        public async Task UpdateAsync(Area entity)
         {
-            throw new NotImplementedException();
+            var element = await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == entity.Id);
+            if(element != null)
+            {
+                element.Knowledges = entity.Knowledges;
+                element.Name = entity.Name;
+            }
+            _knowledgeContext.Entry(element).State = EntityState.Modified;
+            await _knowledgeContext.SaveChangesAsync();
         }
     }
 }
