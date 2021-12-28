@@ -7,6 +7,7 @@ namespace Administration.Account.Models
 {
     public class SignUp
     {
+
         [Required]
         public string FirstName { get; set; }
         
@@ -25,7 +26,8 @@ namespace Administration.Account.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Passwords are not the same")]
         public string ConfirmPassword { get; set; }
-        
-        public int Year { get; set; }
+
+        [Required]
+        public string Role { get; set; }
     }
 }

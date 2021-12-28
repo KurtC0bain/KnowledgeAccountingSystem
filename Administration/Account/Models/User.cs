@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Administration
+namespace Administration.Account.Models
 {
     public class User : IdentityUser
     {

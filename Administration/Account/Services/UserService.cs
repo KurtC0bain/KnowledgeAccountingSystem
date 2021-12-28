@@ -13,35 +13,11 @@ namespace Administration.Account
     public class UserService : IUserService
     {
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public UserService(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public UserService(UserManager<User> userManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
-        }
-        public Task AssignUserToRoles(AddRoleToUser addRoleToUser)
-        {
-            throw new NotImplementedException();
         }
 
-        public async Task CreateRole(string roleName)
-        {
-            var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
-            if (!result.Succeeded)
-            {
-                throw new Exception($"Role could not be created: {roleName}.");
-            }
-        }
-
-        public async Task<IEnumerable<IdentityRole>> GetRoles()
-        {
-            return await _roleManager.Roles.ToListAsync();
-        }
-
-        public async Task<IEnumerable<string>> GetUserRoles(User user)
-        {
-           return (await _userManager.GetRolesAsync(user)).ToList();
-        }
 
         public async Task<User> SignIn(SignIn model)
         {
@@ -60,14 +36,30 @@ namespace Administration.Account
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                UserName = model.Email, 
+                UserName = model.Email,
             }, model.Password);
+
 
             if (!result.Succeeded)
             {
                 throw new System.Exception(string.Join(';', result.Errors.Select(x => x.Description)));
             }
+            else
+            {
+                var currentUser = await _userManager.FindByEmailAsync(model.Email);
+
+                var roleresult = await _userManager.AddToRoleAsync(currentUser, model.Role);
+                await SignIn(new SignIn
+                {
+                    Email = model.Email,
+                    Password = model.Password
+                });
+            }
+
         }
-/*        public async Task ResetPassword(ForgetPassword model)
-*/    }
+
+
+        /*        public async Task ResetPassword(ForgetPassword model)
+        */
+    }
 }

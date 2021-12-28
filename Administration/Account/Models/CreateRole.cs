@@ -9,6 +9,5 @@ namespace Administration.Account.Models
     {
         [Required, MaxLength(15), MinLength(3)]
         public string RoleName { get; set; }
-
     }
 }

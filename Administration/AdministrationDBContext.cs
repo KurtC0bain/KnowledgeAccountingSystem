@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Administration.Account.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,14 +14,28 @@ namespace Administration
         {
             Database.EnsureCreated();
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer("Server=;Database=AdministrationDB;Trusted_Connection=True");
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<IdentityRole>().HasData(new[]
             {
-                new IdentityRole("programmer"),
-                new IdentityRole("manager"),
-                new IdentityRole("admin")
+                new IdentityRole
+                {
+                    Name = "programmer",
+                },
+                new IdentityRole
+                {
+                    Name = "manager",
+                },
+                new IdentityRole
+                {
+                    Name = "admin",
+                },
             });
         }
     }

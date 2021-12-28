@@ -18,7 +18,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize (Roles = "programmer, admin")] //change
         public IActionResult GetKnowledge()
         {
             return Ok(_knowledgeService.GetAllAsync());
@@ -33,6 +33,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpPost]
         [Authorize]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.AddAsync(knowledge);
@@ -41,7 +42,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [Authorize]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> DeleteKnowledge(int id)
         {
             await _knowledgeService.DeleteByIdAsync(id);
@@ -49,7 +50,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.DeleteAsync(knowledge);
@@ -57,7 +58,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPatch]
-        [Authorize]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> UpdateKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.UpdateAsync(knowledge);

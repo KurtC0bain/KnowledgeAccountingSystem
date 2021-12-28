@@ -1,5 +1,7 @@
 using Administration;
 using Administration.Account;
+using Administration.Account.Models;
+using Administration.Account.Services;
 using Administration.Interfaces;
 using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,7 +21,6 @@ using System.Text;
 using SystemBLL.Interfaces;
 using SystemBLL.Services;
 using SystemDAL.Entities.Context;
-
 using SystemDAL.Interfaces;
 using SystemDAL.Repositories;
 
@@ -37,7 +38,7 @@ namespace KnowledgeAccountingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<JwtSettings>(Configuration.GetSection("Jwt") );
+
 
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
@@ -52,9 +53,13 @@ namespace KnowledgeAccountingSystem
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IKnowledgeService, KnowledgeService>();
             services.AddScoped<IAreaService, AreaService>();
-            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IAdministationUnitOfWork, AdministrationUnitOfWork>();
+
+
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -63,7 +68,10 @@ namespace KnowledgeAccountingSystem
                 options.Password.RequiredLength = 5;
             }).AddEntityFrameworkStores<AdministrationDBContext>();
 
+            services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
+
             var jwtSettings = Configuration.GetSection("Jwt").Get<JwtSettings>();
+
             services
                 .AddAuthorization()
                 .AddAuthentication(options =>

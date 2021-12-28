@@ -15,34 +15,46 @@ namespace KnowledgeAccountingSystem.Controllers
     [ApiController]
     public class AdministrationController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IAdministationUnitOfWork _unitOfWork;
         private readonly JwtSettings _jwtSettings;
 
-        public AdministrationController(IUserService userService, IOptionsSnapshot<JwtSettings> jwtSettings)
+        public AdministrationController(IAdministationUnitOfWork administationUnitOfWork, IOptionsSnapshot<JwtSettings> jwtSettings)
         {
-            _userService = userService;
+            _unitOfWork = administationUnitOfWork;
             _jwtSettings = jwtSettings.Value;
         }
+
+        [HttpPost]
+        [Route("AssignUserToRole")]
+        public async Task<IActionResult> AssingUserToRole(AddRoleToUser addRoleToUser)
+        {
+            return Ok(await _unitOfWork.RoleService.AssignUserToRoles(addRoleToUser));
+        }
+
         [HttpPost]
         [Route("SignUp")]
         public async Task<IActionResult> Register(SignUp signUp)
         {
-            await _userService.SignUp(new SignUp
+            await _unitOfWork.UserService.SignUp(new SignUp
             {
                 FirstName = signUp.FirstName,
                 LastName = signUp.LastName,
                 Email = signUp.Email,
                 Password = signUp.Password,
-                Year = signUp.Year,
+                Role = signUp.Role,
             });
-            return Ok();
+            return Ok(await LogIn(new SignIn
+            {
+                Email = signUp.Email,
+                Password = signUp.Password
+            }));
         }
 
         [HttpPost]
         [Route("SignIn")]
         public async Task<IActionResult> LogIn(SignIn signIn)
         {
-            var user = await _userService.SignIn(new SignIn
+            var user = await _unitOfWork.UserService.SignIn(new SignIn
             {
                 Email = signIn.Email,
                 Password = signIn.Password
@@ -51,7 +63,7 @@ namespace KnowledgeAccountingSystem.Controllers
             {
                 return BadRequest();
             }
-            var roles = await _userService.GetUserRoles(user);
+            var roles = await _unitOfWork.RoleService.GetUserRoles(user.Email);
             return Ok(JwtHelper.GenerateJwt(user, roles, _jwtSettings));
         }
 
@@ -60,7 +72,7 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("NewRole")]
         public async Task<IActionResult> AddRole(CreateRole role)
         {
-            await _userService.CreateRole(role.RoleName);
+            await _unitOfWork.RoleService.CreateRole(role.RoleName);
             return Ok();
         }
 
@@ -69,13 +81,14 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("Roles")]
         public async Task<IActionResult> GetRoles()
         {
-            return Ok(await _userService.GetRoles());
+            return Ok(await _unitOfWork.RoleService.GetRoles());
         }
-        [HttpGet]
+
+        [HttpPost]
         [Route("UserRole")]
-        public async Task<IActionResult> GetUserRoles(User user)
+        public async Task<IActionResult> GetUserRoles(string mail)
         {
-            return Ok(await _userService.GetUserRoles(user));
+            return Ok(await _unitOfWork.RoleService.GetUserRoles(mail));
         }
     }
 }
