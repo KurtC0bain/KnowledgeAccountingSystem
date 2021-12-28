@@ -19,7 +19,7 @@ namespace Administration.Account
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public async Task AssignUserToRoles(AddRoleToUser addRoleToUser)
+        public Task AssignUserToRoles(AddRoleToUser addRoleToUser)
         {
             throw new NotImplementedException();
         }

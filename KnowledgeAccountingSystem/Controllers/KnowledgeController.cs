@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
@@ -17,6 +18,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetKnowledge()
         {
             return Ok(_knowledgeService.GetAllAsync());
@@ -28,26 +30,34 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _knowledgeService.GetByIdAsync(id));
         }
+
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.AddAsync(knowledge);
             return Ok();
         }
+
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteKnowledge(int id)
         {
             await _knowledgeService.DeleteByIdAsync(id);
             return Ok();
         }
+
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.DeleteAsync(knowledge);
             return Ok();
         }
+
         [HttpPatch]
+        [Authorize]
         public async Task<IActionResult> UpdateKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.UpdateAsync(knowledge);

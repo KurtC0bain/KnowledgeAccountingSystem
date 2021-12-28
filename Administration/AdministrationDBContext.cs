@@ -16,7 +16,7 @@ namespace Administration
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<User>().HasData(new[]
+            builder.Entity<IdentityRole>().HasData(new[]
             {
                 new IdentityRole("programmer"),
                 new IdentityRole("manager"),

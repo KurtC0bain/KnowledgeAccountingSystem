@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
@@ -28,26 +29,34 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _areaService.GetByIdAsync(id));
         }
+
         [HttpPost]
+        [Authorize (Roles = "admin")]
         public async Task<IActionResult> PostArea(Area area)
         {
             await _areaService.AddAsync(area);
             return Ok();
         }
+
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteArea(int id)
         {
             await _areaService.DeleteByIdAsync(id);
             return Ok();
         }
+        
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteArea(Area area)
         {
             await _areaService.DeleteAsync(area);
             return Ok();
         }
+        
         [HttpPatch]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateArea(Area area)
         {
             await _areaService.UpdateAsync(area);
