@@ -16,25 +16,29 @@ namespace Administration
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=;Database=AdministrationDB;Trusted_Connection=True");
+            options.UseSqlServer("Server=;Database=KnowledgeAccountingSystemDB;Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.Entity<IdentityRole>().HasData(new[]
             {
                 new IdentityRole
                 {
                     Name = "programmer",
+                    NormalizedName = "PROGRAMMER"
                 },
                 new IdentityRole
                 {
                     Name = "manager",
+                    NormalizedName = "MANAGER"
                 },
                 new IdentityRole
                 {
                     Name = "admin",
+                    NormalizedName = "ADMIN"
                 },
             });
         }

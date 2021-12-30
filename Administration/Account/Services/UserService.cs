@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Administration.Account
@@ -13,9 +12,11 @@ namespace Administration.Account
     public class UserService : IUserService
     {
         private readonly UserManager<User> _userManager;
-        public UserService(UserManager<User> userManager)
+        private readonly SignInManager<User> _signInManager;
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
 
@@ -27,6 +28,11 @@ namespace Administration.Account
                 throw new Exception($"User not found: '{model.Email}'.");
             }
             return await _userManager.CheckPasswordAsync(result, model.Password) ? result : null;
+        }
+        public async Task SignOut()
+        {
+ /*           if(_signInManager.IsSignedIn())*/
+            await _signInManager.SignOutAsync();
         }
 
         public async Task SignUp(SignUp model)

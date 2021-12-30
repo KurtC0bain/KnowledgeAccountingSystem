@@ -25,7 +25,12 @@
       "ProjectGuid": "a167b52f-a333-4a32-a163-5a924979002b",
       "DisplayName": "Administration",
       "ColorIndex": 3
+    },
+    "e6607c10-d305-4368-a801-34cada1907c4": {
+      "ProjectGuid": "e6607c10-d305-4368-a801-34cada1907c4",
+      "DisplayName": "UserKnowledgeConnector",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }

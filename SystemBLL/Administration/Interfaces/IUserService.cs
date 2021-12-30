@@ -1,11 +1,12 @@
-﻿using Administration.Account.Models;
+﻿
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using SystemDAL.Administration.Account.Models;
 
-namespace Administration.Interfaces
+namespace SystemDAL.Administration.Interfaces
 {
     public interface IUserService
     {
@@ -13,5 +14,6 @@ namespace Administration.Interfaces
         Task<User> SignIn(SignIn model);
         Task DeleteUser(string email);
         Task<IEnumerable<User>> GetAllUsers();
+        Task SignOut();
     }
 }

@@ -62,6 +62,7 @@ namespace SystemDAL.Repositories
             {
                 element.Description = entity.Description;
                 element.Title = entity.Title;
+                element.Areas = null;
                 element.Areas = entity.Areas;
             }
             _knowledgeContext.Entry(element).State = EntityState.Modified;

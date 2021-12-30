@@ -1,10 +1,8 @@
-using Administration;
-using Administration.Account.Models;
-using Administration.Account.Services;
-using Administration.Interfaces;
+
 using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +17,9 @@ using System.Collections.Generic;
 using System.Text;
 using SystemBLL.Interfaces;
 using SystemBLL.Services;
+using SystemDAL.Administration.Account.Models;
+using SystemDAL.Administration.Account.Services;
+using SystemDAL.Administration.Interfaces;
 using SystemDAL.Entities.Context;
 using SystemDAL.Interfaces;
 using SystemDAL.Repositories;
@@ -44,7 +45,6 @@ namespace KnowledgeAccountingSystem
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<KnowledgeContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("ProjectDB")));
-            services.AddDbContext<AdministrationDBContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("AdministrationDB")));
 
 
             services.AddControllers();
@@ -65,7 +65,7 @@ namespace KnowledgeAccountingSystem
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 5;
-            }).AddEntityFrameworkStores<AdministrationDBContext>();
+            }).AddEntityFrameworkStores<KnowledgeContext>();
 
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
 
@@ -142,6 +142,22 @@ namespace KnowledgeAccountingSystem
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+                HttpOnly = HttpOnlyPolicy.Always,
+                Secure = CookieSecurePolicy.Always
+            });
+
+            app.Use(async (context, next) =>
+            {
+                var token = context.Request.Cookies[".AspNetCore.Application.Id"];
+                if (!string.IsNullOrEmpty(token))
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

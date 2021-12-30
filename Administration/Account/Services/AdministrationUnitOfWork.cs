@@ -11,22 +11,24 @@ namespace Administration.Account.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager;
 
         private IUserService _userService;
         private IRoleService _roleService;
 
 
-        public AdministrationUnitOfWork(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public AdministrationUnitOfWork(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
         public IUserService UserService
         {
             get
             {
                 if (_userService == null)
-                    _userService = new UserService(_userManager);
+                    _userService = new UserService(_userManager, _signInManager);
                 return _userService;
             }
         }

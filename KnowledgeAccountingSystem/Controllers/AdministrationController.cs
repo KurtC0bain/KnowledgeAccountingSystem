@@ -1,7 +1,4 @@
-﻿using Administration;
-using Administration.Account.Models;
-using Administration.Interfaces;
-using KnowledgeAccountingSystem.Helpers;
+﻿using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +6,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
+using SystemDAL.Administration.Account.Models;
+using SystemDAL.Administration.Interfaces;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
@@ -64,8 +63,31 @@ namespace KnowledgeAccountingSystem.Controllers
             {
                 return BadRequest();
             }
+
             var roles = await _unitOfWork.RoleService.GetUserRoles(user.Email);
-            return Ok(JwtHelper.GenerateJwt(user, roles, _jwtSettings));
+
+            var token = JwtHelper.GenerateJwt(user, roles, _jwtSettings);
+
+            HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", token,
+            new CookieOptions
+            {
+                MaxAge = TimeSpan.FromMinutes(60)
+            });
+
+            return Ok(token);
+        }
+
+        [HttpPost]
+        [Route("SignOut")]
+        [Authorize]
+        public async Task<IActionResult> LogOut()
+        {
+            await _unitOfWork.UserService.SignOut();
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            return Ok();
         }
 
         [HttpPost]

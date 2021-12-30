@@ -77,7 +77,4 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\De
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
-D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Administration.dll
-D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Administration.pdb
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
