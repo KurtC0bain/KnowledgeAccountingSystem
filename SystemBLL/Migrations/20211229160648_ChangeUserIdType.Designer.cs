@@ -9,8 +9,8 @@ using SystemDAL.Entities.Context;
 namespace SystemDAL.Migrations
 {
     [DbContext(typeof(KnowledgeContext))]
-    [Migration("20211225124549_Initial")]
-    partial class Initial
+    [Migration("20211229160648_ChangeUserIdType")]
+    partial class ChangeUserIdType
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,9 @@ namespace SystemDAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Knowledges");
@@ -86,21 +89,17 @@ namespace SystemDAL.Migrations
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.KnowledgeArea", b =>
                 {
-                    b.HasOne("SystemDAL.Entities.Knowledges.Area", "Area")
+                    b.HasOne("SystemDAL.Entities.Knowledges.Area", null)
                         .WithMany("Knowledges")
                         .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SystemDAL.Entities.Knowledges.Knowledge", "Knowledge")
+                    b.HasOne("SystemDAL.Entities.Knowledges.Knowledge", null)
                         .WithMany("Areas")
                         .HasForeignKey("KnowledgeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Area");
-
-                    b.Navigation("Knowledge");
                 });
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.Area", b =>

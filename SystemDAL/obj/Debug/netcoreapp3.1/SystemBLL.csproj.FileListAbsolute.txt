@@ -11,3 +11,5 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\obj\Debug\netcoreapp3.
 D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\bin\Debug\netcoreapp3.1\SystemDAL.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\bin\Debug\netcoreapp3.1\SystemDAL.pdb
 D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\obj\Debug\netcoreapp3.1\SystemBLL.csproj.CopyComplete
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\bin\Debug\netcoreapp3.1\Administration.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\SystemDAL\bin\Debug\netcoreapp3.1\Administration.pdb

@@ -11,5 +11,7 @@ namespace Administration.Interfaces
     {
         Task SignUp(SignUp model);
         Task<User> SignIn(SignIn model);
+        Task DeleteUser(string email);
+        Task<IEnumerable<User>> GetAllUsers();
     }
 }

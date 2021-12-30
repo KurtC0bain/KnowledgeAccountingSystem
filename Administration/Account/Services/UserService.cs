@@ -49,15 +49,35 @@ namespace Administration.Account
                 var currentUser = await _userManager.FindByEmailAsync(model.Email);
 
                 var roleresult = await _userManager.AddToRoleAsync(currentUser, model.Role);
-                await SignIn(new SignIn
+/*                await SignIn(new SignIn
                 {
                     Email = model.Email,
                     Password = model.Password
                 });
-            }
+*/            }
 
         }
 
+        public async Task DeleteUser(string email)
+        {
+            var currentUser = await _userManager.FindByEmailAsync(email);
+            var userRoles = await _userManager.GetRolesAsync(currentUser);
+
+            if(userRoles.Count() > 0)
+            {
+                foreach (var role in userRoles.ToList())
+                {
+                    var result = await _userManager.RemoveFromRoleAsync(currentUser, role);
+                }
+            }
+            await _userManager.DeleteAsync(currentUser);
+        }
+
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            var result = await _userManager.Users.ToListAsync();
+            return result;
+        }
 
         /*        public async Task ResetPassword(ForgetPassword model)
         */

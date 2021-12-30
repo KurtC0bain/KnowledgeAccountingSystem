@@ -9,5 +9,6 @@ namespace Administration.Account.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
     }
 }

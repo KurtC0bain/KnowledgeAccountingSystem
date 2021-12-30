@@ -2,6 +2,7 @@
 using Administration.Account.Models;
 using Administration.Interfaces;
 using KnowledgeAccountingSystem.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -67,6 +68,22 @@ namespace KnowledgeAccountingSystem.Controllers
             return Ok(JwtHelper.GenerateJwt(user, roles, _jwtSettings));
         }
 
+        [HttpPost]
+        [Route("DeleteUser")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteUser(string mail)
+        {
+            await _unitOfWork.UserService.DeleteUser(mail);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Users")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> GetUsers()
+        {
+            return Ok(await _unitOfWork.UserService.GetAllUsers());
+        }
 
         [HttpPost]
         [Route("NewRole")]

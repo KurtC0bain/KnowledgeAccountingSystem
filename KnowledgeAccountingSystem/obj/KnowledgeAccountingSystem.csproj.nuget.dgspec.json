@@ -212,7 +212,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\Administration\\Administration.csproj": {
+                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\Administration\\Administration.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Administration.Account.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static SystemDAL.Attributes.CustomValidation;
+
 
 namespace SystemDAL.Entities.Knowledges
 {
@@ -23,5 +25,6 @@ namespace SystemDAL.Entities.Knowledges
 
         public ICollection<KnowledgeArea> Areas { get; set; }
 
+        public string UserId { get; set; }
     }
 }
