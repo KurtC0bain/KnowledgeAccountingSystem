@@ -1,4 +1,5 @@
 ﻿using Administration.Account.Models;
+using Administration.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,7 +25,5 @@ namespace SystemDAL.Entities.Knowledges
         public string Description { get; set; }
 
         public ICollection<KnowledgeArea> Areas { get; set; }
-
-        public string UserId { get; set; }
     }
 }
