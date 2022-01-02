@@ -1,9 +1,11 @@
-﻿
+﻿using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using SystemDAL.Administration.Account.Models;
 using SystemDAL.Administration.Interfaces;
@@ -86,7 +88,22 @@ namespace SystemDAL.Administration.Account.Services
             return result;
         }
 
-        /*        public async Task ResetPassword(ForgetPassword model)
-        */
+        public async Task<Message> ForgotPassword(ForgotPassword model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) throw new ArgumentNullException();
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var message = new Message(new string[] { user.Email }, "Reset password token", token.ToString());
+            return message;
+        }
+        public async Task<string> ResetPassword(ResetPassword model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var resetPass = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+
+            return new String("Please, log in with a new password");
+        }
     }
 }

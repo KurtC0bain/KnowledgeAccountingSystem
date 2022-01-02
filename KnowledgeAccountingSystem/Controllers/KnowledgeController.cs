@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
@@ -63,6 +62,13 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             await _knowledgeService.UpdateAsync(knowledge);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("user/{id}")]
+        public async Task<IActionResult> GetUserKnowledge(string email)
+        {
+            return Ok(await _knowledgeService.GetUserKnowledge(email));
         }
     }
 }

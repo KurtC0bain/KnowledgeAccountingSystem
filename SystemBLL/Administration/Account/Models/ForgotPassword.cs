@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SystemDAL.Administration.Account.Models
 {
-    public class ForgetPassword
+    public class ForgotPassword
     {
         [Required]
         [EmailAddress]

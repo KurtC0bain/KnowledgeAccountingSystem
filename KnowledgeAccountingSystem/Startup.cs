@@ -1,4 +1,4 @@
-
+using EmailService;
 using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +38,11 @@ namespace KnowledgeAccountingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
 
 
             services.AddControllersWithViews()
@@ -65,7 +70,10 @@ namespace KnowledgeAccountingSystem
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 5;
-            }).AddEntityFrameworkStores<KnowledgeContext>();
+            }).AddEntityFrameworkStores<KnowledgeContext>()
+            .AddDefaultTokenProviders();
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+                opt.TokenLifespan = TimeSpan.FromHours(1));
 
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
 

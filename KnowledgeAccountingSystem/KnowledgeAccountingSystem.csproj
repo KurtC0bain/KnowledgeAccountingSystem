@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\SystemBLL\SystemDAL.csproj" />
     <ProjectReference Include="..\SystemDAL\SystemBLL.csproj" />
   </ItemGroup>

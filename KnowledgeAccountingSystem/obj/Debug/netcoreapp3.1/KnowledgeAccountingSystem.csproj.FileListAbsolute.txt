@@ -78,3 +78,9 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\De
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\MailKit.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\MimeKit.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EmailService.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EmailService.pdb

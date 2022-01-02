@@ -12,6 +12,9 @@ namespace SystemDAL.Administration.Account.Models
         public string Email { get; set; }
 
         [Required]
+        public string Token { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "Password should contain of more than 6 symbols", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }

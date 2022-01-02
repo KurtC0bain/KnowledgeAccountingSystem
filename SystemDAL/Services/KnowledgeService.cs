@@ -68,5 +68,9 @@ namespace SystemBLL.Services
              await _unitOfWork.Knowledge.UpdateAsync(entity);
              await _unitOfWork.SaveAsync();
         }
+        public async Task<IEnumerable<Knowledge>> GetUserKnowledge(string id)
+        {
+            return await _unitOfWork.Knowledge.GetUserKnowledges(id);
+        }
     }
 }

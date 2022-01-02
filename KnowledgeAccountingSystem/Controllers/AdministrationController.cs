@@ -1,4 +1,5 @@
-﻿using KnowledgeAccountingSystem.Helpers;
+﻿using EmailService;
+using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +18,15 @@ namespace KnowledgeAccountingSystem.Controllers
     {
         private readonly IAdministationUnitOfWork _unitOfWork;
         private readonly JwtSettings _jwtSettings;
+        private readonly IEmailSender _emailSender;
 
-        public AdministrationController(IAdministationUnitOfWork administationUnitOfWork, IOptionsSnapshot<JwtSettings> jwtSettings)
+        public AdministrationController(IAdministationUnitOfWork administationUnitOfWork, IOptionsSnapshot<JwtSettings> jwtSettings, IEmailSender emailSender)
         {
             _unitOfWork = administationUnitOfWork;
             _jwtSettings = jwtSettings.Value;
+            _emailSender = emailSender;
         }
 
-        [HttpPost]
-        [Route("AssignUserToRole")]
-        public async Task<IActionResult> AssingUserToRole(AddRoleToUser addRoleToUser)
-        {
-            return Ok(await _unitOfWork.RoleService.AssignUserToRoles(addRoleToUser));
-        }
 
         [HttpPost]
         [Route("SignUp")]
@@ -91,43 +88,18 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Route("DeleteUser")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteUser(string mail)
+        [Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(ForgotPassword model)
         {
-            await _unitOfWork.UserService.DeleteUser(mail);
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("Users")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> GetUsers()
-        {
-            return Ok(await _unitOfWork.UserService.GetAllUsers());
+            await _emailSender.SendEmailAsync(await _unitOfWork.UserService.ForgotPassword(model));
+            return Ok("Message sent");
         }
 
         [HttpPost]
-        [Route("NewRole")]
-        public async Task<IActionResult> AddRole(CreateRole role)
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPassword model)
         {
-            await _unitOfWork.RoleService.CreateRole(role.RoleName);
-            return Ok();
-        }
-
-
-        [HttpGet]
-        [Route("Roles")]
-        public async Task<IActionResult> GetRoles()
-        {
-            return Ok(await _unitOfWork.RoleService.GetRoles());
-        }
-
-        [HttpPost]
-        [Route("UserRole")]
-        public async Task<IActionResult> GetUserRoles(string mail)
-        {
-            return Ok(await _unitOfWork.RoleService.GetUserRoles(mail));
+            return Ok(await _unitOfWork.UserService.ResetPassword(model));
         }
     }
 }

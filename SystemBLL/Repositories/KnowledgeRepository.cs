@@ -55,6 +55,11 @@ namespace SystemDAL.Repositories
             return await _knowledgeContext.Knowledges.Include(q => q.Areas).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<Knowledge>> GetUserKnowledges(string id)
+        {
+            return await _knowledgeContext.Knowledges.Include(a => a.Areas).Where(k => k.UserId == id).ToListAsync();
+        }
+
         public async Task UpdateAsync(Knowledge entity)
         {
             var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);

@@ -1,4 +1,5 @@
 ﻿
+using EmailService;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,7 @@ namespace SystemDAL.Administration.Interfaces
         Task DeleteUser(string email);
         Task<IEnumerable<User>> GetAllUsers();
         Task SignOut();
+        Task<Message> ForgotPassword(ForgotPassword model);
+        Task<string> ResetPassword(ResetPassword model);
     }
 }
