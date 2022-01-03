@@ -17,7 +17,6 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
-        [Authorize (Roles = "programmer, admin")] //change
         public IActionResult GetKnowledge()
         {
             return Ok(_knowledgeService.GetAllAsync());
@@ -31,7 +30,6 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
@@ -66,9 +64,9 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpGet]
         [Route("user/{id}")]
-        public async Task<IActionResult> GetUserKnowledge(string email)
+        public async Task<IActionResult> GetUserKnowledge(string id)
         {
-            return Ok(await _knowledgeService.GetUserKnowledge(email));
+            return Ok(await _knowledgeService.GetUserKnowledge(id));
         }
     }
 }

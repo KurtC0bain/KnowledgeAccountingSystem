@@ -30,7 +30,12 @@
       "ProjectGuid": "e6607c10-d305-4368-a801-34cada1907c4",
       "DisplayName": "UserKnowledgeConnector",
       "ColorIndex": 4
+    },
+    "e4012f5f-3fde-48ec-a745-1ca9a39012b4": {
+      "ProjectGuid": "e4012f5f-3fde-48ec-a745-1ca9a39012b4",
+      "DisplayName": "EmailService",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }
