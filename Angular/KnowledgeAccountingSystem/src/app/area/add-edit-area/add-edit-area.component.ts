@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+import { ShowAreaComponent } from '../show-area/show-area.component'; 
 
 @Component({
   selector: 'app-add-edit-area',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEditAreaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: SharedService, private comp: ShowAreaComponent) { }
+
+  @Input() area: any;
+
+  AreaId?:number;
+  AreaName?: string;
 
   ngOnInit(): void {
+    this.AreaId = this.area.id
+    this.AreaName = this.area.name;
   }
 
+  addArea(){
+    var val = {
+      Name: this.AreaName,
+    }
+    this.service.AddArea(val).subscribe();
+
+    this.comp.refresh();
+  }
+
+  updateArea(){
+    var val = {
+      Id: this.AreaId,
+      Name: this.AreaName,
+    }
+    this.service.UpdateArea(val).subscribe();  
+    this.comp.closeClick();
+    this.comp.refreshAreaList();
+  }
 }
+
+

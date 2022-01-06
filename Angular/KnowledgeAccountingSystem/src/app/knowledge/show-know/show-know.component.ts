@@ -37,7 +37,6 @@ export class ShowKnowComponent implements OnInit {
     this.know=knowledge;
     this.ModalTitle = "Edit Knowledge";
     this.ActivateAddEditKnow = true;
-
   }
 
   infoClick(knowledge: any){
@@ -52,6 +51,7 @@ export class ShowKnowComponent implements OnInit {
       this.service.DeleteKnowledge(knowledge.id).subscribe();
       this.refreshKnowledgeList();
     }
+    this.refresh();
   }
 
   closeClick(){
@@ -67,4 +67,8 @@ export class ShowKnowComponent implements OnInit {
     })
   }
 
+
+  refresh(){
+    window.location.reload();
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { ShowKnowComponent } from '../show-know/show-know.component';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class AddEditKnowComponent implements OnInit {
 
-  constructor(private service: SharedService) { }
+  constructor(private service: SharedService, private comp: ShowKnowComponent) { }
 
   @Input() know: any;
 
@@ -30,6 +31,7 @@ export class AddEditKnowComponent implements OnInit {
       Description: this.KnowledgeDesc,
     }
     this.service.AddKnowledge(val).subscribe();
+    this.comp.refresh();
   }
 
   updateKnowledge(){
@@ -39,6 +41,7 @@ export class AddEditKnowComponent implements OnInit {
       Description: this.KnowledgeDesc,
     }
     this.service.UpdateKnowledge(val).subscribe();
+    this.comp.refresh();
   }
   
 }

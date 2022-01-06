@@ -31,7 +31,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize (Roles = "admin")]
+        /*[Authorize (Roles = "admin")]*/
         public async Task<IActionResult> PostArea(Area area)
         {
             await _areaService.AddAsync(area);
@@ -40,15 +40,15 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteArea(int id)
+       /* [Authorize(Roles = "admin")]*/
+        public async Task<IActionResult> DeleteAreaById(int id)
         {
             await _areaService.DeleteByIdAsync(id);
             return Ok();
         }
         
         [HttpDelete]
-        [Authorize(Roles = "admin")]
+       /* [Authorize(Roles = "admin")]*/
         public async Task<IActionResult> DeleteArea(Area area)
         {
             await _areaService.DeleteAsync(area);
@@ -56,7 +56,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
         
         [HttpPatch]
-        [Authorize(Roles = "admin")]
+       /* [Authorize(Roles = "admin")]*/
         public async Task<IActionResult> UpdateArea(Area area)
         {
             await _areaService.UpdateAsync(area);

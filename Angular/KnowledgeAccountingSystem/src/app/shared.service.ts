@@ -50,8 +50,8 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.patch(this.APIUrl+'/Area', val);
   }
 
-  DeleteArea(val:any) {
-    return this.http.delete(this.APIUrl+'/Area', val);
+  DeleteArea(id:Number) {
+    return this.http.delete(this.APIUrl+'/Area/'+ id);
   }
 
 
