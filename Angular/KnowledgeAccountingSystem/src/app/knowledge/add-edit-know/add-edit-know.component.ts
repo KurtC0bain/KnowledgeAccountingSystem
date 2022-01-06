@@ -1,4 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+
 
 @Component({
   selector: 'app-add-edit-know',
@@ -7,15 +9,40 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class AddEditKnowComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: SharedService) { }
 
   @Input() know: any;
-  KnowledgeId: Number = 0;
-  KnowledgeTitle:string = "";
+
+  KnowledgeId?:number;
+  KnowledgeTitle?: string;
+  KnowledgeDesc?: string;
+  Areas: any[] = [];
+
 
   ngOnInit(): void {
-    this.KnowledgeId = this.know.KnowledgeId;
-    this.KnowledgeTitle = this.know.KnowledgeTitle;
+    this.KnowledgeId = this.know.id;
+    this.KnowledgeTitle = this.know.title;
+    this.KnowledgeDesc = this.know.desc;
   }
 
+  addKnowledge(){
+    var val = {
+      Title: this.KnowledgeTitle,
+      Description: this.KnowledgeDesc,
+    }
+    this.service.AddKnowledge(val).subscribe(res => {
+      alert(res.toString());
+    });
+  }
+
+  updateKnowledge(){
+    var val = {
+      Id: this.KnowledgeId,
+      Title: this.KnowledgeTitle,
+      Description: this.KnowledgeDesc,
+    }
+    this.service.UpdateKnowledge(val).subscribe(res => {
+      alert(res);
+    });
+  }
 }

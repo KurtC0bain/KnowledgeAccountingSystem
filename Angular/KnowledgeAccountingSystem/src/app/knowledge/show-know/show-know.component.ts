@@ -22,14 +22,32 @@ export class ShowKnowComponent implements OnInit {
 
   addClick(){
     this.know={
-      KnowledgeId:0,
-      KnowledgeTitle:""
+      id:0,
+      title:"",
+      desc: "",
     };
+
     this.ModalTitle = "Add Knowledge";
     this.ActivateAddEditKnow = true;
   }
 
-  closeClick(): void {
+  editClick(knowledge: any){
+    this.know=knowledge;
+    this.ModalTitle = "Edit Knowledge";
+    this.ActivateAddEditKnow = true;
+
+  }
+
+  deleteClick(knowledge: any){
+    if(confirm('Are you sure??')){
+      this.service.DeleteKnowledge(knowledge).subscribe(data=>{
+        alert(data.toString());
+        this.refreshKnowledgeList();
+      })
+    }
+  }
+
+  closeClick(){
     this.ActivateAddEditKnow=false;
     this.refreshKnowledgeList();
   }

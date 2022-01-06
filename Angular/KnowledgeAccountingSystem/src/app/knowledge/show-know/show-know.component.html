@@ -5,14 +5,14 @@
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <app-add-edit-know know="know" *ngIf="ActivateAddEditKnow"></app-add-edit-know> 
+            <app-add-edit-know [know]="know" *ngIf="ActivateAddEditKnow"></app-add-edit-know> 
         </div>
       </div>
     </div>
@@ -20,11 +20,20 @@
 
 
 <article *ngFor="let knowledge of KnowledgeList">
+    <h1>{{knowledge.id}}</h1>
     <h2>{{knowledge.title}}</h2>
     <p>{{knowledge.description}}</p>
 
-    <button type="button" class="btn btn-light mr-1">
+    <button type="button" class="btn btn-light mr-1" >
         More information
+    </button>
+
+    <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editClick(knowledge)" data-backdrop="static" data-keyboard="false">
+        Edit
+    </button>
+
+    <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteClick(knowledge)" data-backdrop="static" data-keyboard="false">
+        Delete
     </button>
     <hr>
 </article>
