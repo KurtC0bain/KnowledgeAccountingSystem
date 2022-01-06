@@ -1,0 +1,31 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addClick()" data-backdrop="static" data-keyboard="false" >
+    Add New Knowledge
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-add-edit-know know="know" *ngIf="ActivateAddEditKnow"></app-add-edit-know> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<article *ngFor="let knowledge of KnowledgeList">
+    <h2>{{knowledge.title}}</h2>
+    <p>{{knowledge.description}}</p>
+
+    <button type="button" class="btn btn-light mr-1">
+        More information
+    </button>
+    <hr>
+</article>
+

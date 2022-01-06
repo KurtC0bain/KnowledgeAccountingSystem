@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
@@ -11,9 +12,11 @@ namespace KnowledgeAccountingSystem.Controllers
     public class KnowledgeController : ControllerBase
     {
         private readonly IKnowledgeService _knowledgeService;
-        public KnowledgeController(IKnowledgeService knowledgeService)
+        private readonly IHttpContextAccessor  _httpContextAccessor; 
+        public KnowledgeController(IKnowledgeService knowledgeService, IHttpContextAccessor httpContextAccessor)
         {
             _knowledgeService = knowledgeService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -33,7 +36,8 @@ namespace KnowledgeAccountingSystem.Controllers
         [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
-            await _knowledgeService.AddAsync(knowledge);
+/*            knowledge.UserId = _httpContextAccessor.User.FindFirstValue(CalimTypes.NameIdentifier);
+*/            await _knowledgeService.AddAsync(knowledge);
             return Ok();
         }
 

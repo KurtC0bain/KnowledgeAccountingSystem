@@ -20,7 +20,7 @@ namespace SystemDAL.Entities.Knowledges
         public string Title { get; set; }
 
         [Required]
-        [MinLength(100), MaxLength(500)]
+        [MinLength(100)]
         [CheckCapitalized]
         public string Description { get; set; }
 

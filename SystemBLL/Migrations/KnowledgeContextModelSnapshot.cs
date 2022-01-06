@@ -48,22 +48,22 @@ namespace SystemDAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7c2b77f4-3043-4558-b1db-46e7696e6be1",
-                            ConcurrencyStamp = "829ccaa0-99a8-4ab2-8f24-86e408749ed6",
+                            Id = "f1bc0496-7582-4270-a8e5-71954724a7da",
+                            ConcurrencyStamp = "b0cc9c0a-caba-4d5c-808e-c5c2352a1ff8",
                             Name = "programmer",
                             NormalizedName = "PROGRAMMER"
                         },
                         new
                         {
-                            Id = "bea21730-be16-4f2c-aaba-d779aea40f00",
-                            ConcurrencyStamp = "495c706c-9a1c-4914-9a47-a7cf4daf3bdb",
+                            Id = "dabb8944-efcc-4aae-84db-0487a54cc42f",
+                            ConcurrencyStamp = "bac97242-bef6-4836-a2d2-605acca89f32",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "34345454-42c9-4f39-b89c-a51ee33b123b",
-                            ConcurrencyStamp = "c0b09b7c-2b5d-4055-b2d5-0c34161dfb67",
+                            Id = "1a8d4917-23d0-4b1e-9154-ebe9fcb468d8",
+                            ConcurrencyStamp = "6d8429a2-66d1-4529-8178-c0f1fd888545",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -292,8 +292,7 @@ namespace SystemDAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
