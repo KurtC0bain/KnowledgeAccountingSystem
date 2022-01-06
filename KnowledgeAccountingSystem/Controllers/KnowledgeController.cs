@@ -12,7 +12,7 @@ namespace KnowledgeAccountingSystem.Controllers
     public class KnowledgeController : ControllerBase
     {
         private readonly IKnowledgeService _knowledgeService;
-        private readonly IHttpContextAccessor  _httpContextAccessor; 
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public KnowledgeController(IKnowledgeService knowledgeService, IHttpContextAccessor httpContextAccessor)
         {
             _knowledgeService = knowledgeService;
@@ -36,23 +36,25 @@ namespace KnowledgeAccountingSystem.Controllers
         /*[Authorize(Roles = "programmer, admin")]*/
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
-/*            knowledge.UserId = _httpContextAccessor.User.FindFirstValue(CalimTypes.NameIdentifier);
-*/            await _knowledgeService.AddAsync(knowledge);
+            /*            knowledge.UserId = _httpContextAccessor.User.FindFirstValue(CalimTypes.NameIdentifier);
+            */
+            await _knowledgeService.AddAsync(knowledge);
             return Ok();
         }
 
         [HttpDelete]
         [Route("{id}")]
-  /*      [Authorize(Roles = "programmer, admin")]*/
-        public async Task<IActionResult> DeleteKnowledge(int id)
+        /*      [Authorize(Roles = "programmer, admin")]*/
+        public async Task<IActionResult> DeleteKnowledgeById(int id)
         {
             await _knowledgeService.DeleteByIdAsync(id);
             return Ok();
         }
 
         [HttpDelete]
-/*        [Authorize(Roles = "programmer, admin")]
-*/        public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
+        /*        [Authorize(Roles = "programmer, admin")]
+        */
+        public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.DeleteAsync(knowledge);
             return Ok();

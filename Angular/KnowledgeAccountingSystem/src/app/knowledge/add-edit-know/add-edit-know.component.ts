@@ -16,7 +16,6 @@ export class AddEditKnowComponent implements OnInit {
   KnowledgeId?:number;
   KnowledgeTitle?: string;
   KnowledgeDesc?: string;
-  Areas: any[] = [];
 
 
   ngOnInit(): void {
@@ -30,9 +29,7 @@ export class AddEditKnowComponent implements OnInit {
       Title: this.KnowledgeTitle,
       Description: this.KnowledgeDesc,
     }
-    this.service.AddKnowledge(val).subscribe(res => {
-      alert(res.toString());
-    });
+    this.service.AddKnowledge(val).subscribe();
   }
 
   updateKnowledge(){
@@ -41,8 +38,7 @@ export class AddEditKnowComponent implements OnInit {
       Title: this.KnowledgeTitle,
       Description: this.KnowledgeDesc,
     }
-    this.service.UpdateKnowledge(val).subscribe(res => {
-      alert(res);
-    });
+    this.service.UpdateKnowledge(val).subscribe();
   }
+  
 }

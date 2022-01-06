@@ -1,1 +1,11 @@
-<p>info works!</p>
+<article>
+    <h2>{{Knowledge.title}}</h2>
+    <p>{{Knowledge.description}}</p>
+    <ul>
+        <li *ngFor="let area of Knowledge.areas">
+            {{area.rating}}
+        </li>           
+
+    </ul>
+
+</article>

@@ -17,6 +17,10 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<any>(this.APIUrl+'/Knowledge');
   }
 
+  GetKnowledge(id:Number) {
+    return this.http.get(this.APIUrl+'/Knowledge/'+ id);
+  }
+  
   AddKnowledge(val:any) {
     return this.http.post(this.APIUrl+'/Knowledge', val);
   }
@@ -25,13 +29,11 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.patch(this.APIUrl+'/Knowledge', val);
   }
 
-  DeleteKnowledge(val:any) {
-    return this.http.delete(this.APIUrl+'/Knowledge', val);
+  DeleteKnowledge(id:Number){
+    return this.http.delete(this.APIUrl+'/Knowledge/'+ id);
   }
 
-  GetKnowledge(id:Number) {
-    return this.http.get(this.APIUrl+'/Knowledge/'+ id);
-  }
+  
 
 
 

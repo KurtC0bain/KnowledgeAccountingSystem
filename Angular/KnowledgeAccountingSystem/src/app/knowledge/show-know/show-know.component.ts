@@ -14,7 +14,9 @@ export class ShowKnowComponent implements OnInit {
 
   ModalTitle:string="";
   ActivateAddEditKnow: boolean = false;
+  ActivateInfo:boolean = false;
   know: any;
+
 
   ngOnInit(): void {
     this.refreshKnowledgeList();
@@ -38,19 +40,26 @@ export class ShowKnowComponent implements OnInit {
 
   }
 
+  infoClick(knowledge: any){
+    this.know = knowledge;
+    this.ModalTitle = "Info";
+    this.ActivateInfo = true;
+  }
+
   deleteClick(knowledge: any){
-    if(confirm('Are you sure??')){
-      this.service.DeleteKnowledge(knowledge).subscribe(data=>{
-        alert(data.toString());
-        this.refreshKnowledgeList();
-      })
+    if(confirm('Are you sure?')){
+      alert(knowledge);
+      this.service.DeleteKnowledge(knowledge.id).subscribe();
+      this.refreshKnowledgeList();
     }
   }
 
   closeClick(){
     this.ActivateAddEditKnow=false;
+    this.ActivateInfo = false;
     this.refreshKnowledgeList();
   }
+
 
   refreshKnowledgeList(): void {
     this.service.GetAllKnowledge().subscribe(data => {

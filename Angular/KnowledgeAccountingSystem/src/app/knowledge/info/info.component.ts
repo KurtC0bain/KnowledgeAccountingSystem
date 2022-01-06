@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../../shared.service';
 
 @Component({
@@ -10,15 +10,14 @@ export class InfoComponent implements OnInit {
 
   constructor(private service: SharedService) { }
 
-  Knowledge: any;
-
+  @Input() Knowledge: any;
 
   ngOnInit(): void {
- 
+    this.getKnowledge();
   }
 
-  getKnowledge(id:Number): any {
-    this.service.GetKnowledge(id).subscribe(data => {
+  getKnowledge(): any {
+    this.service.GetKnowledge(this.Knowledge.id).subscribe(data => {
       this.Knowledge = data;
     })
   } 
