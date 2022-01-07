@@ -42,7 +42,7 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<any>(this.APIUrl+'/Area');
   }
 
-  GetAreasById(id:Number): Observable<any>{
+  GetAreasByKnowledgeId(id:Number): Observable<any>{
     return this.http.get<any>(this.APIUrl+'/Area/knowledge/'+ id);
   }
 

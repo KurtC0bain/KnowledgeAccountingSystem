@@ -40,12 +40,14 @@ namespace KnowledgeAccountingSystem.Controllers
                 Password = signUp.Password,
                 Role = signUp.Role,
             });
-            return Ok(await LogIn(new SignIn
+            return Ok();
+                
+/*                await LogIn(new SignIn
             {
                 Email = signUp.Email,
                 Password = signUp.Password
             }));
-        }
+*/        }
 
         [HttpPost]
         [Route("SignIn")]
@@ -68,6 +70,7 @@ namespace KnowledgeAccountingSystem.Controllers
             HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", token,
             new CookieOptions
             {
+                SameSite = SameSiteMode.Lax,
                 MaxAge = TimeSpan.FromMinutes(60)
             });
 

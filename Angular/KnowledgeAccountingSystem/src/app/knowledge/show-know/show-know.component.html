@@ -38,12 +38,13 @@
 
   <div class="d-flex flex-row mt-2 mb-5">
     <label class="col-sm-2 col-form-label mr-2 ">Search By Area</label>
-    <select class="form-control" [(ngModel)]="Area">
+    <select class="form-control" [(ngModel)]="AreaName">
       <option>Select Area</option>
       <option *ngFor="let area of KnowledgeArea">
           {{area.name}}
       </option>
   </select>
+
   <button type="button" class="btn btn-light mr-1" (click)="FilterFnArea()">Search</button>
   </div>
 
@@ -51,9 +52,9 @@
 
 
 <article *ngFor="let knowledge of KnowledgeList">
-    <h2>{{knowledge.title}}</h2>
+    <h2>{{knowledge.title}}</h2>  
     <p>{{knowledge.description}}</p>
-
+    
     <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="infoClick(knowledge)" data-backdrop="static" data-keyboard="false">
         More information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>

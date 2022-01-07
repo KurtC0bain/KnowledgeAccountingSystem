@@ -12,14 +12,19 @@ import { AddEditAreaComponent } from './area/add-edit-area/add-edit-area.compone
 import { UserComponent } from './user/user.component';
 import { ShowUserComponent } from './user/show-user/show-user.component';
 import { AddEditUserComponent } from './user/add-edit-user/add-edit-user.component';
+
 import {SharedService} from './shared.service'
+import { AdministrationService } from './administration.service';
+
+import{InfoComponent} from './knowledge/info/info.component'
 
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleComponent } from './role/role.component';
 import { AddEditRoleComponent } from './role/add-edit-role/add-edit-role.component';
 import { ShowRoleComponent } from './role/show-role/show-role.component';
-import { InfoComponent } from './knowledge/info/info.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,9 @@ import { InfoComponent } from './knowledge/info/info.component';
     RoleComponent,
     AddEditRoleComponent,
     ShowRoleComponent,
-    InfoComponent
+    InfoComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { InfoComponent } from './knowledge/info/info.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SharedService, ShowAreaComponent],
+  providers: [SharedService, ShowAreaComponent, InfoComponent, AdministrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

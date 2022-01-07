@@ -39,6 +39,15 @@ namespace KnowledgeAccountingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                    builder.SetIsOriginAllowed(_ => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")
                 .Get<EmailConfiguration>();
@@ -55,12 +64,15 @@ namespace KnowledgeAccountingSystem
 
             services.AddDbContext<KnowledgeContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("ProjectDB")));
 
+            services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen();
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IAreaRepository, AreaRepository>();
 
             services.AddScoped<IKnowledgeService, KnowledgeService>();
             services.AddScoped<IAreaService, AreaService>();
@@ -138,6 +150,7 @@ namespace KnowledgeAccountingSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -146,6 +159,7 @@ namespace KnowledgeAccountingSystem
                 app.UseSwaggerUI();
 
             }
+
             app.Use(async (context, next) =>
             {
                 var token = context.Request.Cookies[".AspNetCore.Application.Id"];
@@ -155,10 +169,7 @@ namespace KnowledgeAccountingSystem
             });
 
 
-            app.UseCors(x => x
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

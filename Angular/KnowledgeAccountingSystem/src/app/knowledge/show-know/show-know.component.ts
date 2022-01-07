@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{SharedService} from '../../shared.service';
+import {InfoComponent} from '../info/info.component'
 
 
 @Component({
@@ -9,31 +10,49 @@ import{SharedService} from '../../shared.service';
 })
 export class ShowKnowComponent implements OnInit {
 
-  constructor(private service: SharedService) { }
+  constructor(private service: SharedService, public info: InfoComponent) { }
 
-  KnowledgeList:any=[];
+  bufferAreas:any=[];
+
+
+  KnowledgeList:any;
 
   ModalTitle:string="";
   ActivateAddEditKnow: boolean = false;
   ActivateInfo:boolean = false;
   know: any;
 
+  Areas:any=[];
+
+
+
   KnowledgeArea:any=[];
-  Area:any;
+  AreaName:string="";
+
+
+
 
   KnowledgeIdFilter:string = "";
   KnowledgeTitleFilter:string="";
   KnowledgeAreaFilter:string="";
   KnowledgeUserIdFilter:string="";
 
-  AreaNameFilter:string="";
 
   KnowledgeListWithoutFilter:any=[];
 
 
   ngOnInit(){
     this.refreshKnowledgeList();
+
+  
   }
+
+  getAreas(id:Number): any[]{
+    return this.info.getAreas(id).subscribe((data: any) => {
+      this.bufferAreas = data;
+    });
+  };
+
 
   addClick(){
     this.know={
@@ -78,9 +97,14 @@ export class ShowKnowComponent implements OnInit {
       this.KnowledgeList=data;
       this.KnowledgeListWithoutFilter=data
     });
+
     this.service.GetAreas().subscribe(data => {
       this.KnowledgeArea = data;
-    })
+    });
+
+    console.log(1);
+
+  
   }
 
 
@@ -105,8 +129,22 @@ export class ShowKnowComponent implements OnInit {
   }
   
   FilterFnArea(){
-    var AreaNameFilter = this.AreaNameFilter;
-    this.Area
+
+    var buff:any=[];
+    buff = this.KnowledgeArea;
+
+    var AreaNameFilter = this.AreaName;
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el:any){
+      for(let item of buff){
+        console.log(item.name);
+        if(item.name.toString().toLowerCase().includes(
+          AreaNameFilter.toString().trim().toLowerCase()
+        )){
+          return true;
+        }
+      }
+      return false;
+    })
   }
 
 }

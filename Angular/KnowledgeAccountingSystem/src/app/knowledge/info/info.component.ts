@@ -32,10 +32,11 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  getAreas(id:Number){
-    return this.service.GetAreasById(id).subscribe(data => {
+  getAreas(id:Number): any{
+    return this.service.GetAreasByKnowledgeId(id).subscribe(data => {
       this.areasToShow = data;
     })
   }
+
 
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
+using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
 using SystemDAL.Repositories;
@@ -71,6 +72,11 @@ namespace SystemBLL.Services
         public async Task<IEnumerable<Knowledge>> GetUserKnowledge(string id)
         {
             return await _unitOfWork.Knowledge.GetUserKnowledges(id);
+        }
+
+        public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
+        {
+            return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
         }
     }
 }
