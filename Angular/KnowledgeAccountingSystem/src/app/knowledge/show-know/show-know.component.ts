@@ -26,6 +26,8 @@ export class ShowKnowComponent implements OnInit {
   KnowledgeAreaFilter:string="";
   KnowledgeUserIdFilter:string="";
 
+  AreaNameFilter:string="";
+
   KnowledgeListWithoutFilter:any=[];
 
 
@@ -100,6 +102,11 @@ export class ShowKnowComponent implements OnInit {
         KnowledgeTitleFilter.toString().trim().toLowerCase()
       )
     });
+  }
+  
+  FilterFnArea(){
+    var AreaNameFilter = this.AreaNameFilter;
+    this.Area
   }
 
 }

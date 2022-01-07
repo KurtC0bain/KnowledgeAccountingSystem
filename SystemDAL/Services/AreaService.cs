@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
+using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
 using SystemDAL.Repositories;
@@ -57,7 +58,7 @@ namespace SystemBLL.Services
             return await _unitOfWork.Area.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Area>> GetKnowledgeAreasById(int id)
+        public async Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id)
         {
             return await _unitOfWork.Area.GetKnowledgeAreasById(id);
         }

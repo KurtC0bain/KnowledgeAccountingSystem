@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemDAL.Entities;
 using SystemDAL.Entities.Context;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
@@ -55,9 +56,21 @@ namespace SystemDAL.Repositories
             return await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Area>> GetKnowledgeAreasById(int id)
+        public async Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id)
         {
-            return await _knowledgeContext.KnowledgeAreas.Where(q => q.KnowledgeId == id).Select(x => x.Area).ToListAsync();
+            List<Area> areas = await FindAll().ToListAsync();
+            List<KnowledgeArea> knowledgeAreas = await _knowledgeContext.KnowledgeAreas.ToListAsync();
+
+           return areas.Join(knowledgeAreas.Where(x => x.KnowledgeId == id),
+                area => area,
+                knowAr => knowAr.Area,
+                (area, rating) => new AreaRating
+                {
+                    Id = area.Id,
+                    Name = area.Name,
+                    Rating = rating.Rating
+                });
+
         }
 
         public async Task UpdateAsync(Area entity)
