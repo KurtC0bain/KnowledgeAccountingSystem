@@ -36,8 +36,7 @@ import { InfoComponent } from './knowledge/info/info.component';
     RoleComponent,
     AddEditRoleComponent,
     ShowRoleComponent,
-    InfoComponent,
-  
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,7 @@ import { InfoComponent } from './knowledge/info/info.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SharedService],
+  providers: [SharedService, ShowAreaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

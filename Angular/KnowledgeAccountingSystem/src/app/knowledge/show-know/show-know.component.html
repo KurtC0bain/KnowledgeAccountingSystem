@@ -26,11 +26,30 @@
   </div>
 
 
+  <div class="d-flex flex-row mt-4 mb-3">
+    <label class="col-sm-2 col-form-label mr-2 ">Search By Title</label>
+    <input [(ngModel)]="KnowledgeTitleFilter" class="form-control" placeholder="Search">
+    <button type="button" class="btn btn-light mr-1" (click)="FilterFn()">Search</button>
+  </div>
 
+
+
+
+
+  <div class="d-flex flex-row mt-2 mb-5">
+    <label class="col-sm-2 col-form-label mr-2 ">Search By Area</label>
+    <select class="form-control" [(ngModel)]="Area">
+      <option>Select Area</option>
+      <option *ngFor="let area of KnowledgeArea">
+          {{area.name}}
+      </option>
+  </select>
+  </div>
+
+  <hr>
 
 
 <article *ngFor="let knowledge of KnowledgeList">
-    <h1>{{knowledge.id}}</h1>
     <h2>{{knowledge.title}}</h2>
     <p>{{knowledge.description}}</p>
 

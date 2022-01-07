@@ -57,6 +57,11 @@ namespace SystemBLL.Services
             return await _unitOfWork.Area.GetByIdAsync(id);
         }
 
+        public async Task<IEnumerable<Area>> GetKnowledgeAreasById(int id)
+        {
+            return await _unitOfWork.Area.GetKnowledgeAreasById(id);
+        }
+
         public async Task UpdateAsync(Area entity)
         {
             await _unitOfWork.Area.UpdateAsync(entity);

@@ -62,6 +62,13 @@ namespace KnowledgeAccountingSystem.Controllers
             await _areaService.UpdateAsync(area);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("knowledge/{id}")]
+        public async Task<IActionResult> GetKnowladgeAreasById(int id)
+        {
+            return  Ok(await _areaService.GetKnowledgeAreasById(id));
+        }
     }
 
 }

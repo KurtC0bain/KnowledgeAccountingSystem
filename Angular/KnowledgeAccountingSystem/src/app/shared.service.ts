@@ -41,6 +41,9 @@ readonly APIUrl = "https://localhost:44392/api";
   GetAreas(): Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/Area');
   }
+  GetAreasById(id:Number): Observable<any>{
+    return this.http.get<any>(this.APIUrl+'/Area/knowledge/'+ id);
+  }
 
   AddArea(val:any) {
     return this.http.post(this.APIUrl+'/Area', val);

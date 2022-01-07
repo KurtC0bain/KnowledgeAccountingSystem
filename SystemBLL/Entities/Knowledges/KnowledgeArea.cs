@@ -21,7 +21,7 @@ namespace SystemDAL.Entities.Knowledges
         [Range(1, 5)]
         public int Rating { get; set; }
 
-        private Knowledge Knowledge { get; set; }
-        private Area Area { get; set; }
+        public Knowledge Knowledge { get; set; }
+        public Area Area { get; set; }
     }
 }

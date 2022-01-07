@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import{SharedService} from '../../shared.service'
+import{SharedService} from '../../shared.service';
+
 
 @Component({
   selector: 'app-show-know',
@@ -17,8 +18,18 @@ export class ShowKnowComponent implements OnInit {
   ActivateInfo:boolean = false;
   know: any;
 
+  KnowledgeArea:any=[];
+  Area:any;
 
-  ngOnInit(): void {
+  KnowledgeIdFilter:string = "";
+  KnowledgeTitleFilter:string="";
+  KnowledgeAreaFilter:string="";
+  KnowledgeUserIdFilter:string="";
+
+  KnowledgeListWithoutFilter:any=[];
+
+
+  ngOnInit(){
     this.refreshKnowledgeList();
   }
 
@@ -57,13 +68,16 @@ export class ShowKnowComponent implements OnInit {
   closeClick(){
     this.ActivateAddEditKnow=false;
     this.ActivateInfo = false;
-    this.refreshKnowledgeList();
   }
 
 
   refreshKnowledgeList(): void {
     this.service.GetAllKnowledge().subscribe(data => {
       this.KnowledgeList=data;
+      this.KnowledgeListWithoutFilter=data
+    });
+    this.service.GetAreas().subscribe(data => {
+      this.KnowledgeArea = data;
     })
   }
 
@@ -71,4 +85,21 @@ export class ShowKnowComponent implements OnInit {
   refresh(){
     window.location.reload();
   }
+
+
+  FilterFn(){
+    var KnowledgeIdFilter = this.KnowledgeIdFilter;
+    var KnowledgeTitleFilter = this.KnowledgeTitleFilter;
+    var KnowledgeUserIdFilter = this.KnowledgeUserIdFilter;
+
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el:any){
+      return el.id.toString().toLowerCase().includes(
+        KnowledgeIdFilter.toString().trim().toLowerCase()
+      )&&
+      el.title.toString().toLowerCase().includes(
+        KnowledgeTitleFilter.toString().trim().toLowerCase()
+      )
+    });
+  }
+
 }
