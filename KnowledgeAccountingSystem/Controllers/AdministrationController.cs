@@ -68,18 +68,18 @@ namespace KnowledgeAccountingSystem.Controllers
             var token = JwtHelper.GenerateJwt(user, roles, _jwtSettings);
 
             HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", token,
-            new CookieOptions
-            {
-                SameSite = SameSiteMode.Lax,
-                MaxAge = TimeSpan.FromMinutes(60)
-            });
+             new CookieOptions
+             {
+                 MaxAge = TimeSpan.FromDays(30),
+                 SameSite = SameSiteMode.None,
+                 Secure = true
+             });
 
             return Ok(token);
         }
 
         [HttpPost]
         [Route("SignOut")]
-        [Authorize]
         public async Task<IActionResult> LogOut()
         {
             await _unitOfWork.UserService.SignOut();

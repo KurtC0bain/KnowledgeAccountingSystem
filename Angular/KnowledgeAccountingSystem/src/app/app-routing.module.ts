@@ -9,9 +9,9 @@ import {LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  {path:'knowledge', component: KnowledgeComponent},
   {path: 'user', component: UserComponent},
   {path: 'role', component: RoleComponent},
-  {path: 'knowledge', component: KnowledgeComponent},
   {path: 'area', component: AreaComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}

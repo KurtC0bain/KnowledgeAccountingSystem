@@ -15,8 +15,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router,
-     private admin:AdministrationService
+    private admin:AdministrationService
   ) {
   }
 
@@ -32,7 +31,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    this.http.post('https://localhost:44392/api/Administration/SignUp', this.form.getRawValue())
-      .subscribe(() => this.router.navigate(['/login']));
+    this.admin.SignUp(this.form.getRawValue());
   }
 }

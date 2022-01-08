@@ -15,6 +15,7 @@ import { AddEditUserComponent } from './user/add-edit-user/add-edit-user.compone
 
 import {SharedService} from './shared.service'
 import { AdministrationService } from './administration.service';
+import { CookieService } from 'ngx-cookie-service';
 
 import{InfoComponent} from './knowledge/info/info.component'
 
@@ -52,7 +53,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SharedService, ShowAreaComponent, InfoComponent, AdministrationService],
+  providers: [SharedService, ShowAreaComponent, InfoComponent, AdministrationService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

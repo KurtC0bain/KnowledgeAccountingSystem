@@ -34,7 +34,6 @@ namespace SystemDAL.Administration.Account.Services
         }
         public async Task SignOut()
         {
- /*           if(_signInManager.IsSignedIn())*/
             await _signInManager.SignOutAsync();
         }
 

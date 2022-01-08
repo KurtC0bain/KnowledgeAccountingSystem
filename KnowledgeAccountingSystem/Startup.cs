@@ -48,6 +48,10 @@ namespace KnowledgeAccountingSystem
                     .AllowCredentials());
             });
 
+/*            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
+               .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+*/
+
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")
                 .Get<EmailConfiguration>();
@@ -92,9 +96,7 @@ namespace KnowledgeAccountingSystem
                 opt.TokenLifespan = TimeSpan.FromHours(1));
 
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
-
             var jwtSettings = Configuration.GetSection("Jwt").Get<JwtSettings>();
-
             services
                 .AddAuthorization()
                 .AddAuthentication(options =>
@@ -102,6 +104,10 @@ namespace KnowledgeAccountingSystem
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddCookie(options => {
+                    options.LoginPath = "/Administration/SignIn/";
+                    options.AccessDeniedPath = "/Account/Forbidden/";
                 })
                 .AddJwtBearer(options =>
                 {
@@ -114,6 +120,30 @@ namespace KnowledgeAccountingSystem
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            /*            var jwtSettings = Configuration.GetSection("Jwt").Get<JwtSettings>();
+
+                        services
+                            .AddAuthorization()
+                            .AddAuthentication(options =>
+                            {
+                                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                            })
+                            .AddJwtBearer(options =>
+                            {
+                                options.RequireHttpsMetadata = false;
+                                options.TokenValidationParameters = new TokenValidationParameters
+                                {
+                                    ValidIssuer = jwtSettings.Issuer,
+                                    ValidAudience = jwtSettings.Issuer,
+                                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
+                                    ClockSkew = TimeSpan.Zero
+                                };
+                            });
+            */
+
             services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -145,6 +175,7 @@ namespace KnowledgeAccountingSystem
                     };
                 c.AddSecurityRequirement(security);
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -160,6 +191,15 @@ namespace KnowledgeAccountingSystem
 
             }
 
+          
+            app.UseCors();
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+
+
             app.Use(async (context, next) =>
             {
                 var token = context.Request.Cookies[".AspNetCore.Application.Id"];
@@ -168,24 +208,8 @@ namespace KnowledgeAccountingSystem
                 await next();
             });
 
-
-            app.UseCors();
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseCookiePolicy(new CookiePolicyOptions
-            {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
-                HttpOnly = HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.Always
-            });
-
-
 
             app.UseEndpoints(endpoints =>
             {

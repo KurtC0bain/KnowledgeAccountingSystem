@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdministrationService } from './administration.service';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  constructor(public admin: AdministrationService) {}
   title = 'KnowledgeAccountingSystem';
-  ifLogIn:boolean = false;
+  ifLoggedIn = false;
+
 
   ngOnInit(): void {
+    this.ifLoggedIn = this.admin.ifLoggedIn();
+    console.log(this.ifLoggedIn)
+  }
+  signOut(){
+    this.admin.SignOut();
   }
 
 }

@@ -43,8 +43,6 @@ export class ShowKnowComponent implements OnInit {
 
   ngOnInit(){
     this.refreshKnowledgeList();
-
-  
   }
 
   getAreas(id:Number): any[]{
@@ -101,10 +99,6 @@ export class ShowKnowComponent implements OnInit {
     this.service.GetAreas().subscribe(data => {
       this.KnowledgeArea = data;
     });
-
-    console.log(1);
-
-  
   }
 
 
