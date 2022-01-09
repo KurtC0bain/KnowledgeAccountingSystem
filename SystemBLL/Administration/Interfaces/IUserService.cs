@@ -18,5 +18,6 @@ namespace SystemDAL.Administration.Interfaces
         Task SignOut();
         Task<Message> ForgotPassword(ForgotPassword model);
         Task<string> ResetPassword(ResetPassword model);
+        Task<string> GetUserId(string email);
     }
 }

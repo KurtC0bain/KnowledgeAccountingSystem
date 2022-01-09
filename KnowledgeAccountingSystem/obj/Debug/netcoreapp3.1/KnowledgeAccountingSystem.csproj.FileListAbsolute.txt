@@ -84,3 +84,15 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\De
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EmailService.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EmailService.pdb
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\EntityFramework.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Z.EntityFramework.Extensions.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Z.EntityFramework.Plus.EF6.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\Z.Expressions.Eval.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\EPAM\Final Project\KnowledgeAccountingSystem\KnowledgeAccountingSystem\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

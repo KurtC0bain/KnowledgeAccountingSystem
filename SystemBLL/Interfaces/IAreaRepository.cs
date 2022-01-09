@@ -10,5 +10,6 @@ namespace SystemDAL.Interfaces
     public interface IAreaRepository : IGenericRepository<Area>
     {
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
+        Task<int> GetAreaIdByName(string name);
     }
 }

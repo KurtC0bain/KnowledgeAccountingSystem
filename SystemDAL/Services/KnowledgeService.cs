@@ -78,5 +78,10 @@ namespace SystemBLL.Services
         {
             return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
         }
+
+        public async Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName)
+        {
+            return await _unitOfWork.Knowledge.GetKnowledgeByArea(areaName); 
+        }
     }
 }

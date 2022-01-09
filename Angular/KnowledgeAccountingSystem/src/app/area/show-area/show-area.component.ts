@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Area } from 'src/app/models/Area';
 import { SharedService } from 'src/app/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-area',
@@ -7,6 +9,8 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./show-area.component.css']
 })
 export class ShowAreaComponent implements OnInit {
+  
+
 
   constructor(private service: SharedService) { }
 
@@ -14,43 +18,50 @@ export class ShowAreaComponent implements OnInit {
   ModalTitle:string="";
   ActivateAddEditArea: boolean = false;
 
-  area:any;
+  showArea: any;
 
 
   ngOnInit(): void {
+
     this.refreshAreaList();
+    
   }
 
   addClick(){
-    this.area={
+    this.showArea={
       id:0,
       name:"",
     };
-
     this.ModalTitle = "Add Area";
     this.ActivateAddEditArea = true;
   }
+
   editClick(area:any){
-    this.area=area;
+    this.showArea=area;
     this.ModalTitle = "Edit Area";
     this.ActivateAddEditArea = true;
   };
-  deleteClick(area:any){
+
+
+
+  deleteClick(id:Number){
     if(confirm('Are you sure?')){
-      this.service.DeleteArea(area.id).subscribe();
+      this.service.DeleteArea(id).subscribe(() => {
+        this.refreshAreaList() 
+      });
     }
-    this.refresh();
   };
+
+
 
   closeClick(){
     this.ActivateAddEditArea = false;
     this.refreshAreaList();
   }
 
-  refreshAreaList(): void{
-    this.service.GetAreas().subscribe(data => {
-      this.AreaList=data;
-    });
+  refreshAreaList(){
+    this.service.GetAreas().subscribe(res => this.AreaList = res);
+    
   }
 
   refresh(): void {

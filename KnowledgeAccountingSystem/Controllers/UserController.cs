@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using SystemDAL.Administration.Interfaces;
 
@@ -17,7 +18,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Route("DeleteUser")]
+        [Route("DeleteUser/{mail}")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteUser(string mail)
         {
@@ -32,6 +33,12 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _unitOfWork.UserService.GetAllUsers());
         }
-
+        [HttpGet]
+        [Route("UserId")]
+        public async Task<IActionResult> GetUserId()
+        {
+            string email = User.FindFirst(ClaimTypes.Name)?.Value;
+            return Ok(await _unitOfWork.UserService.GetUserId(email));
+        }
     }
 }

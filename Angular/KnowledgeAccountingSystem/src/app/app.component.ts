@@ -15,10 +15,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.ifLoggedIn = this.admin.ifLoggedIn();
-    console.log(this.ifLoggedIn)
+    console.log(this.ifLoggedIn);
   }
+
+  refresh(){
+    window.location.reload();
+  }
+
   signOut(){
     this.admin.SignOut();
+    this.refresh();
   }
 
 }

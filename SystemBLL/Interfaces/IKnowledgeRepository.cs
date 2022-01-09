@@ -11,6 +11,7 @@ namespace SystemDAL.Interfaces
     {
         Task<IEnumerable<Knowledge>> GetUserKnowledges(string id);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
+        Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName);
 
     }
 }

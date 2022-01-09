@@ -10,5 +10,6 @@ namespace SystemBLL.Interfaces
     public interface IAreaService : IService<Area>
     {
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
+        Task<int> GetAreaIdByName(string name);
     }
 }

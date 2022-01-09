@@ -11,5 +11,6 @@ namespace SystemBLL.Interfaces
     {
         Task<IEnumerable<Knowledge>> GetUserKnowledge(string id);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
+        Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName);
     }
 }

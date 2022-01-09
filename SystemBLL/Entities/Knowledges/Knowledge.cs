@@ -27,7 +27,7 @@ namespace SystemDAL.Entities.Knowledges
         [ForeignKey("User")]
         public string UserId { get; set; }
 
-        public ICollection<KnowledgeArea> Areas { get; set; }
+        public ICollection<KnowledgeArea> Areas { get; set; } = new HashSet<KnowledgeArea>();
         private User User { get; set; }
     }
 }

@@ -24,6 +24,12 @@ export class InfoComponent implements OnInit {
       this.areas = data;
     });
     this.getAreas(this.Knowledge.id);
+    
+    console.log(this.areasToShow)
+    for(var i of this.areasToShow)
+    {
+      console.log(i);
+    }
   }
 
   getKnowledge(): any {

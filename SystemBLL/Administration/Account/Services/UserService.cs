@@ -5,6 +5,7 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using SystemDAL.Administration.Account.Models;
@@ -57,12 +58,8 @@ namespace SystemDAL.Administration.Account.Services
                 var currentUser = await _userManager.FindByEmailAsync(model.Email);
 
                 var roleresult = await _userManager.AddToRoleAsync(currentUser, model.Role);
-/*                await SignIn(new SignIn
-                {
-                    Email = model.Email,
-                    Password = model.Password
-                });
-*/            }
+
+            }
 
         }
 
@@ -85,6 +82,11 @@ namespace SystemDAL.Administration.Account.Services
         {
             var result = await _userManager.Users.ToListAsync();
             return result;
+        }
+        public async Task<string> GetUserId(string email) 
+        {
+            var user = await _userManager.FindByNameAsync(email);
+            return user.Id;
         }
 
         public async Task<Message> ForgotPassword(ForgotPassword model)

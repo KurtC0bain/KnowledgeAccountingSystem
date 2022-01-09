@@ -8,6 +8,7 @@ using SystemDAL.Entities;
 using SystemDAL.Entities.Context;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
+using Z.EntityFramework.Plus;
 
 namespace SystemDAL.Repositories
 {
@@ -63,6 +64,7 @@ namespace SystemDAL.Repositories
                     Id = item.Id,
                     Title = item.Title,
                     Description = item.Description,
+                    UserId = item.UserId,
                     AreaRating = await GetKnowledgeAreasById(item.Id)
                 });
             }
@@ -82,7 +84,6 @@ namespace SystemDAL.Repositories
                      Name = area.Name,
                      Rating = rating.Rating
                  });
-
         }
 
         public async Task<Knowledge> GetByIdAsync(int id)
@@ -108,5 +109,12 @@ namespace SystemDAL.Repositories
             _knowledgeContext.Entry(element).State = EntityState.Modified;
             await _knowledgeContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName)
+        {
+            var res =  await _knowledgeContext.Knowledges.IncludeFilter(t => t.Areas.Where(i => i.Area.Name == areaName)).ToListAsync();
+            return res;
+        }
+        
     }
 }

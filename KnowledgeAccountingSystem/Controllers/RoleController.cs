@@ -16,6 +16,7 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             _unitOfWork = administationUnitOfWork;
         }
+
         [HttpPost]
         [Route("NewRole")]
         public async Task<IActionResult> AddRole(CreateRole role)
@@ -23,7 +24,6 @@ namespace KnowledgeAccountingSystem.Controllers
             await _unitOfWork.RoleService.CreateRole(role.RoleName);
             return Ok();
         }
-
 
         [HttpGet]
         [Route("Roles")]
@@ -33,7 +33,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Route("UserRole")]
+        [Route("UserRole/{mail}")]
         public async Task<IActionResult> GetUserRoles(string mail)
         {
             return Ok(await _unitOfWork.RoleService.GetUserRoles(mail));

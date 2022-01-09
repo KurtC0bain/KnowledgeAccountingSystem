@@ -51,6 +51,12 @@ namespace SystemDAL.Repositories
             return _knowledgeContext.Areas.Include(x => x.Knowledges);
         }
 
+        public async Task<int> GetAreaIdByName(string name)
+        {
+            var area =  await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Name == name);
+            return area != null ? area.Id : 0;
+        }
+
         public async Task<Area> GetByIdAsync(int id)
         {
             return await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == id);

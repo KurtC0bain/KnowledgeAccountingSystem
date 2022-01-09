@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
 using SystemDAL.Entities.Knowledges;
@@ -19,10 +20,16 @@ namespace KnowledgeAccountingSystem.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpGet]
+       /* [HttpGet]
         public IActionResult GetKnowledge()
         {
             return Ok(_knowledgeService.GetAllAsync());
+        }*/
+
+        [HttpGet]
+        public IActionResult GetAllKnowledge()
+        {
+            return Ok(_knowledgeService.FindAllWithDetailsAsync());
         }
 
         [HttpGet]
@@ -33,18 +40,23 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        /*[Authorize(Roles = "programmer, admin")]*/
+        [Authorize(Roles = "programmer")]
         public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
         {
-            /*            knowledge.UserId = _httpContextAccessor.User.FindFirstValue(CalimTypes.NameIdentifier);
-            */
-            await _knowledgeService.AddAsync(knowledge);
-            return Ok();
+            try
+            {
+                await _knowledgeService.AddAsync(knowledge);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return BadRequest("You dont have enough right!");
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
-        /*      [Authorize(Roles = "programmer, admin")]*/
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> DeleteKnowledgeById(int id)
         {
             await _knowledgeService.DeleteByIdAsync(id);
@@ -52,8 +64,8 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpDelete]
-        /*        [Authorize(Roles = "programmer, admin")]
-        */
+        [Authorize(Roles = "programmer, admin")]
+
         public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.DeleteAsync(knowledge);
@@ -61,8 +73,8 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPatch]
-/*        [Authorize(Roles = "programmer, admin")]
-*/        public async Task<IActionResult> UpdateKnowledge(Knowledge knowledge)
+        [Authorize(Roles = "programmer, admin")]
+        public async Task<IActionResult> UpdateKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.UpdateAsync(knowledge);
             return Ok();
@@ -70,9 +82,19 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpGet]
         [Route("user/{id}")]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> GetUserKnowledge(string id)
         {
             return Ok(await _knowledgeService.GetUserKnowledge(id));
         }
+
+        [HttpGet]
+        [Route("filter/{area}")]
+        public async Task<IActionResult> GetKnowledgeByArea(string area)
+        {
+            return Ok(await _knowledgeService.GetKnowledgeByArea(area));
+        }
+
+        
     }
 }

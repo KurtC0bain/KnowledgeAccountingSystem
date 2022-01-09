@@ -68,5 +68,10 @@ namespace SystemBLL.Services
             await _unitOfWork.Area.UpdateAsync(entity);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<int> GetAreaIdByName(string name)
+        {
+            return await _unitOfWork.Area.GetAreaIdByName(name);
+        }
     }
 }

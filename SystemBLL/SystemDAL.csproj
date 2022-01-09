@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.13" />
+    <PackageReference Include="Z.EntityFramework.Plus.EF6" Version="5.1.13" />
   </ItemGroup>
 
   <ItemGroup>

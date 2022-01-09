@@ -16,6 +16,6 @@ namespace SystemDAL.Entities.Knowledges
         [CheckCapitalized]
         public string Name { get; set; }
 
-        public ICollection<KnowledgeArea> Knowledges { get; set; }
+        public ICollection<KnowledgeArea> Knowledges { get; set; } = new HashSet<KnowledgeArea>();
     }
 }

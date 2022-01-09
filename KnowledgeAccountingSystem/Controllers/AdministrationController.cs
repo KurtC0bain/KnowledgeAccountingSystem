@@ -80,6 +80,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpPost]
         [Route("SignOut")]
+        [Authorize]
         public async Task<IActionResult> LogOut()
         {
             await _unitOfWork.UserService.SignOut();

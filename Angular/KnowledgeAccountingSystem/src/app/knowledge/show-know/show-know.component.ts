@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { first, map } from 'rxjs';
+import { AreaRating } from 'src/app/models/AreaRating';
+import { Knowledge } from 'src/app/models/Knowledge';
 import{SharedService} from '../../shared.service';
 import {InfoComponent} from '../info/info.component'
 
@@ -10,12 +13,13 @@ import {InfoComponent} from '../info/info.component'
 })
 export class ShowKnowComponent implements OnInit {
 
-  constructor(private service: SharedService, public info: InfoComponent) { }
+  constructor(public service: SharedService, public info: InfoComponent) { }
+
 
   bufferAreas:any=[];
 
 
-  KnowledgeList:any;
+  KnowledgeList: Knowledge[] = [];
 
   ModalTitle:string="";
   ActivateAddEditKnow: boolean = false;
@@ -78,7 +82,7 @@ export class ShowKnowComponent implements OnInit {
   deleteClick(knowledge: any){
     if(confirm('Are you sure?')){
       alert(knowledge);
-      this.service.DeleteKnowledge(knowledge.id).subscribe();
+      this.service.DeleteKnowledge(knowledge.id);
       this.refreshKnowledgeList();
     }
     this.refresh();
@@ -91,14 +95,15 @@ export class ShowKnowComponent implements OnInit {
 
 
   refreshKnowledgeList(): void {
-    this.service.GetAllKnowledge().subscribe(data => {
-      this.KnowledgeList=data;
-      this.KnowledgeListWithoutFilter=data
+    this.service.GetAllKnowledge().pipe(first()).subscribe(data => {
+      this.KnowledgeList = data;
+      console.log(data)
     });
 
     this.service.GetAreas().subscribe(data => {
       this.KnowledgeArea = data;
     });
+    console.log(this.KnowledgeList);
   }
 
 
@@ -122,13 +127,58 @@ export class ShowKnowComponent implements OnInit {
     });
   }
   
+  FilterByArea(){
+    this.service.FilterKnowledgeByArea(this.AreaName).subscribe(data => {
+      this.KnowledgeList = data;
+    })
+  }
+
+
   FilterFnArea(){
-
-    var buff:any=[];
-    buff = this.KnowledgeArea;
-
     var AreaNameFilter = this.AreaName;
-    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el:any){
+    var AreaFilter;
+    this.service.GetAreas().subscribe(data => {
+      AreaFilter = data
+    });
+
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter
+    (
+      (knowledge: { id: Number, title: string}) => {
+        var knowAreas:any[]=[];
+        var result:boolean = false;
+        
+        console.log(knowledge.title);
+
+        this.service.GetAreasByKnowledgeId(knowledge.id).subscribe(data=>{
+          data.forEach(d => knowAreas.push(d))
+        });
+
+        console.log(knowAreas[0]);
+
+        for(var i of knowAreas[0])
+        {
+          console.log(i);
+        }
+        console.log("______");
+
+        //console.log(knowAreas);
+       // console.log("______________");
+       // console.log(knowAreas.forEach(area => console.log(area)));
+
+
+        //if(
+        //  knowAreas[0].Name.toString().toLowerCase().includes(
+       //     this.AreaName.toString().trim().toLowerCase())
+       //   )
+      //  {
+      //    return true
+     //   }
+      }
+    )
+      
+      
+  
+      /*function (el:any){
       for(let item of buff){
         console.log(item.name);
         if(item.name.toString().toLowerCase().includes(
@@ -138,7 +188,7 @@ export class ShowKnowComponent implements OnInit {
         }
       }
       return false;
-    })
+    })*/
   }
 
 }

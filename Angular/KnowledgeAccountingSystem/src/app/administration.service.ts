@@ -23,11 +23,11 @@ SignIn(data: any) {
   this.http.post(this.APIUrl+'/SignIn', data, {
     withCredentials: true,
     responseType: 'text' as 'json'
-  }).subscribe(() => this.router.navigate(['/knowledge']));
+  }).subscribe(() => this.router.navigate(['/knowledge']).then(() => {window.location.reload()}));
 }
 
 SignOut(){
-  this.http.post(this.APIUrl+'/SignOut', null).subscribe(() => this.router.navigate(['/knowledge']));
+  this.http.post(this.APIUrl+'/SignOut', null).subscribe(() => this.router.navigate(['/']));
   this.cookieService.deleteAll();
 }
 

@@ -250,6 +250,10 @@
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[5.0.13, )"
+            },
+            "Z.EntityFramework.Plus.EF6": {
+              "target": "Package",
+              "version": "[5.1.13, )"
             }
           },
           "imports": [

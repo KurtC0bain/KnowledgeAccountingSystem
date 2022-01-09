@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs'; 
+import { Observable, retryWhen } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+
+import {Knowledge} from "./models/Knowledge";
+import { Area } from './models/Area';
+import { User } from './models/User';
+import { Role } from './models/Role';
+import{AreaRating} from './models/AreaRating';
+import { pipe } from 'rxjs';
+
 
 
 @Injectable({
@@ -13,24 +22,28 @@ readonly APIUrl = "https://localhost:44392/api";
 
 
   //Knowledge
-  GetAllKnowledge(): Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Knowledge');
+  FilterKnowledgeByArea(area:string): Observable<any>{
+    return this.http.get(this.APIUrl+'/Knowledge/filter/'+area);
   }
 
-  GetKnowledge(id:Number) {
-    return this.http.get(this.APIUrl+'/Knowledge/'+ id);
+  GetAllKnowledge(): Observable<Knowledge[]>{
+    return this.http.get<Knowledge[]>(this.APIUrl+'/Knowledge');
+  }
+
+  GetKnowledge(id:Number): Observable<any> {
+    return this.http.get<any>(this.APIUrl+'/Knowledge/'+ id);
   }
   
-  AddKnowledge(val:any) {
-    return this.http.post(this.APIUrl+'/Knowledge', val);
+  AddKnowledge(knowledge:any){
+    return this.http.post(this.APIUrl+'/Knowledge', knowledge, {withCredentials: true});
   }
 
-  UpdateKnowledge(val:any) {
-    return this.http.patch(this.APIUrl+'/Knowledge', val);
+  UpdateKnowledge(knowledge:any) {
+    return this.http.patch(this.APIUrl+'/Knowledge', knowledge, {withCredentials: true});
   }
 
   DeleteKnowledge(id:Number){
-    return this.http.delete(this.APIUrl+'/Knowledge/'+ id);
+    return this.http.delete(this.APIUrl+'/Knowledge/'+ id, {withCredentials: true});
   }
 
   
@@ -38,24 +51,33 @@ readonly APIUrl = "https://localhost:44392/api";
 
 
   //Areas
+
+
+
+
   GetAreas(): Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/Area');
   }
 
-  GetAreasByKnowledgeId(id:Number): Observable<any>{
-    return this.http.get<any>(this.APIUrl+'/Area/knowledge/'+ id);
+  //!!!!!!
+  GetAreasByKnowledgeId(id:Number): Observable<AreaRating[]>{
+    return this.http.get<any[]>(this.APIUrl+'/Area/knowledge/'+ id);
+  }
+  //!!!!!!!
+  GetAreaIdByName(name:string): Observable<Number>{
+    return this.http.get<any>(this.APIUrl+'/Area/' + name);
   }
 
-  AddArea(val:any) {
-    return this.http.post(this.APIUrl+'/Area', val);
+  AddArea(area:any) {
+    return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true});
   }
 
-  UpdateArea(val:any) {
-    return this.http.patch(this.APIUrl+'/Area', val);
+  UpdateArea(area:any) {
+    return this.http.patch(this.APIUrl+'/Area', area, {withCredentials: true});
   }
 
   DeleteArea(id:Number) {
-    return this.http.delete(this.APIUrl+'/Area/'+ id);
+    return this.http.delete(this.APIUrl+'/Area/' + id, {withCredentials: true});
   }
 
 
@@ -63,27 +85,36 @@ readonly APIUrl = "https://localhost:44392/api";
 
  //Users
   GetUsers(): Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/User/Users');
+    return this.http.get<any>(this.APIUrl+'/User/Users', {withCredentials: true});
   }
 
-  DeleteUser(val:any) {
-    return this.http.delete(this.APIUrl+'/User/DeleteUser', val);
+  DeleteUser(user:any) {
+    this.http.delete(this.APIUrl+'/User/DeleteUser'+ user, {withCredentials: true});
   }
 
+  GetUserId(): Observable<string>{
+    return this.http.get(this.APIUrl+'/User/UserId', {
+      withCredentials: true, 
+      responseType: 'text'
+    });
+  }
 
 
 
   //Roles
-  GetRoles() : Observable<any[]>{
+  GetRoles() : Observable<Role[]>{
     return this.http.get<any>(this.APIUrl+'/Role/Roles');
   }
-  AddRole(val:any){
-    return this.http.post(this.APIUrl+'/Role/NewRole', val);
+  AddRole(role:Role){
+    this.http.post(this.APIUrl+'/Role/NewRole', role);
   }
-  AssignUserToTole(val:any){
-    return this.http.post(this.APIUrl+'/Role/AssignUserToRole', val);
+  AssignUserToTole(role:Role){
+    this.http.post(this.APIUrl+'/Role/AssignUserToRole', role);
   }
 
+  GetUserRoles(email:String): Observable<Role[]>{
+    return this.http.get<any>(this.APIUrl + '/Role/UserRole/'+ email)
+  }
 }
 
 

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Area } from 'src/app/models/Area';
 import { SharedService } from 'src/app/shared.service';
-import { ShowAreaComponent } from '../show-area/show-area.component'; 
-
+import { ShowAreaComponent } from '../show-area/show-area.component';
 @Component({
   selector: 'app-add-edit-area',
   templateUrl: './add-edit-area.component.html',
@@ -17,13 +17,15 @@ export class AddEditAreaComponent implements OnInit {
   AreaName?: string;
 
   ngOnInit(): void {
-    this.AreaId = this.area.id
+    this.AreaId = this.area.id;
     this.AreaName = this.area.name;
   }
 
   addArea(){
+    //this.service.AddArea()).subscribe();
+    //this.comp.refresh();
     var val = {
-      Name: this.AreaName,
+      Name: this.AreaName
     }
     this.service.AddArea(val).subscribe();
 
@@ -31,14 +33,14 @@ export class AddEditAreaComponent implements OnInit {
   }
 
   updateArea(){
+    console.log(this.AreaId)
     var val = {
       Id: this.AreaId,
       Name: this.AreaName,
     }
+    console.log(val);
     this.service.UpdateArea(val).subscribe();  
     this.comp.closeClick();
-    this.comp.refreshAreaList();
   }
 }
-
 

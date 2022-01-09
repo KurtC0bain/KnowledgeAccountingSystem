@@ -48,9 +48,6 @@ namespace KnowledgeAccountingSystem
                     .AllowCredentials());
             });
 
-/*            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-               .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
-*/
 
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")
@@ -120,29 +117,6 @@ namespace KnowledgeAccountingSystem
                         ClockSkew = TimeSpan.Zero
                     };
                 });
-
-            /*            var jwtSettings = Configuration.GetSection("Jwt").Get<JwtSettings>();
-
-                        services
-                            .AddAuthorization()
-                            .AddAuthentication(options =>
-                            {
-                                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                            })
-                            .AddJwtBearer(options =>
-                            {
-                                options.RequireHttpsMetadata = false;
-                                options.TokenValidationParameters = new TokenValidationParameters
-                                {
-                                    ValidIssuer = jwtSettings.Issuer,
-                                    ValidAudience = jwtSettings.Issuer,
-                                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
-                                    ClockSkew = TimeSpan.Zero
-                                };
-                            });
-            */
 
             services.AddSwaggerGen(c =>
             {
