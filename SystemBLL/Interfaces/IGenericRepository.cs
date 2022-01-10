@@ -9,7 +9,6 @@ namespace SystemDAL.Interfaces
     public interface IGenericRepository<TEntity>
     {
 
-        Task AddAsync(TEntity entity);
 
         Task UpdateAsync(TEntity entity);
 

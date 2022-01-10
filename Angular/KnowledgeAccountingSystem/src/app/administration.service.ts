@@ -31,6 +31,8 @@ SignOut(){
   this.cookieService.deleteAll();
 }
 
+
+
 ifLoggedIn():boolean {
   if(this.cookieService.check('.AspNetCore.Application.Id')){
     return true;

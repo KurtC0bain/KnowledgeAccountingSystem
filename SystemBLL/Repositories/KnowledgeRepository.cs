@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemDAL.Administration.Account.Models;
 using SystemDAL.Entities;
 using SystemDAL.Entities.Context;
 using SystemDAL.Entities.Knowledges;
@@ -21,9 +22,35 @@ namespace SystemDAL.Repositories
             _knowledgeContext = knowladgeContext;
         }
 
-        public async Task AddAsync(Knowledge entity)
+        public async Task AddAsync(FullKnowledge entity, string email)
         {
-            await _knowledgeContext.Knowledges.AddAsync(entity);
+            List<KnowledgeArea> list = new List<KnowledgeArea>();
+            var buff = await _knowledgeContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            if (buff != null) 
+            { 
+                entity.UserId = buff.Id; 
+            };
+
+            foreach (var item in entity.AreaRating)
+            {
+                Area area = await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Name == item.Name);
+                list.Add(new KnowledgeArea
+                {
+                    AreaId = area.Id,
+                    Rating = item.Rating
+                });
+            }
+
+            await _knowledgeContext.AddAsync(new Knowledge
+            {
+                Id = entity.Id,
+                Title = entity.Title,
+                Description = entity.Description,
+                UserId = entity.UserId,
+                Areas = list
+            });
+
             await _knowledgeContext.SaveChangesAsync();
         }
         public async Task Delete(Knowledge entity)
@@ -91,9 +118,10 @@ namespace SystemDAL.Repositories
 
         }
 
-        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string id)
+        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string email)
         {
-            var knowledge =  await _knowledgeContext.Knowledges.Include(a => a.Areas).Where(k => k.UserId == id).ToListAsync();
+            var knowledge =  await _knowledgeContext.Knowledges.Include(a => a.User).Where(k => k.User.Email == email).ToListAsync();
+
             var result = new List<FullKnowledge>();
             foreach (var item in knowledge)
             {
@@ -108,7 +136,6 @@ namespace SystemDAL.Repositories
             }
             return result;
         }
-
 
         public async Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id)
         {
@@ -125,7 +152,6 @@ namespace SystemDAL.Repositories
                      Rating = rating.Rating
                  });
         }
-
 
     }
 }

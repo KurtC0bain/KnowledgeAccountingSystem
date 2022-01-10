@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
+using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
 
 namespace KnowledgeAccountingSystem.Controllers
@@ -36,12 +39,12 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpPost]
         [Authorize(Roles = "programmer")]
-        public async Task<IActionResult> PostKnowledge(Knowledge knowledge)
+        public async Task<IActionResult> PostKnowledge(FullKnowledge knowledge)
         {
             try
             {
-
-                await _knowledgeService.AddAsync(knowledge);
+                var email = User.FindFirst(ClaimTypes.Name)?.Value;
+                await _knowledgeService.AddAsync(knowledge, email);
                 return Ok();
             }
             catch (UnauthorizedAccessException)
@@ -77,11 +80,11 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
-        [Route("user/{id}")]
+        [Route("user/{email}")]
         [Authorize(Roles = "programmer, admin")]
-        public async Task<IActionResult> GetUserKnowledge(string id)
+        public async Task<IActionResult> GetUserKnowledge(string email)
         {
-            return Ok(await _knowledgeService.GetUserKnowledge(id));
+            return Ok(await _knowledgeService.GetUserKnowledge(email));
         }
 
     }

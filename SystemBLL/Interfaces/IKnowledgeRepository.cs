@@ -9,8 +9,8 @@ namespace SystemDAL.Interfaces
 {
     public interface IKnowledgeRepository : IGenericRepository<Knowledge>
     {
-
-        Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string id);
+        Task AddAsync(FullKnowledge entity, string email);
+        Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string email);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
         Task<FullKnowledge> GetByIdAsync(int id);
     }

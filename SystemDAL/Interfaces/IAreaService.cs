@@ -10,6 +10,7 @@ namespace SystemBLL.Interfaces
 {
     public interface IAreaService : IService<Area>
     {
+        Task AddAsync(Area entity);
         IQueryable<Area> GetAllAsync();
         Task<Area> GetByIdAsync(int id);
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);

@@ -49,7 +49,9 @@
   </div>
 
   <hr>
-
+<article *ngIf="KnowledgeList.length == 0">
+<h1>Sorry, there are no knowledge!</h1>
+</article>
 
 <article *ngFor="let knowledge of KnowledgeList">
     <h2>{{knowledge.title}}</h2>  

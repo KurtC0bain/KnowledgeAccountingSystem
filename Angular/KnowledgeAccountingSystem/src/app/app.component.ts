@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   constructor(public admin: AdministrationService) {}
   title = 'KnowledgeAccountingSystem';
   ifLoggedIn = false;
+  currentUser:any;
 
 
   ngOnInit(): void {

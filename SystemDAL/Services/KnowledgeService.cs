@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using SystemBLL.Interfaces;
+using SystemDAL.Administration.Interfaces;
 using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
@@ -36,9 +38,9 @@ namespace SystemBLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task AddAsync(Knowledge entity)
+        public async Task AddAsync(FullKnowledge entity, string email)
         {
-            await _unitOfWork.Knowledge.AddAsync(entity);
+            await _unitOfWork.Knowledge.AddAsync(entity, email);
             await _unitOfWork.SaveAsync();
         }
         public async Task DeleteAsync(Knowledge entity)
@@ -66,9 +68,9 @@ namespace SystemBLL.Services
         {
             return await _unitOfWork.Knowledge.GetByIdAsync(id);
         }
-        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string id)
+        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string email)
         {
-            return await _unitOfWork.Knowledge.GetUserKnowledges(id);
+            return await _unitOfWork.Knowledge.GetUserKnowledges(email);
         }
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
         {

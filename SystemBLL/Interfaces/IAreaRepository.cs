@@ -10,6 +10,7 @@ namespace SystemDAL.Interfaces
 {
     public interface IAreaRepository : IGenericRepository<Area>
     {
+        Task AddAsync(Area entity);
         IQueryable<Area> FindAll();
         Task<Area> GetByIdAsync(int id);
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);

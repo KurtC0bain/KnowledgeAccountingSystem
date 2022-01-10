@@ -90,7 +90,6 @@ export class ShowKnowComponent implements OnInit {
       this.KnowledgeListWithoutFilter = data;
     });
 
-
     this.service.GetAreas().pipe(first()).subscribe(data => {
       this.AllAreas = data;
     });

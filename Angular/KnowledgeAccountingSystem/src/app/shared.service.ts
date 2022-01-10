@@ -22,20 +22,19 @@ readonly APIUrl = "https://localhost:44392/api";
 
 
   //Knowledge
-  FilterKnowledgeByArea(area:string): Observable<any>{
-    return this.http.get(this.APIUrl+'/Knowledge/filter/'+area);
-  }
-
   GetAllKnowledge(): Observable<Knowledge[]>{
     return this.http.get<Knowledge[]>(this.APIUrl+'/Knowledge');
   }
 
-  GetKnowledge(id:Number): Observable<any> {
-    return this.http.get<any>(this.APIUrl+'/Knowledge/'+ id);
+  GetKnowledge(id:Number): Observable<Knowledge> {
+    return this.http.get<Knowledge>(this.APIUrl+'/Knowledge/'+ id);
   }
   
   AddKnowledge(knowledge:any){
-    return this.http.post(this.APIUrl+'/Knowledge', knowledge, {withCredentials: true});
+    return this.http.post<Knowledge>(this.APIUrl+'/Knowledge', knowledge, 
+    {withCredentials: true, 
+      responseType: 'json' as 'json'
+    });
   }
 
   UpdateKnowledge(knowledge:any) {
@@ -52,22 +51,11 @@ readonly APIUrl = "https://localhost:44392/api";
 
   //Areas
 
-
-
-
   GetAreas(): Observable<Area[]>{
     return this.http.get<Area[]>(this.APIUrl+'/Area');
   }
 
-  //!!!!!!
-  GetAreasByKnowledgeId(id:Number): Observable<AreaRating[]>{
-    return this.http.get<any[]>(this.APIUrl+'/Area/knowledge/'+ id);
-  }
-  //!!!!!!!
-  GetAreaIdByName(name:string): Observable<Number>{
-    return this.http.get<any>(this.APIUrl+'/Area/' + name);
-  }
-
+  
   AddArea(area:any) {
     return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true});
   }
@@ -92,7 +80,7 @@ readonly APIUrl = "https://localhost:44392/api";
     this.http.delete(this.APIUrl+'/User/DeleteUser'+ user, {withCredentials: true});
   }
 
-  GetUserId(): Observable<string>{
+  GetUserId(): Observable<String>{
     return this.http.get(this.APIUrl+'/User/UserId', {
       withCredentials: true, 
       responseType: 'text'

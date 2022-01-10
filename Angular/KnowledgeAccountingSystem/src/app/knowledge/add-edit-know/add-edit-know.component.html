@@ -1,153 +1,71 @@
 
-<form [formGroup]="knowledgeForm" class="form-group row">
-    <label class="col-sm-2 col-form-label">Title</label>
-    <input formControlName="Title" type="text" class="form-control mb-3" />
-    <label class="col-sm-2 col-form-label" >Description</label>
-    <input formControlName="Description" type="text" class="form-control mb-3" style="height:150px" />
 
 
-    <!-- Areas Form Array -->
-    <div formArrayName="Areas">
-      <div *ngFor="let song of Areas.controls; let i=index">
-        <div class="d-flex flex-row mt-2 mb-1">
-            <label class="col-sm-2 col-form-label mr-0"> Area: </label>
-            <select class="form-control" style="margin-right: 20px;" [formControlName] = "i">
-                <option>Select Area</option>
-                <option *ngFor="let area of AllAreas">
-                    {{area.name}}
-                </option>
-            </select>
-    
-            <!--<input type="text" [formControlName]="i" /> -->
-            <button class="btn btn-secondary btn-sm mb-5" style="width:4%; margin-left: 10px;" (click)="addArea()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg></button>
-              <button class="btn btn-secondary btn-sm mb-5" style="width:4%; margin-left: 10px;" (click)="removeArea(i)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-              </svg></button>          
-            </div>
-    
-        </div>
-    </div>
-    <!--<button type="submit">Submit</button>-->
-    <button type="submit" (click)="addKnowledge()" *ngIf="know.id == 0" class="btn btn-primary">Add</button>
-    <button (click)="updateKnowledge()" *ngIf="know.id != 0" class="btn btn-primary">Edit</button>
-  </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Title</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control mb-3" [(ngModel)]="KnowledgeTitle" placeholder="Enter Knowledge Title"> 
-    </div>   
-    <label class="col-sm-2 col-form-label">Description</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control mb-3"style="height:150px" [(ngModel)]="KnowledgeDesc" placeholder="Enter Knowledge Description"> 
-    </div>
-
-    <div class="d-flex flex-row mt-2 mb-1">
-        <label class="col-sm-2 col-form-label mr-2" >Add Area</label>
-        <select class="form-control" style="margin-right: 20px;" [(ngModel)]="CurrentArea">
-          <option>Select Area</option>
-          <option *ngFor="let area of AllAreas">
-              {{area.name}}
-          </option>
-        </select>
-
-        
-      <label class="col-sm-2 col-form-label">Rating</label>
-        <input type="text" class="form-control mb-3" [(ngModel)]="CurrentRating" placeholder="Enter rating">
-    </div>
-
-
-    <button class="btn btn-secondary btn-sm mb-5" style="width:4%; margin-left: 10px;" (click)="addArea()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg></button>
-
-
-    <button (click)="addKnowledge()" *ngIf="know.id == 0" class="btn btn-primary">Add</button>
-    <button (click)="updateKnowledge()" *ngIf="know.id != 0" class="btn btn-primary">Edit</button>
-</div>
-
-<form [formGroup]="form">
+<form [formGroup]="knowledgeForm">
     <div class="form-group row">
-        <label for="inputName" class="col-sm-2 col-form-label">Name of the test</label>
+        <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
         <div class="col-sm-10">
-            <input formControlName="Name" type="text" class="form-control" id="inputName" placeholder="Name">
+            <input formControlName="Title" type="text" class="form-control" id="inputTitle" placeholder="Title">
         </div>
     </div>
+
     <div class="form-group row">
-        <label for="inputTimeToEnd" class="col-sm-2 col-form-label">Time to end(in minutes)</label>
+        <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
-            <input formControlName="TimeToEnd" type="text" class="form-control" id="inputTimeToEnd"
-                placeholder="Minutes to end the test">
+            <input formControlName="Description" type="text" class="form-control" id="inputDescription " placeholder="Description">
         </div>
     </div>
-    <fieldset class="form-group" [formGroup]="form">
-        <ng-container formArrayName="Questions">
-            <ng-container *ngFor="let question of Questions.controls; let i = index"
+
+
+    <fieldset class="form-group" [formGroup]="knowledgeForm">
+        <ng-container formArrayName="AreaRating" >
+            <ng-container *ngFor="let area of Areas.controls; let i = index"
                             [formGroupName]="i">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Question</legend>
+                <div class="form-group row">
+
+                    <legend class="col-form-label col-sm-2 pt-0">Area</legend>
+
+                    
                     <div class="form-group row">
-                        <label for="inputQuestionText" class="col-sm-2 col-form-label">Question:</label>
-                        <div class="col-sm-10">
-                            <input formControlName="Text" type="text" class="form-control" id="inputQuestionText" placeholder="Your question">
+                        <select class="form-control" formControlName = "Name">
+                            <option value="" selected disabled hidden>Select Area</option>
+                            <option *ngFor="let a of AllAreas">
+                                {{a.name}}
+                            </option>
+                        </select>
+                            <input formControlName="Rating" type="text" class="form-control" id="inputRating" placeholder="Rating">
+                        <div class="col-lg-6">
+                            <button (click)="removeArea(i)" class="btn btn-primary w-25" *ngIf="Areas.length > 1" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                              </svg></button>
                         </div>
+    
                     </div>
-                    <div class="col-lg-6">
-                        <button (click)="removeQuestion(i)" class="btn btn-primary w-25">Delete question</button>
-                    </div>
-                    <ng-container formArrayName="Options">
-                        <ng-container *ngFor="let option of getOptionsControls(i); let j = index"
-                                        [formGroupName]="j"> 
-                            <div class="col-sm-10">
-                                <div class="form-group row">
-                                    <label for="inputOptionText" class="col-sm-2 col-form-label">Option {{j + 1}}:</label>
-                                    <div class="col-sm-10">
-                                        <input formControlName="Text" type="text" class="form-control" id="inputOptionText" placeholder="Your option">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <button (click)="removeOption(i, j)" class="btn btn-primary w-25">Delete option</button>
-                            </div>
-                        </ng-container>  
-                    </ng-container>
-                    <div class="col-lg-6">
-                        <button (click)="addOption(i)" class="btn btn-primary w-25">Add option</button>
-                    </div>
+
                 </div>
             </ng-container>
         </ng-container>
 
     </fieldset>
-    <div class="form-group row justify-content-around">
+
+
         <div class="col-lg-6">
-            <button (click)="addQuestion()" class="btn btn-primary w-25">Add question</button>
+            <button (click)="addArea()" class="btn btn-primary w-25 " style="margin-top:20px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg></button>
         </div>
-        <div class="col-lg-6">
-            <button (click)="submit()"class="btn btn-primary w-25" type="submit">Submit</button>
-        </div>
-    </div>
+        
+        <button (click)="submit()"class="btn btn-primary w-25" style="margin-top:30px" type="submit">Submit</button>
 </form>
 
--->
+
+
+
+
+
+
+
+
+

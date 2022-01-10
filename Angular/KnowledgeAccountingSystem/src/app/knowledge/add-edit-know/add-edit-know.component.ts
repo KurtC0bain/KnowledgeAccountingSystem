@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Renderer2, RendererFactory2} from '@angular/c
 import { SharedService } from 'src/app/shared.service';
 import { ShowKnowComponent } from '../show-know/show-know.component';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ShowAreaComponent } from 'src/app/area/show-area/show-area.component';
 import { Knowledge } from 'src/app/models/Knowledge';
+import { Area } from 'src/app/models/Area';
 
 @Component({
   selector: 'app-add-edit-know',
@@ -12,55 +12,65 @@ import { Knowledge } from 'src/app/models/Knowledge';
 })
 export class AddEditKnowComponent implements OnInit {
   
-  knowledgeForm: FormGroup;
-  currentUser:string;
   
 
-  constructor(private formBuilder: FormBuilder, private service: SharedService, private comp: ShowKnowComponent) {}
+  knowledgeForm: FormGroup;
+  currentUser:String = "";
+  AllAreas:Area[]=[];
+
+  constructor(private formBuilder: FormBuilder, public service: SharedService, private comp: ShowKnowComponent) {
+  }
   ngOnInit(): void {
-    this.initForm();
     this.service.GetAreas().subscribe(data => {
       this.AllAreas = data;
     });
-    this.service.GetUserId().subscribe(data => {
-      this.currentUser = data;
-    })
-    console.log(this.AllAreas);
+    if(this.know.userId !== null){
+      this.currentUser = this.know.userId;
+    }
+    this.initForm();
   }
 
   private initForm(){
     this.knowledgeForm = this.formBuilder.group({
       Title: ["", Validators.required],
       Description: ["", Validators.required],
-      Areas : this.formBuilder.array([this.formBuilder.control("")])
+      UserId: [ this.currentUser, Validators.required],
+      AreaRating : this.formBuilder.array([this.getAreaItem()])
     });
   }
 
   get Areas(){
-    return this.knowledgeForm.get('Areas') as FormArray;
+    return this.knowledgeForm.get('AreaRating') as FormArray;
+  }
+
+
+  private getAreaItem(){
+    return this.formBuilder.group({
+      Name:[],
+      Rating:[]
+    })
   }
 
   addArea(){
-    this.Areas.push(this.formBuilder.control(''));
+    this.Areas.push(this.getAreaItem());
   }
   removeArea(index: number){
     this.Areas.removeAt(index);
   }
 
+  submit(){
+    console.log(this.knowledgeForm.getRawValue());
+    this.service.AddKnowledge(this.knowledgeForm.getRawValue()).subscribe();
+  }
 
 
 
 
 
 
+  @Input() know: Knowledge;
 
 
-
-
-
-
-
-  @Input() know: any;
 
   KnowledgeId:number;
   KnowledgeTitle: string;
@@ -70,7 +80,7 @@ export class AddEditKnowComponent implements OnInit {
   CurrentArea:any;
   CurrentRating:number;
 
-  AllAreas:any[]=[];
+
 
 
 
