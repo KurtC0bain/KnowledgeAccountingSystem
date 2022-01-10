@@ -15,5 +15,6 @@ namespace SystemBLL.Interfaces
         Task<Area> GetByIdAsync(int id);
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
         Task<int> GetAreaIdByName(string name);
+        Task<double> GetAverageAreaRating(int id);
     }
 }

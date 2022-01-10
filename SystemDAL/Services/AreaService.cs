@@ -73,5 +73,10 @@ namespace SystemBLL.Services
         {
             return await _unitOfWork.Area.GetAreaIdByName(name);
         }
+
+        public async Task<double> GetAverageAreaRating(int id)
+        {
+            return await _unitOfWork.Area.GetAreaAverageRating(id);
+        }
     }
 }

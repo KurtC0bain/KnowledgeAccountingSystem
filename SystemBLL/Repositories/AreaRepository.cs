@@ -51,6 +51,20 @@ namespace SystemDAL.Repositories
             return _knowledgeContext.Areas.Include(x => x.Knowledges);
         }
 
+        public async Task<double> GetAreaAverageRating(int id)
+        {
+            List<int> rating = new List<int>();
+            List<KnowledgeArea> knowledge = await _knowledgeContext.KnowledgeAreas.ToListAsync();
+            foreach (var item in knowledge)
+            {
+                if(item.AreaId == id)
+                    rating.Add(item.Rating);
+            }
+            if(rating.Count <= 0) { throw new NullReferenceException("There are no Area"); }
+            double av = rating.Average();
+            return av;
+        }
+
         public async Task<int> GetAreaIdByName(string name)
         {
             var area =  await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Name == name);

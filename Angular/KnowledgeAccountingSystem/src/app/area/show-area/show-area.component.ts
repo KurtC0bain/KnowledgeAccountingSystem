@@ -20,6 +20,7 @@ export class ShowAreaComponent implements OnInit {
 
   showArea: any;
 
+  avRating:Number = 0;
 
   ngOnInit(): void {
 
@@ -42,7 +43,11 @@ export class ShowAreaComponent implements OnInit {
     this.ActivateAddEditArea = true;
   };
 
-
+  getAreaAverageRating(id:number){
+    this.service.GetAreaAverageRating(id).subscribe(data => {
+      this.avRating = data;
+    });
+  }
 
   deleteClick(id:Number){
     if(confirm('Are you sure?')){

@@ -55,7 +55,9 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<Area[]>(this.APIUrl+'/Area');
   }
 
-  
+  GetAreaAverageRating(id:number): Observable<number>{
+    return this.http.get<number>(this.APIUrl+'/Area/AvRating' + id, {withCredentials: true});
+  }
   AddArea(area:any) {
     return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true});
   }
