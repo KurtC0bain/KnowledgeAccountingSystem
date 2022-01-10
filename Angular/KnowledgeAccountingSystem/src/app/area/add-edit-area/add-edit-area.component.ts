@@ -22,14 +22,12 @@ export class AddEditAreaComponent implements OnInit {
   }
 
   addArea(){
-    //this.service.AddArea()).subscribe();
-    //this.comp.refresh();
     var val = {
       Name: this.AreaName
     }
     this.service.AddArea(val).subscribe();
 
-    this.comp.refresh();
+    //this.comp.refresh();
   }
 
   updateArea(){

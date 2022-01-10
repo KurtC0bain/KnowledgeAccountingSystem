@@ -13,5 +13,6 @@ namespace SystemDAL.Interfaces
         Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string email);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
         Task<FullKnowledge> GetByIdAsync(int id);
+        Task UpdateAsync(FullKnowledge entity);
     }
 }

@@ -13,6 +13,6 @@ namespace SystemBLL.Interfaces
         Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string email);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
         Task<FullKnowledge> GetByIdAsync(int id);
-        //Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName);
+        Task UpdateAsync(FullKnowledge entity);
     }
 }

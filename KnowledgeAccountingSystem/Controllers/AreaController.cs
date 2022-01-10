@@ -24,6 +24,13 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
+        [Route("FullAreas")]
+        public async Task<IActionResult> FindFullAreas()
+        {
+            return Ok(await _areaService.FindFullAreas());
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetArea(int id)
         {

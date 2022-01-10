@@ -78,5 +78,10 @@ namespace SystemBLL.Services
         {
             return await _unitOfWork.Area.GetAreaAverageRating(id);
         }
+
+        public async Task<IEnumerable<FullArea>> FindFullAreas()
+        {
+            return await _unitOfWork.Area.FindFullAreas();
+        }
     }
 }

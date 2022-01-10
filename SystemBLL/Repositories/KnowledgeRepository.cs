@@ -72,19 +72,6 @@ namespace SystemDAL.Repositories
             }
             await _knowledgeContext.SaveChangesAsync();
         }
-        public async Task UpdateAsync(Knowledge entity)
-        {
-            var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);
-            if (element != null)
-            {
-                element.Description = entity.Description;
-                element.Title = entity.Title;
-                element.Areas = null;
-                element.Areas = entity.Areas;
-            }
-            _knowledgeContext.Entry(element).State = EntityState.Modified;
-            await _knowledgeContext.SaveChangesAsync();
-        }
 
 
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
@@ -151,6 +138,36 @@ namespace SystemDAL.Repositories
                      Name = area.Name,
                      Rating = rating.Rating
                  });
+        }
+
+        public async Task UpdateAsync(FullKnowledge entity)
+        {
+            List<KnowledgeArea> list = new List<KnowledgeArea>();
+            foreach (var item in entity.AreaRating)
+            {
+                Area area = await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Name == item.Name);
+                list.Add(new KnowledgeArea
+                {
+                    AreaId = area.Id,
+                    Rating = item.Rating
+                });
+            }
+            var element = await _knowledgeContext.Knowledges.Include(x => x.Areas).FirstOrDefaultAsync(x => x.Id == entity.Id);
+
+            if (element != null)
+            {
+                element.Title = entity.Title;
+                element.Description = entity.Description;
+                element.UserId = entity.UserId;
+                element.Areas = list;
+            }
+            _knowledgeContext.Entry(element).State = EntityState.Modified;
+
+            await _knowledgeContext.SaveChangesAsync();
+
+
+            
+
         }
 
     }

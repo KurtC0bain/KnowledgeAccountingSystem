@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Area } from 'src/app/models/Area';
 import { SharedService } from 'src/app/shared.service';
 import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs';
+import { FullArea } from 'src/app/models/FullArea';
 
 @Component({
   selector: 'app-show-area',
@@ -9,21 +11,19 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./show-area.component.css']
 })
 export class ShowAreaComponent implements OnInit {
-  
-
 
   constructor(private service: SharedService) { }
 
-  AreaList:any = [];
+  AreaList:FullArea[] = [];
+  
+
   ModalTitle:string="";
   ActivateAddEditArea: boolean = false;
 
   showArea: any;
 
-  avRating:Number = 0;
 
   ngOnInit(): void {
-
     this.refreshAreaList();
     
   }
@@ -43,12 +43,6 @@ export class ShowAreaComponent implements OnInit {
     this.ActivateAddEditArea = true;
   };
 
-  getAreaAverageRating(id:number){
-    this.service.GetAreaAverageRating(id).subscribe(data => {
-      this.avRating = data;
-    });
-  }
-
   deleteClick(id:Number){
     if(confirm('Are you sure?')){
       this.service.DeleteArea(id).subscribe(() => {
@@ -64,13 +58,15 @@ export class ShowAreaComponent implements OnInit {
     this.refreshAreaList();
   }
 
-  refreshAreaList(){
-    this.service.GetAreas().subscribe(res => this.AreaList = res);
-    
+  refreshAreaList(): void {
+    this.service.GetFullAreas().pipe(first()).subscribe(data => {
+      this.AreaList = data;
+    });
+ 
   }
 
   refresh(): void {
     window.location.reload();
-}
+  }
   
 }

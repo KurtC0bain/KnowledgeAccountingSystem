@@ -53,11 +53,6 @@ namespace SystemBLL.Services
             await _unitOfWork.Knowledge.DeleteByIdAsync(id);
             await _unitOfWork.SaveAsync();
         }
-        public async Task UpdateAsync(Knowledge entity)
-        {
-            await _unitOfWork.Knowledge.UpdateAsync(entity);
-            await _unitOfWork.SaveAsync();
-        }
 
 
         public async Task<IEnumerable<FullKnowledge>> GetAllAsync()
@@ -75,6 +70,11 @@ namespace SystemBLL.Services
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
         {
             return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
+        }
+
+        public async Task UpdateAsync(FullKnowledge entity)
+        {
+            await _unitOfWork.Knowledge.UpdateAsync(entity);
         }
     }
 }

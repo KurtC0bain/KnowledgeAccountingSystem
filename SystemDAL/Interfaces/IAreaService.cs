@@ -12,7 +12,11 @@ namespace SystemBLL.Interfaces
     {
         Task AddAsync(Area entity);
         IQueryable<Area> GetAllAsync();
+        Task UpdateAsync(Area entity);
+
+        Task<IEnumerable<FullArea>> FindFullAreas();
         Task<Area> GetByIdAsync(int id);
+
         Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
         Task<int> GetAreaIdByName(string name);
         Task<double> GetAverageAreaRating(int id);

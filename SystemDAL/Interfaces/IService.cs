@@ -11,7 +11,6 @@ namespace SystemBLL.Interfaces
     {
         IUnitOfWork UnitOfWork { get; }
 
-        Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
         Task DeleteByIdAsync(int id);
     }

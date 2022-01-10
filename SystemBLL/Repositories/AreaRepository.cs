@@ -51,6 +51,24 @@ namespace SystemDAL.Repositories
             return _knowledgeContext.Areas.Include(x => x.Knowledges);
         }
 
+        public async Task<IEnumerable<FullArea>> FindFullAreas()
+        {
+            List<Area> areas = await _knowledgeContext.Areas.ToListAsync();
+            List<FullArea> result = new List<FullArea>();
+            foreach (var area in areas)
+            {
+                result.Add(new FullArea
+                {
+                    Id = area.Id,
+                    Name = area.Name,
+                    AverageRating = await GetAreaAverageRating(area.Id),
+                    KnowledgeWritten = _knowledgeContext.KnowledgeAreas.Where(x => x.AreaId == area.Id).Select(q => q.KnowledgeId).Count()
+                });;
+            }
+            if (result.Count > 0) return result;
+            else throw new Exception("Something wento wrog while finding areas!");
+        }
+
         public async Task<double> GetAreaAverageRating(int id)
         {
             List<int> rating = new List<int>();
@@ -60,8 +78,11 @@ namespace SystemDAL.Repositories
                 if(item.AreaId == id)
                     rating.Add(item.Rating);
             }
-            if(rating.Count <= 0) { throw new NullReferenceException("There are no Area"); }
-            double av = rating.Average();
+            double av = 0.0;
+            if(rating.Count > 0)
+            {
+                av = Math.Round(rating.Average(), 1);
+            }
             return av;
         }
 

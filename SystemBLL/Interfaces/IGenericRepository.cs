@@ -10,7 +10,6 @@ namespace SystemDAL.Interfaces
     {
 
 
-        Task UpdateAsync(TEntity entity);
 
         Task Delete(TEntity entity);
 

@@ -73,7 +73,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpPatch]
         [Authorize(Roles = "programmer, admin")]
-        public async Task<IActionResult> UpdateKnowledge(Knowledge knowledge)
+        public async Task<IActionResult> UpdateKnowledge(FullKnowledge knowledge)
         {
             await _knowledgeService.UpdateAsync(knowledge);
             return Ok();

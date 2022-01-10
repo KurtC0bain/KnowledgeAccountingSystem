@@ -9,6 +9,7 @@ import { User } from './models/User';
 import { Role } from './models/Role';
 import{AreaRating} from './models/AreaRating';
 import { pipe } from 'rxjs';
+import { FullArea } from './models/FullArea';
 
 
 
@@ -30,7 +31,7 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<Knowledge>(this.APIUrl+'/Knowledge/'+ id);
   }
   
-  AddKnowledge(knowledge:any){
+  AddKnowledge(knowledge:Knowledge){
     return this.http.post<Knowledge>(this.APIUrl+'/Knowledge', knowledge, 
     {withCredentials: true, 
       responseType: 'json' as 'json'
@@ -55,11 +56,13 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<Area[]>(this.APIUrl+'/Area');
   }
 
-  GetAreaAverageRating(id:number): Observable<number>{
-    return this.http.get<number>(this.APIUrl+'/Area/AvRating' + id, {withCredentials: true});
+  GetFullAreas(): Observable<FullArea[]>{
+    return this.http.get<FullArea[]>(this.APIUrl+'/Area/FullAreas', {withCredentials: true});
   }
+
   AddArea(area:any) {
-    return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true});
+    console.log(area);
+    return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true, responseType: 'json' as 'json'});
   }
 
   UpdateArea(area:any) {
@@ -106,6 +109,3 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<any>(this.APIUrl + '/Role/UserRole/'+ email)
   }
 }
-
-
-
