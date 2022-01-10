@@ -32,6 +32,7 @@ export class AddEditKnowComponent implements OnInit {
 
   private initForm(){
     this.knowledgeForm = this.formBuilder.group({
+      Id:["", Validators.required],
       Title: ["", Validators.required],
       Description: ["", Validators.required],
       UserId: [ this.currentUser, Validators.required],
@@ -58,9 +59,17 @@ export class AddEditKnowComponent implements OnInit {
     this.Areas.removeAt(index);
   }
 
+  
+
   submit(){
-    console.log(this.knowledgeForm.getRawValue());
-    this.service.AddKnowledge(this.knowledgeForm.getRawValue()).subscribe();
+    if(this.currentUser === null){
+      console.log(this.knowledgeForm.getRawValue());
+      this.service.AddKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
+    }
+    else{
+      console.log(this.knowledgeForm.getRawValue());
+      this.service.UpdateKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
+    }
 
     //this.comp.refresh();
   }
@@ -81,48 +90,5 @@ export class AddEditKnowComponent implements OnInit {
 
   CurrentArea:any;
   CurrentRating:number;
-
-
-
-
-
-  addKnowledge(){
-    /*this.KnowledgeAreas.append(this.CurrentArea);
-    var val = {
-      Title: this.KnowledgeTitle,
-      Description: this.KnowledgeDesc,
-      Areas: this.KnowledgeAreas
-    }
-    this.service.AddKnowledge(val).subscribe();
-    this.comp.refreshKnowledgeList();*/
-
-
-    var val = {
-      Title: this.knowledgeForm.get('Title')?.value,
-      Description: this.knowledgeForm.get('Description')?.value,
-      Areas: this.knowledgeForm.get('Areas')?.value,
-      UserId: this.currentUser
-    }
-    let knowledge = new Knowledge();
-    console.log(val);
-    /*this.service.AddKnowledge(val);*/
-    this.comp.refreshKnowledgeList();
-    console.log("add");
-  }
-
-
-  updateKnowledge(){
-    /*
-    var val = {
-      Id: this.KnowledgeId,
-      Title: this.KnowledgeTitle,
-      Description: this.KnowledgeDesc,
-      Areas: this.KnowledgeAreas
-    }
-    this.service.UpdateKnowledge(val).subscribe();
-    this.comp.refresh();
-      */
-     console.log("update");
-  }
 
 }

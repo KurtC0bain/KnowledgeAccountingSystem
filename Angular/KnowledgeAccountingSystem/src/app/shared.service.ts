@@ -38,8 +38,8 @@ readonly APIUrl = "https://localhost:44392/api";
     });
   }
 
-  UpdateKnowledge(knowledge:any) {
-    return this.http.patch(this.APIUrl+'/Knowledge', knowledge, {withCredentials: true});
+  UpdateKnowledge(knowledge:Knowledge) {
+    return this.http.patch<Knowledge>(this.APIUrl+'/Knowledge', knowledge, {withCredentials: true, responseType: 'json' as 'json'});
   }
 
   DeleteKnowledge(id:Number){

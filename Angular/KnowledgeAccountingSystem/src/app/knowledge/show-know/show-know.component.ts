@@ -33,7 +33,6 @@ export class ShowKnowComponent implements OnInit {
   AreaName:string="";
 
 
-
   searchText: any;
 
   KnowledgeTitleFilter:string="";
