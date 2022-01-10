@@ -55,8 +55,8 @@ readonly APIUrl = "https://localhost:44392/api";
 
 
 
-  GetAreas(): Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Area');
+  GetAreas(): Observable<Area[]>{
+    return this.http.get<Area[]>(this.APIUrl+'/Area');
   }
 
   //!!!!!!

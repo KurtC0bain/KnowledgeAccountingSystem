@@ -8,9 +8,6 @@ namespace SystemDAL.Interfaces
 {
     public interface IGenericRepository<TEntity>
     {
-        IQueryable<TEntity> FindAll();
-
-        Task<TEntity> GetByIdAsync(int id);
 
         Task AddAsync(TEntity entity);
 

@@ -2,8 +2,9 @@
     <h2>{{Knowledge.title}}</h2>
     <p>{{Knowledge.description}}</p>
     <ul>
-        <li *ngFor="let item of areasToShow">
+        <li *ngFor="let item of Knowledge.areaRating">
             {{item.name}} - {{item.rating}}
-        </li>           
+        </li>
     </ul>
+    {{Knowledge.userId}}
 </article>

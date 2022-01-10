@@ -41,47 +41,38 @@ namespace SystemBLL.Services
             await _unitOfWork.Knowledge.AddAsync(entity);
             await _unitOfWork.SaveAsync();
         }
-
         public async Task DeleteAsync(Knowledge entity)
         {
             await _unitOfWork.Knowledge.Delete(entity);
             await _unitOfWork.SaveAsync();
         }
-
         public async Task DeleteByIdAsync(int id)
         {
             await _unitOfWork.Knowledge.DeleteByIdAsync(id);
             await _unitOfWork.SaveAsync();
         }
-
-        public IQueryable<Knowledge> GetAllAsync()
-        {
-            return _unitOfWork.Knowledge.FindAll();
-        }
-
-        public async Task<Knowledge> GetByIdAsync(int id)
-        {
-            return await _unitOfWork.Knowledge.GetByIdAsync(id);
-        }
-
         public async Task UpdateAsync(Knowledge entity)
         {
-             await _unitOfWork.Knowledge.UpdateAsync(entity);
-             await _unitOfWork.SaveAsync();
-        }
-        public async Task<IEnumerable<Knowledge>> GetUserKnowledge(string id)
-        {
-            return await _unitOfWork.Knowledge.GetUserKnowledges(id);
+            await _unitOfWork.Knowledge.UpdateAsync(entity);
+            await _unitOfWork.SaveAsync();
         }
 
-        public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
+
+        public async Task<IEnumerable<FullKnowledge>> GetAllAsync()
         {
             return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
         }
-
-        public async Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName)
+        public async Task<FullKnowledge> GetByIdAsync(int id)
         {
-            return await _unitOfWork.Knowledge.GetKnowledgeByArea(areaName); 
+            return await _unitOfWork.Knowledge.GetByIdAsync(id);
+        }
+        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string id)
+        {
+            return await _unitOfWork.Knowledge.GetUserKnowledges(id);
+        }
+        public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
+        {
+            return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
         }
     }
 }

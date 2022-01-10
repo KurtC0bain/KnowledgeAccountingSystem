@@ -29,7 +29,7 @@
   <div class="d-flex flex-row mt-4 mb-3">
     <label class="col-sm-2 col-form-label mr-2 ">Search By Title</label>
     <input [(ngModel)]="KnowledgeTitleFilter" class="form-control" placeholder="Search">
-    <button type="button" class="btn btn-light mr-1" (click)="FilterFn()">Search</button>
+    <button type="button" class="btn btn-light mr-1" (click)="FilterByName()">Search</button>
   </div>
 
 
@@ -38,14 +38,14 @@
 
   <div class="d-flex flex-row mt-2 mb-5">
     <label class="col-sm-2 col-form-label mr-2 ">Search By Area</label>
-    <select class="form-control" [(ngModel)]="AreaName">
-      <option>Select Area</option>
-      <option *ngFor="let area of KnowledgeArea">
+    <select class="form-control" [(ngModel)]="KnowledgeAreaFilter">
+      <option value="" selected disabled hidden>Select Area</option>
+      <option *ngFor="let area of AllAreas">
           {{area.name}}
       </option>
   </select>
 
-  <button type="button" class="btn btn-light mr-1" (click)="FilterFnArea()">Search</button>
+  <button type="button" class="btn btn-light mr-1" (click)="FilterByArea()">Search</button>
   </div>
 
   <hr>
@@ -54,12 +54,6 @@
 <article *ngFor="let knowledge of KnowledgeList">
     <h2>{{knowledge.title}}</h2>  
     <p>{{knowledge.description}}</p>
-    <!--<div *ngFor="let area of knowledge.AreaRating">
-      <p>AEEEEE</p>
-      <p>{{area.Name}}</p>
-      <p>{{area.Rating}}</p>
-    </div>-->
-
 
     <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="infoClick(knowledge)" data-backdrop="static" data-keyboard="false">
         More information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">

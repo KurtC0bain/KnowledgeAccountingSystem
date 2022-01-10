@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Knowledge } from 'src/app/models/Knowledge';
 import { SharedService } from '../../shared.service';
 
 
@@ -13,23 +14,11 @@ export class InfoComponent implements OnInit {
 
   constructor(private service: SharedService) { }
 
-  @Input() Knowledge: any;
-  areas:any = [];
-  areasToShow:any = [];
+  @Input() Knowledge:Knowledge;
 
 
   ngOnInit(): void {
     this.getKnowledge();
-    this.service.GetAreas().subscribe(data => {
-      this.areas = data;
-    });
-    this.getAreas(this.Knowledge.id);
-    
-    console.log(this.areasToShow)
-    for(var i of this.areasToShow)
-    {
-      console.log(i);
-    }
   }
 
   getKnowledge(): any {
@@ -37,12 +26,4 @@ export class InfoComponent implements OnInit {
       this.Knowledge = data;
     });
   }
-
-  getAreas(id:Number): any{
-    return this.service.GetAreasByKnowledgeId(id).subscribe(data => {
-      this.areasToShow = data;
-    })
-  }
-
-
 }

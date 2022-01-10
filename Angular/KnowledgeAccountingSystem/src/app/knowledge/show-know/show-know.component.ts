@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first, map } from 'rxjs';
+import { Area } from 'src/app/models/Area';
 import { AreaRating } from 'src/app/models/AreaRating';
 import { Knowledge } from 'src/app/models/Knowledge';
 import{SharedService} from '../../shared.service';
@@ -16,17 +17,15 @@ export class ShowKnowComponent implements OnInit {
   constructor(public service: SharedService, public info: InfoComponent) { }
 
 
-  bufferAreas:any=[];
-
-
   KnowledgeList: Knowledge[] = [];
+
+  AllAreas: Area[] = [];
 
   ModalTitle:string="";
   ActivateAddEditKnow: boolean = false;
   ActivateInfo:boolean = false;
+  
   know: any;
-
-  Areas:any=[];
 
 
 
@@ -35,26 +34,17 @@ export class ShowKnowComponent implements OnInit {
 
 
 
+  searchText: any;
 
-  KnowledgeIdFilter:string = "";
   KnowledgeTitleFilter:string="";
+  KnowledgeIdFilter:string="";
   KnowledgeAreaFilter:string="";
-  KnowledgeUserIdFilter:string="";
-
-
-  KnowledgeListWithoutFilter:any=[];
+  KnowledgeListWithoutFilter:Knowledge[]=[];
 
 
   ngOnInit(){
     this.refreshKnowledgeList();
   }
-
-  getAreas(id:Number): any[]{
-    return this.info.getAreas(id).subscribe((data: any) => {
-      this.bufferAreas = data;
-    });
-  };
-
 
   addClick(){
     this.know={
@@ -97,13 +87,13 @@ export class ShowKnowComponent implements OnInit {
   refreshKnowledgeList(): void {
     this.service.GetAllKnowledge().pipe(first()).subscribe(data => {
       this.KnowledgeList = data;
-      console.log(data)
+      this.KnowledgeListWithoutFilter = data;
     });
 
-    this.service.GetAreas().subscribe(data => {
-      this.KnowledgeArea = data;
+
+    this.service.GetAreas().pipe(first()).subscribe(data => {
+      this.AllAreas = data;
     });
-    console.log(this.KnowledgeList);
   }
 
 
@@ -112,83 +102,31 @@ export class ShowKnowComponent implements OnInit {
   }
 
 
-  FilterFn(){
-    var KnowledgeIdFilter = this.KnowledgeIdFilter;
+  FilterByName(){
     var KnowledgeTitleFilter = this.KnowledgeTitleFilter;
-    var KnowledgeUserIdFilter = this.KnowledgeUserIdFilter;
 
-    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el:any){
-      return el.id.toString().toLowerCase().includes(
-        KnowledgeIdFilter.toString().trim().toLowerCase()
-      )&&
-      el.title.toString().toLowerCase().includes(
+    console.log(KnowledgeTitleFilter)
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
+      return el.title.toString().toLowerCase().includes(
         KnowledgeTitleFilter.toString().trim().toLowerCase()
       )
     });
   }
   
   FilterByArea(){
-    this.service.FilterKnowledgeByArea(this.AreaName).subscribe(data => {
-      this.KnowledgeList = data;
-    })
-  }
+    var KnowledgeAreaFilter = this.KnowledgeAreaFilter;
 
+    console.log(KnowledgeAreaFilter);
 
-  FilterFnArea(){
-    var AreaNameFilter = this.AreaName;
-    var AreaFilter;
-    this.service.GetAreas().subscribe(data => {
-      AreaFilter = data
-    });
-
-    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter
-    (
-      (knowledge: { id: Number, title: string}) => {
-        var knowAreas:any[]=[];
-        var result:boolean = false;
-        
-        console.log(knowledge.title);
-
-        this.service.GetAreasByKnowledgeId(knowledge.id).subscribe(data=>{
-          data.forEach(d => knowAreas.push(d))
-        });
-
-        console.log(knowAreas[0]);
-
-        for(var i of knowAreas[0])
-        {
-          console.log(i);
-        }
-        console.log("______");
-
-        //console.log(knowAreas);
-       // console.log("______________");
-       // console.log(knowAreas.forEach(area => console.log(area)));
-
-
-        //if(
-        //  knowAreas[0].Name.toString().toLowerCase().includes(
-       //     this.AreaName.toString().trim().toLowerCase())
-       //   )
-      //  {
-      //    return true
-     //   }
-      }
-    )
-      
-      
-  
-      /*function (el:any){
-      for(let item of buff){
-        console.log(item.name);
-        if(item.name.toString().toLowerCase().includes(
-          AreaNameFilter.toString().trim().toLowerCase()
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
+      for(let a of el.areaRating){
+        if(a.name.toString().toLowerCase().includes(
+          KnowledgeAreaFilter.toString().trim().toLowerCase()
         )){
           return true;
         }
       }
-      return false;
-    })*/
+      return false
+    });
   }
-
 }

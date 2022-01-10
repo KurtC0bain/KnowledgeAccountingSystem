@@ -7,5 +7,5 @@ export class Knowledge {
     title: string;
     description: string;
     userId: string;
-    AreaRating: AreaRating[];
+    areaRating: AreaRating[];
   }

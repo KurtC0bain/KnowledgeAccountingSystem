@@ -20,16 +20,11 @@ namespace KnowledgeAccountingSystem.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-       /* [HttpGet]
-        public IActionResult GetKnowledge()
-        {
-            return Ok(_knowledgeService.GetAllAsync());
-        }*/
-
+       
         [HttpGet]
-        public IActionResult GetAllKnowledge()
+        public async Task<IActionResult> GetAllKnowledge()
         {
-            return Ok(_knowledgeService.FindAllWithDetailsAsync());
+            return Ok(await _knowledgeService.FindAllWithDetailsAsync());
         }
 
         [HttpGet]
@@ -45,6 +40,7 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             try
             {
+
                 await _knowledgeService.AddAsync(knowledge);
                 return Ok();
             }
@@ -88,13 +84,5 @@ namespace KnowledgeAccountingSystem.Controllers
             return Ok(await _knowledgeService.GetUserKnowledge(id));
         }
 
-        [HttpGet]
-        [Route("filter/{area}")]
-        public async Task<IActionResult> GetKnowledgeByArea(string area)
-        {
-            return Ok(await _knowledgeService.GetKnowledgeByArea(area));
-        }
-
-        
     }
 }

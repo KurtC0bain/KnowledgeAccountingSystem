@@ -9,8 +9,9 @@ namespace SystemBLL.Interfaces
 {
     public interface IKnowledgeService : IService<Knowledge>
     {
-        Task<IEnumerable<Knowledge>> GetUserKnowledge(string id);
+        Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string id);
         Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync();
-        Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName);
+        Task<FullKnowledge> GetByIdAsync(int id);
+        //Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName);
     }
 }

@@ -26,7 +26,6 @@ namespace SystemDAL.Repositories
             await _knowledgeContext.Knowledges.AddAsync(entity);
             await _knowledgeContext.SaveChangesAsync();
         }
-
         public async Task Delete(Knowledge entity)
         {
             var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);
@@ -37,7 +36,6 @@ namespace SystemDAL.Repositories
             await _knowledgeContext.SaveChangesAsync();
 
         }
-
         public async Task DeleteByIdAsync(int id)
         {
             var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == id);
@@ -47,11 +45,20 @@ namespace SystemDAL.Repositories
             }
             await _knowledgeContext.SaveChangesAsync();
         }
-
-        public IQueryable<Knowledge> FindAll()
+        public async Task UpdateAsync(Knowledge entity)
         {
-            return _knowledgeContext.Knowledges;
+            var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);
+            if (element != null)
+            {
+                element.Description = entity.Description;
+                element.Title = entity.Title;
+                element.Areas = null;
+                element.Areas = entity.Areas;
+            }
+            _knowledgeContext.Entry(element).State = EntityState.Modified;
+            await _knowledgeContext.SaveChangesAsync();
         }
+
 
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
         {
@@ -70,6 +77,39 @@ namespace SystemDAL.Repositories
             }
             return result;
         }
+        public async Task<FullKnowledge> GetByIdAsync(int id)
+        {
+            var knowledge = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == id);
+            return new FullKnowledge
+            {
+                Id = knowledge.Id,
+                Title = knowledge.Title,
+                Description = knowledge.Description,
+                UserId = knowledge.UserId,
+                AreaRating = await GetKnowledgeAreasById(id)
+            };
+
+        }
+
+        public async Task<IEnumerable<FullKnowledge>> GetUserKnowledges(string id)
+        {
+            var knowledge =  await _knowledgeContext.Knowledges.Include(a => a.Areas).Where(k => k.UserId == id).ToListAsync();
+            var result = new List<FullKnowledge>();
+            foreach (var item in knowledge)
+            {
+                result.Add(new FullKnowledge
+                {
+                    Id = item.Id,
+                    Title = item.Title,
+                    Description = item.Description,
+                    UserId = item.UserId,
+                    AreaRating = await GetKnowledgeAreasById(item.Id)
+                });
+            }
+            return result;
+        }
+
+
         public async Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id)
         {
             List<Area> areas = await _knowledgeContext.Areas.ToListAsync();
@@ -86,35 +126,6 @@ namespace SystemDAL.Repositories
                  });
         }
 
-        public async Task<Knowledge> GetByIdAsync(int id)
-        {
-            return await _knowledgeContext.Knowledges.Include(q => q.Areas).FirstOrDefaultAsync(x => x.Id == id);
-        }
 
-        public async Task<IEnumerable<Knowledge>> GetUserKnowledges(string id)
-        {
-            return await _knowledgeContext.Knowledges.Include(a => a.Areas).Where(k => k.UserId == id).ToListAsync();
-        }
-
-        public async Task UpdateAsync(Knowledge entity)
-        {
-            var element = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == entity.Id);
-            if(element != null)
-            {
-                element.Description = entity.Description;
-                element.Title = entity.Title;
-                element.Areas = null;
-                element.Areas = entity.Areas;
-            }
-            _knowledgeContext.Entry(element).State = EntityState.Modified;
-            await _knowledgeContext.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Knowledge>> GetKnowledgeByArea(string areaName)
-        {
-            var res =  await _knowledgeContext.Knowledges.IncludeFilter(t => t.Areas.Where(i => i.Area.Name == areaName)).ToListAsync();
-            return res;
-        }
-        
     }
 }
