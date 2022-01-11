@@ -76,12 +76,14 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return  Ok(await _areaService.GetKnowledgeAreasById(id));
         }
+
         [HttpGet]
         [Route("{name}")]
         public async Task<IActionResult> GetAreaIdByName(string areaName)
         {
             return Ok(await _areaService.GetAreaIdByName(areaName));
         }
+
         [HttpGet]
         [Route("/AvRating/{id}")]
         public async Task<IActionResult> GetAreaAverageRating(int id)

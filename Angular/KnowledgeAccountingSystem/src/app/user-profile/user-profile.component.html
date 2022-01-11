@@ -1,0 +1,15 @@
+<article>
+    <h5>First Name: {{User.firstName}}</h5>
+    <h5>Last name: {{User.lastName}}</h5>
+    <p>Email: {{User.email}}</p><br><br>
+    <h1 style="color:#1472FD">KNOWLEDGE</h1><br>
+    <article *ngFor="let knowledge of User.knowledge">
+            <h2>{{knowledge.title}}</h2>
+            <p>{{knowledge.description}}</p>
+            <ul>
+                <li *ngFor="let item of knowledge.areaRating">
+                    {{item.name}} - {{item.rating}}
+                </li>
+            </ul>
+    </article>
+</article>

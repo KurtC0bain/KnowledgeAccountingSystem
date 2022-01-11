@@ -32,6 +32,9 @@
       </tr>
     </thead>
     <tbody>
+      <article *ngIf="AreaList.length == 0">
+        <h1>Sorry, there are no areas!</h1>
+        </article>
       <tr *ngFor="let area of AreaList">
         <td>{{area.name}}</td>
         <td>{{area.knowledgeWritten}}</td>

@@ -27,6 +27,14 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
+        [Route("current")]
+        public async Task<IActionResult> GetCurrentUser( )
+        {
+            string email = User.FindFirst(ClaimTypes.Name)?.Value;
+            return Ok(await _unitOfWork.UserService.GetCurrentUser(email));
+        }
+
+        [HttpGet]
         [Route("Users")]
         /*[Authorize(Roles = "admin")]*/
         public async Task<IActionResult> GetUsers()

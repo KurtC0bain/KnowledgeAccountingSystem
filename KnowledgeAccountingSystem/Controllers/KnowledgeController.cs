@@ -38,7 +38,7 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "programmer")]
+        [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> PostKnowledge(FullKnowledge knowledge)
         {
             try
@@ -64,7 +64,6 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpDelete]
         [Authorize(Roles = "programmer, admin")]
-
         public async Task<IActionResult> DeleteKnowledge(Knowledge knowledge)
         {
             await _knowledgeService.DeleteAsync(knowledge);

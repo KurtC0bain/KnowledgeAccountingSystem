@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemDAL.Administration.Account.Models;
@@ -19,6 +20,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpPost]
         [Route("NewRole")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddRole(CreateRole role)
         {
             await _unitOfWork.RoleService.CreateRole(role.RoleName);

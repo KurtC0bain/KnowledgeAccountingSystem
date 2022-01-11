@@ -78,6 +78,10 @@ namespace SystemDAL.Administration.Account.Services
             }
             await _userManager.DeleteAsync(currentUser);
         }
+        public async Task<User> GetCurrentUser(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {

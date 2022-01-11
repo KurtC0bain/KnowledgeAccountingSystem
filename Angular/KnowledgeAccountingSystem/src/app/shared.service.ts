@@ -31,6 +31,10 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<Knowledge>(this.APIUrl+'/Knowledge/'+ id);
   }
   
+  GetUserKnowledge(email:string): Observable<Knowledge[]>{
+    return this.http.get<Knowledge[]>(this.APIUrl+'/Knowledge/user/'+ email, {withCredentials: true})
+  }
+
   AddKnowledge(knowledge:Knowledge){
     return this.http.post<Knowledge>(this.APIUrl+'/Knowledge', knowledge, 
     {withCredentials: true, 
@@ -83,6 +87,10 @@ readonly APIUrl = "https://localhost:44392/api";
 
   DeleteUser(user:any) {
     this.http.delete(this.APIUrl+'/User/DeleteUser'+ user, {withCredentials: true});
+  }
+
+  GetCurrentUser(): Observable<User> {
+    return this.http.get<User>(this.APIUrl+'/User/current', {withCredentials: true})
   }
 
   GetUserId(): Observable<String>{

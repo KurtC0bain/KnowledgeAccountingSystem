@@ -24,6 +24,10 @@
                 </li>
                 <li class="nav-item d-flex p-2 align-items-center" *ngIf="ifLoggedIn">
                     <h5>Hello, {{currentUserName}}</h5>
+
+                    <button routerLink="/profile" 
+                    class="m-1 btn btn-light btn-outline-primary" Button>Profile</button>
+
                     <button (click)="signOut()"  
                     class="m-1 btn btn-light btn-outline-primary ml-10" Button>Sign Out</button>
                 </li>

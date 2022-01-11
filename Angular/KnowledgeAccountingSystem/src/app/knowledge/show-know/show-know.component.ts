@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { first, map } from 'rxjs';
 import { Area } from 'src/app/models/Area';
 import { AreaRating } from 'src/app/models/AreaRating';
@@ -17,7 +17,7 @@ export class ShowKnowComponent implements OnInit {
   constructor(public service: SharedService, public info: InfoComponent) { }
 
 
-  KnowledgeList: Knowledge[] = [];
+  @Input() KnowledgeList: Knowledge[] = [];
 
   AllAreas: Area[] = [];
 
@@ -86,11 +86,10 @@ export class ShowKnowComponent implements OnInit {
 
 
   refreshKnowledgeList(): void {
-    this.service.GetAllKnowledge().pipe(first()).subscribe(data => {
+   this.service.GetAllKnowledge().pipe(first()).subscribe(data => {
       this.KnowledgeList = data;
       this.KnowledgeListWithoutFilter = data;
     });
-
     this.service.GetAreas().pipe(first()).subscribe(data => {
       this.AllAreas = data;
     });
