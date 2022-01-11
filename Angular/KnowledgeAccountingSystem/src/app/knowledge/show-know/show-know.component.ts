@@ -25,7 +25,7 @@ export class ShowKnowComponent implements OnInit {
   ActivateAddEditKnow: boolean = false;
   ActivateInfo:boolean = false;
   
-  know: any;
+  know: Knowledge;
 
 
 
@@ -47,28 +47,30 @@ export class ShowKnowComponent implements OnInit {
 
   addClick(){
     this.know={
-      id:0,
+      id: 0,
       title:"",
-      desc: "",
+      description:"",
+      areaRating: [],
+      userId: ""
     };
 
     this.ModalTitle = "Add Knowledge";
     this.ActivateAddEditKnow = true;
   }
 
-  editClick(knowledge: any){
+  editClick(knowledge: Knowledge){
     this.know=knowledge;
     this.ModalTitle = "Edit Knowledge";
     this.ActivateAddEditKnow = true;
   }
 
-  infoClick(knowledge: any){
+  infoClick(knowledge: Knowledge){
     this.know = knowledge;
     this.ModalTitle = "Info";
     this.ActivateInfo = true;
   }
 
-  deleteClick(knowledge: any){
+  deleteClick(knowledge: Knowledge){
     if(confirm('Are you sure?')){
       alert(knowledge);
       this.service.DeleteKnowledge(knowledge.id).subscribe();

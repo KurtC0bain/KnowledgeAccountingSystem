@@ -35,6 +35,8 @@ import { AddEditRoleComponent } from './role/add-edit-role/add-edit-role.compone
 import { ShowRoleComponent } from './role/show-role/show-role.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { RegisterComponent } from './register/register.component';
     ShowRoleComponent,
     InfoComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,7 @@ export class AddEditAreaComponent implements OnInit {
     }
     this.service.AddArea(val).subscribe();
 
-    //this.comp.refresh();
+    this.comp.refresh();
   }
 
   updateArea(){

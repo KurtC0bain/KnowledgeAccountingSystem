@@ -16,6 +16,8 @@ export class AddEditKnowComponent implements OnInit {
 
   knowledgeForm: FormGroup;
   currentUser:String = "";
+  currentId:Number = 0;
+
   AllAreas:Area[]=[];
 
   constructor(private formBuilder: FormBuilder, public service: SharedService, private comp: ShowKnowComponent) {
@@ -27,14 +29,18 @@ export class AddEditKnowComponent implements OnInit {
     if(this.know.userId !== null){
       this.currentUser = this.know.userId;
     }
+    else if(this.know.id !== 0){
+      console.log(this.know.id);
+      this.currentId = this.know.id;
+    }
     this.initForm();
   }
 
   private initForm(){
     this.knowledgeForm = this.formBuilder.group({
-      Id:["", Validators.required],
-      Title: ["", Validators.required],
-      Description: ["", Validators.required],
+      Id:[this.know.id, Validators.required],
+      Title: [this.know.title, Validators.required],
+      Description: [this.know.description, Validators.required],
       UserId: [ this.currentUser, Validators.required],
       AreaRating : this.formBuilder.array([this.getAreaItem()])
     });
@@ -62,7 +68,7 @@ export class AddEditKnowComponent implements OnInit {
   
 
   submit(){
-    if(this.currentUser === null){
+    if(this.know.id === 0){
       console.log(this.knowledgeForm.getRawValue());
       this.service.AddKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
     }
@@ -71,7 +77,7 @@ export class AddEditKnowComponent implements OnInit {
       this.service.UpdateKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
     }
 
-    //this.comp.refresh();
+    this.comp.refresh();
   }
 
 

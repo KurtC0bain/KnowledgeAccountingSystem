@@ -7,16 +7,20 @@ import { UserComponent } from './user/user.component';
 import { RoleComponent } from './role/role.component';
 import {LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
 
 const routes: Routes = [
   {path:'knowledge', component: KnowledgeComponent},
   {path: 'user', component: UserComponent},
   {path: 'role', component: RoleComponent},
   {path: 'area', component: AreaComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'forgotPass', component: ForgotPasswordComponent},
+  {path: 'resetPass', component: ResetPasswordComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
