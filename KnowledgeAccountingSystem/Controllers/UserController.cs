@@ -40,5 +40,12 @@ namespace KnowledgeAccountingSystem.Controllers
             string email = User.FindFirst(ClaimTypes.Name)?.Value;
             return Ok(await _unitOfWork.UserService.GetUserId(email));
         }
+        [HttpGet]
+        [Route("UserEmail")]
+        public IActionResult GetUserName()
+        {
+            return Ok(User.FindFirst(ClaimTypes.Name)?.Value);
+        }
+
     }
 }

@@ -21,8 +21,8 @@ SignUp(data: any) {
   this.http.post(this.APIUrl+'/SignUp', data).subscribe(() => this.router.navigate(['/login']));
 }
 
-SignIn(data: any) {
-  this.http.post(this.APIUrl+'/SignIn', data, {
+SignIn(data: any){
+  this.http.post<string>(this.APIUrl+'/SignIn', data, {
     withCredentials: true,
     responseType: 'text' as 'json'
   }).subscribe(() => this.router.navigate(['/knowledge']).then(() => {window.location.reload()}));
@@ -49,5 +49,7 @@ ifLoggedIn():boolean {
     }
     return false;
   }
+
+
 
 }

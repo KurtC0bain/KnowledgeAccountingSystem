@@ -10,6 +10,7 @@ import { AdministrationService } from '../administration.service';
 
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  currentUserName: string = "";
 
   constructor(
     private formBuilder: FormBuilder,

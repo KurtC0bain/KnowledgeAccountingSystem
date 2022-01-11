@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministrationService } from './administration.service';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,18 @@ import { AdministrationService } from './administration.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public admin: AdministrationService) {}
+  constructor(public admin: AdministrationService, private service : SharedService) {}
   title = 'KnowledgeAccountingSystem';
   ifLoggedIn = false;
-  currentUser:any;
+  currentUserName:String = "";
 
 
   ngOnInit(): void {
     this.ifLoggedIn = this.admin.ifLoggedIn();
+    if(this.ifLoggedIn){
+      this.service.GetCurrentUserMail().subscribe(data => this.currentUserName = data)
+    }
+    console.log(this.currentUserName);
     console.log(this.ifLoggedIn);
   }
 

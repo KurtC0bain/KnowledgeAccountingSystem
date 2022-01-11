@@ -92,7 +92,12 @@ readonly APIUrl = "https://localhost:44392/api";
     });
   }
 
-
+  GetCurrentUserMail(): Observable<String>{
+    return this.http.get(this.APIUrl + '/User/UserEmail', {
+      withCredentials: true, 
+      responseType: 'text'
+    });
+ }
 
   //Roles
   GetRoles() : Observable<Role[]>{

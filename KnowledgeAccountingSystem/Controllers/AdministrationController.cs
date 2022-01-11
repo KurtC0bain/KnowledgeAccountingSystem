@@ -75,7 +75,7 @@ namespace KnowledgeAccountingSystem.Controllers
                  Secure = true
              });
 
-            return Ok(token);
+            return Ok(user.FirstName);
         }
 
         [HttpPost]
