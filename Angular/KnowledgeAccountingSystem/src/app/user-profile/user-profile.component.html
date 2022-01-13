@@ -1,7 +1,11 @@
 <article>
     <h5>First Name: {{User.firstName}}</h5>
     <h5>Last name: {{User.lastName}}</h5>
-    <p>Email: {{User.email}}</p><br><br>
+    <h5>Email: {{User.email}}</h5><br><br>
+    <p>Roles: </p>
+    <ul>
+        <li *ngFor="let role of User.role">_{{role}}_</li>
+    </ul>
     <h1 style="color:#1472FD">KNOWLEDGE</h1><br>
     <article *ngFor="let knowledge of User.knowledge">
             <h2>{{knowledge.title}}</h2>

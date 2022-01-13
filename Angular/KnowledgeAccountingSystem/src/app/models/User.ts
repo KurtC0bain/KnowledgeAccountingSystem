@@ -1,4 +1,5 @@
 import { Knowledge } from "./Knowledge";
+import { Role } from "./Role";
 
 export class User{
     id: string;
@@ -6,6 +7,5 @@ export class User{
     firstName: string;
     lastName: string;
     knowledge: Knowledge[];
-
-    
+    role: Role[];
 }

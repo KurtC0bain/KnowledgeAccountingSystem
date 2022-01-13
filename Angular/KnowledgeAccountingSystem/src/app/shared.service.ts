@@ -93,8 +93,15 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<User>(this.APIUrl+'/User/current', {withCredentials: true})
   }
 
-  GetUserId(): Observable<String>{
-    return this.http.get(this.APIUrl+'/User/UserId', {
+  //GetUserId(): Observable<String>{
+ //   return this.http.get(this.APIUrl+'/User/UserId', {
+ //     withCredentials: true, 
+ //     responseType: 'text'
+ //   });
+ // }
+
+  GetUserId(email:string): Observable<string>{
+    return this.http.post(this.APIUrl+'/User/UserId/', email, {
       withCredentials: true, 
       responseType: 'text'
     });
@@ -119,6 +126,6 @@ readonly APIUrl = "https://localhost:44392/api";
   }
 
   GetUserRoles(email:String): Observable<Role[]>{
-    return this.http.get<any>(this.APIUrl + '/Role/UserRole/'+ email)
+    return this.http.get<Role[]>(this.APIUrl + '/Role/UserRole/'+ email, {withCredentials : true})
   }
 }

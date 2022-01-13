@@ -34,7 +34,7 @@ namespace KnowledgeAccountingSystem.Controllers
             return Ok(await _unitOfWork.RoleService.GetRoles());
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("UserRole/{mail}")]
         public async Task<IActionResult> GetUserRoles(string mail)
         {

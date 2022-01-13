@@ -29,7 +29,7 @@ SignIn(data: any){
 }
 
 SignOut(){
-  this.http.post(this.APIUrl+'/SignOut', null).subscribe(() => this.router.navigate(['/knowledge']).then(() => {window.location.reload()}));
+  this.http.post(this.APIUrl+'/SignOut', null).subscribe(() => {window.location.reload()});
   this.cookieService.deleteAll();
 }
 

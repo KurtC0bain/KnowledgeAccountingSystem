@@ -41,16 +41,17 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _unitOfWork.UserService.GetAllUsers());
         }
-        [HttpGet]
+        [HttpPost]
         [Route("UserId")]
-        public async Task<IActionResult> GetUserId()
+        public async Task<IActionResult> GetUserId(string email = "")
         {
-            string email = User.FindFirst(ClaimTypes.Name)?.Value;
+            if(email == "")
+              email = User.FindFirst(ClaimTypes.Name)?.Value;
             return Ok(await _unitOfWork.UserService.GetUserId(email));
         }
         [HttpGet]
         [Route("UserEmail")]
-        public IActionResult GetUserName()
+        public IActionResult GetUserMail()
         {
             return Ok(User.FindFirst(ClaimTypes.Name)?.Value);
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 import { User } from '../models/User';
 import { SharedService } from '../shared.service';
@@ -13,14 +13,19 @@ export class UserProfileComponent implements OnInit {
   constructor(private service: SharedService) { }
 
   //KnowledgeList: Knowledge[] = [];
-  User: User;
+  @Input() User: User;
 
   ngOnInit(): void {
     this.service.GetCurrentUser().pipe(first()).subscribe(user => {
       this.User = user;
+
       this.service.GetUserKnowledge(this.User.email).pipe(first()).subscribe(data => {
         this.User.knowledge = data;
-      })  
+      });
+
+      this.service.GetUserRoles(this.User.email).pipe(first()).subscribe(data => {
+        this.User.role = data;
+      })
     });
 
   }

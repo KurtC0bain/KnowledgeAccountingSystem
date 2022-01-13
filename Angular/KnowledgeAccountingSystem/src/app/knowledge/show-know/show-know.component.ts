@@ -35,13 +35,20 @@ export class ShowKnowComponent implements OnInit {
 
   searchText: any;
 
+
   KnowledgeTitleFilter:string="";
   KnowledgeIdFilter:string="";
+
+  KnowledgeUserIdFilter:string="";
+  KnowledgeEmailFilter:string="";
+
   KnowledgeAreaFilter:string="";
+
   KnowledgeListWithoutFilter:Knowledge[]=[];
 
 
   ngOnInit(){
+    
     this.refreshKnowledgeList();
   }
 
@@ -111,11 +118,30 @@ export class ShowKnowComponent implements OnInit {
       )
     });
   }
-  
+
+  FilterByUser(){
+    this.KnowledgeIdFilter = "";
+    console.log(this.KnowledgeEmailFilter)
+    this.service.GetUserId(this.KnowledgeEmailFilter).subscribe(data => {
+      this.KnowledgeUserIdFilter = data;
+    });
+
+    var KnowledgeUserIdFilter = this.KnowledgeUserIdFilter;
+    console.log(this.KnowledgeUserIdFilter)
+
+    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
+      console.log(el.userId.toString().toLowerCase().includes(
+        KnowledgeUserIdFilter.toString().trim().toLowerCase())
+      )
+      return el.userId.toString().toLowerCase().includes(
+        KnowledgeUserIdFilter.toString().trim().toLowerCase())
+    });
+
+  }
+
   FilterByArea(){
     var KnowledgeAreaFilter = this.KnowledgeAreaFilter;
 
-    console.log(KnowledgeAreaFilter);
 
     this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
       for(let a of el.areaRating){
