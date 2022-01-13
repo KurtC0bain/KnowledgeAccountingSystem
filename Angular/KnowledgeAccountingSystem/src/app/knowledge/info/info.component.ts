@@ -15,15 +15,18 @@ export class InfoComponent implements OnInit {
   constructor(private service: SharedService) { }
 
   @Input() Knowledge:Knowledge;
-
+  @Input() KnowledgeList:Knowledge[] = [];
 
   ngOnInit(): void {
     this.getKnowledge();
+    console.log(this.KnowledgeList)
   }
 
   getKnowledge(): any {
-    this.service.GetKnowledge(this.Knowledge.id).subscribe(data => {
-      this.Knowledge = data;
-    });
+    if(this.Knowledge != null) {
+      this.service.GetKnowledge(this.Knowledge.id).subscribe(data => {
+        this.Knowledge = data;
+      });  
+    }
   }
 }

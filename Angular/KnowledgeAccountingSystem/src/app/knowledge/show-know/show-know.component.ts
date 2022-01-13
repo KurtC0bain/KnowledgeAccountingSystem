@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { first, map } from 'rxjs';
 import { Area } from 'src/app/models/Area';
 import { AreaRating } from 'src/app/models/AreaRating';
@@ -16,7 +16,6 @@ import {InfoComponent} from '../info/info.component'
 export class ShowKnowComponent implements OnInit {
 
   constructor(public service: SharedService, public info: InfoComponent) { }
-
 
   @Input() KnowledgeList: Knowledge[] = [];
 
@@ -48,24 +47,14 @@ export class ShowKnowComponent implements OnInit {
 
   KnowledgeListWithoutFilter:Knowledge[]=[];
 
+  pageOfItems: Array<any>;
 
   ngOnInit(){
     this.refreshKnowledgeList();
+
   }
 
- // ifAllowed(userId:string){
-  //  var result = false;
- //   if(this.CurrentUser !== null)
- //   {
- //     this.CurrentUser.role.forEach((r) => 
- //     {
- //       if(r.name == 'admin') result = true;
-   //   });
-     // if(result) return result;
-      //if(userId == this.CurrentUser.id) result = true;  
-    //}
-    //return result;
-  //}
+
 
   addClick(){
     this.know={
@@ -117,12 +106,6 @@ export class ShowKnowComponent implements OnInit {
     });
     this.service.GetCurrentUser().pipe(first()).subscribe(data => {
       this.CurrentUser = data;
-      console.log(this.CurrentUser)
-      //if(this.CurrentUser != null) {
-     //   this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
-     //     this.CurrentUser.role = data;
-    //    });  
-     // }
     });
     
 

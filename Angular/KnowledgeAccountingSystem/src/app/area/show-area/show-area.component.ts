@@ -4,6 +4,7 @@ import { SharedService } from 'src/app/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
 import { FullArea } from 'src/app/models/FullArea';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-show-area',
@@ -15,7 +16,8 @@ export class ShowAreaComponent implements OnInit {
   constructor(private service: SharedService) { }
 
   AreaList:FullArea[] = [];
-  
+  CurrentUser:User;
+  ifAllowed:boolean = false;
 
   ModalTitle:string="";
   ActivateAddEditArea: boolean = false;
@@ -25,8 +27,8 @@ export class ShowAreaComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshAreaList();
-    
   }
+
 
   addClick(){
     this.showArea={
@@ -62,7 +64,19 @@ export class ShowAreaComponent implements OnInit {
     this.service.GetFullAreas().pipe(first()).subscribe(data => {
       this.AreaList = data;
     });
- 
+
+    this.service.GetCurrentUser().pipe(first()).subscribe(data => {
+      this.CurrentUser = data;
+      if(this.CurrentUser != null){
+        this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
+          this.CurrentUser.role = data;
+          this.CurrentUser.role.forEach((r) => {
+            if(r.toString() == 'admin') this.ifAllowed = true;
+          })          
+        });
+      }
+    });
+
   }
 
   refresh(): void {

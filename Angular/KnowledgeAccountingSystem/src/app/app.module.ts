@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { EventEmitter } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import {  MatButtonModule} from '@angular/material/button';
@@ -9,6 +8,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { AddEditAreaComponent } from './area/add-edit-area/add-edit-area.compone
 import { UserComponent } from './user/user.component';
 import { ShowUserComponent } from './user/show-user/show-user.component';
 import { AddEditUserComponent } from './user/add-edit-user/add-edit-user.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component'
 
 import {SharedService} from './shared.service'
 import { AdministrationService } from './administration.service';
@@ -59,7 +60,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    
   ],
   providers: [SharedService, ShowAreaComponent, InfoComponent, AdministrationService, CookieService],
   bootstrap: [AppComponent]

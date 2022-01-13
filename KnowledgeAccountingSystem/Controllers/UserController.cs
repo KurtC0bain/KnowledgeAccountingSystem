@@ -42,12 +42,14 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _unitOfWork.UserService.GetAllUsers());
         }
+
         [HttpGet]
         [Route("UserId/{email}")]
         public async Task<IActionResult> GetUserId(string email)
         {
             return Ok(await _unitOfWork.UserService.GetUserId(email));
         }
+
         [HttpGet]
         [Route("UserEmail")]
         public IActionResult GetUserMail()

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { AdministrationService } from './administration.service';
+import { User } from './models/User';
 import { SharedService } from './shared.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class AppComponent implements OnInit {
   constructor(public admin: AdministrationService, private service : SharedService) {}
   title = 'KnowledgeAccountingSystem';
   ifLoggedIn = false;
+  ifAdmin = false;
   currentUserName:String = "";
+  CurrentUser:User;
 
 
   ngOnInit(): void {
@@ -20,8 +24,18 @@ export class AppComponent implements OnInit {
     if(this.ifLoggedIn){
       this.service.GetCurrentUserMail().subscribe(data => this.currentUserName = data)
     }
-    console.log(this.currentUserName);
     console.log(this.ifLoggedIn);
+    this.service.GetCurrentUser().pipe(first()).subscribe(data => {
+      this.CurrentUser = data;
+      if(this.CurrentUser != null){
+        this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
+          this.CurrentUser.role = data;
+          this.CurrentUser.role.forEach((r) => {
+            if(r.toString() == 'admin') this.ifAdmin = true;
+          })          
+        });
+      }
+    });
   }
 
   refresh(){

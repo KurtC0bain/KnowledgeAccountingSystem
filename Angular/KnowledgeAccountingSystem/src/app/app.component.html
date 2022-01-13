@@ -23,7 +23,10 @@
                     class="m-1 btn btn-light btn-outline-primary" Button>Sign In</button>
                 </li>
                 <li class="nav-item d-flex p-2 align-items-center" *ngIf="ifLoggedIn">
-                    <h5>Hello, {{currentUserName}}</h5>
+                    <h6>Hello, {{currentUserName}}</h6>
+
+                    <button routerLink="/admin-panel" 
+                    class="m-1 btn btn-light btn-outline-primary ml-10" Button *ngIf="ifAdmin">Admin Panel</button>
 
                     <button routerLink="/profile" 
                     class="m-1 btn btn-light btn-outline-primary" Button>Profile</button>
@@ -31,7 +34,6 @@
                     <button (click)="signOut()"
                     class="m-1 btn btn-light btn-outline-primary ml-10" Button>Sign Out</button>
                 </li>
-
             </div>
         </ul>
     </nav>
