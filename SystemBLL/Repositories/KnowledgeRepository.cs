@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,7 +90,7 @@ namespace SystemDAL.Repositories
                     AreaRating = await GetKnowledgeAreasById(item.Id)
                 });
             }
-            return result;
+            return Enumerable.Reverse(result).ToList();
         }
         public async Task<FullKnowledge> GetByIdAsync(int id)
         {

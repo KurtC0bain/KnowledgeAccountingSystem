@@ -28,9 +28,10 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpGet]
         [Route("current")]
-        public async Task<IActionResult> GetCurrentUser( )
+        public async Task<IActionResult> GetCurrentUser()
         {
             string email = User.FindFirst(ClaimTypes.Name)?.Value;
+            if(email == null) { return Ok(null);}
             return Ok(await _unitOfWork.UserService.GetCurrentUser(email));
         }
 
@@ -41,12 +42,10 @@ namespace KnowledgeAccountingSystem.Controllers
         {
             return Ok(await _unitOfWork.UserService.GetAllUsers());
         }
-        [HttpPost]
-        [Route("UserId")]
-        public async Task<IActionResult> GetUserId(string email = "")
+        [HttpGet]
+        [Route("UserId/{email}")]
+        public async Task<IActionResult> GetUserId(string email)
         {
-            if(email == "")
-              email = User.FindFirst(ClaimTypes.Name)?.Value;
             return Ok(await _unitOfWork.UserService.GetUserId(email));
         }
         [HttpGet]

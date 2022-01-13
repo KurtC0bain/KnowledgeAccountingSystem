@@ -101,8 +101,8 @@ readonly APIUrl = "https://localhost:44392/api";
  // }
 
   GetUserId(email:string): Observable<string>{
-    return this.http.post(this.APIUrl+'/User/UserId/', email, {
-      withCredentials: true, 
+    return this.http.get(this.APIUrl+'/User/UserId/'+ email, {
+      withCredentials: true,
       responseType: 'text'
     });
   }

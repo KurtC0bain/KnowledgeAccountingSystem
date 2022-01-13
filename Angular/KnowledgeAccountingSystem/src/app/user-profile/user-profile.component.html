@@ -4,9 +4,13 @@
     <h5>Email: {{User.email}}</h5><br><br>
     <p>Roles: </p>
     <ul>
-        <li *ngFor="let role of User.role">_{{role}}_</li>
+        <li *ngFor="let role of User.role">{{role}}</li>
     </ul>
     <h1 style="color:#1472FD">KNOWLEDGE</h1><br>
+    <hr>
+    <article *ngIf="User.knowledge.length == 0">
+        <h3>Seems like you do not have any knowledge!</h3>
+    </article>
     <article *ngFor="let knowledge of User.knowledge">
             <h2>{{knowledge.title}}</h2>
             <p>{{knowledge.description}}</p>

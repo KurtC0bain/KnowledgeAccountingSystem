@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { first } from 'rxjs';
+import { ConnectableObservable, first } from 'rxjs';
 import { User } from '../models/User';
 import { SharedService } from '../shared.service';
 
@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.GetCurrentUser().pipe(first()).subscribe(user => {
+      console.log(user);
       this.User = user;
 
       this.service.GetUserKnowledge(this.User.email).pipe(first()).subscribe(data => {

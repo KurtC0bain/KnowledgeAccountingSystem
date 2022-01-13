@@ -85,7 +85,7 @@ namespace SystemDAL.Administration.Account.Services
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-            var result = await _userManager.Users.Include(x => x.Knowledges).ToListAsync();
+            var result = await _userManager.Users.Include(x => x.Knowledge).ToListAsync();
             return result;
         }
         public async Task<string> GetUserId(string email) 

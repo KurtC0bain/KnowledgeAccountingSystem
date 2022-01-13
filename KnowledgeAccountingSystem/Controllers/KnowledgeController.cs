@@ -69,7 +69,6 @@ namespace KnowledgeAccountingSystem.Controllers
             await _knowledgeService.DeleteAsync(knowledge);
             return Ok();
         }
-
         [HttpPatch]
         [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> UpdateKnowledge(FullKnowledge knowledge)
@@ -80,7 +79,7 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpGet]
         [Route("user/{email}")]
-        [Authorize(Roles = "programmer, admin")]
+        [Authorize]
         public async Task<IActionResult> GetUserKnowledge(string email)
         {
             return Ok(await _knowledgeService.GetUserKnowledge(email));

@@ -3,6 +3,7 @@ import { first, map } from 'rxjs';
 import { Area } from 'src/app/models/Area';
 import { AreaRating } from 'src/app/models/AreaRating';
 import { Knowledge } from 'src/app/models/Knowledge';
+import { User } from 'src/app/models/User';
 import{SharedService} from '../../shared.service';
 import {InfoComponent} from '../info/info.component'
 
@@ -24,7 +25,8 @@ export class ShowKnowComponent implements OnInit {
   ModalTitle:string="";
   ActivateAddEditKnow: boolean = false;
   ActivateInfo:boolean = false;
-  
+  CurrentUser:User;
+
   know: Knowledge;
 
 
@@ -48,9 +50,22 @@ export class ShowKnowComponent implements OnInit {
 
 
   ngOnInit(){
-    
     this.refreshKnowledgeList();
   }
+
+ // ifAllowed(userId:string){
+  //  var result = false;
+ //   if(this.CurrentUser !== null)
+ //   {
+ //     this.CurrentUser.role.forEach((r) => 
+ //     {
+ //       if(r.name == 'admin') result = true;
+   //   });
+     // if(result) return result;
+      //if(userId == this.CurrentUser.id) result = true;  
+    //}
+    //return result;
+  //}
 
   addClick(){
     this.know={
@@ -100,6 +115,17 @@ export class ShowKnowComponent implements OnInit {
     this.service.GetAreas().pipe(first()).subscribe(data => {
       this.AllAreas = data;
     });
+    this.service.GetCurrentUser().pipe(first()).subscribe(data => {
+      this.CurrentUser = data;
+      console.log(this.CurrentUser)
+      //if(this.CurrentUser != null) {
+     //   this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
+     //     this.CurrentUser.role = data;
+    //    });  
+     // }
+    });
+    
+
   }
 
 
@@ -120,22 +146,19 @@ export class ShowKnowComponent implements OnInit {
   }
 
   FilterByUser(){
-    this.KnowledgeIdFilter = "";
-    console.log(this.KnowledgeEmailFilter)
-    this.service.GetUserId(this.KnowledgeEmailFilter).subscribe(data => {
-      this.KnowledgeUserIdFilter = data;
-    });
-
+    var KnowledgeEmailFilter = this.KnowledgeEmailFilter;
     var KnowledgeUserIdFilter = this.KnowledgeUserIdFilter;
-    console.log(this.KnowledgeUserIdFilter)
 
-    this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
-      console.log(el.userId.toString().toLowerCase().includes(
-        KnowledgeUserIdFilter.toString().trim().toLowerCase())
-      )
-      return el.userId.toString().toLowerCase().includes(
-        KnowledgeUserIdFilter.toString().trim().toLowerCase())
-    });
+    if(KnowledgeEmailFilter != ""){
+      this.service.GetUserId(KnowledgeEmailFilter).pipe(first()).subscribe(data => {
+        KnowledgeUserIdFilter = data;
+        console.log(KnowledgeUserIdFilter);
+        this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
+          return el.userId.toString().toLowerCase().includes(
+            KnowledgeUserIdFilter.toString().trim().toLowerCase())
+        });    
+      });  
+    };
 
   }
 
