@@ -119,5 +119,10 @@ namespace SystemDAL.Administration.Account.Services
 
             return new String("Please, log in with a new password");
         }
+
+        public async Task<User> GetUserById(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
     }
 }

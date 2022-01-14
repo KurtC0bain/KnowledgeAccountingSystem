@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxMailtoModule } from 'ngx-mailto';
 
 import { MatCardModule } from '@angular/material/card';
 import {  MatButtonModule} from '@angular/material/button';
@@ -75,6 +76,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    NgxMailtoModule
   ],
   providers: [SharedService, ShowAreaComponent, InfoComponent, AdministrationService, CookieService],
   bootstrap: [AppComponent]

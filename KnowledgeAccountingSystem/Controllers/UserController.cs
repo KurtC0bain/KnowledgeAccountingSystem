@@ -44,6 +44,14 @@ namespace KnowledgeAccountingSystem.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        /*[Authorize(Roles = "admin")]*/
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            return Ok(await _unitOfWork.UserService.GetUserById(id));
+        }
+
+        [HttpGet]
         [Route("UserId/{email}")]
         public async Task<IActionResult> GetUserId(string email)
         {

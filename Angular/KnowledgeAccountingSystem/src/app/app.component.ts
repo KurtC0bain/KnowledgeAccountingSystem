@@ -21,12 +21,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.ifLoggedIn = this.admin.ifLoggedIn();
-    if(this.ifLoggedIn){
-      this.service.GetCurrentUserMail().subscribe(data => this.currentUserName = data)
-    }
+    //if(this.ifLoggedIn){
+  //    this.service.GetCurrentUserMail().subscribe(data => this.currentUserName = data)
+   // }
     console.log(this.ifLoggedIn);
     this.service.GetCurrentUser().pipe(first()).subscribe(data => {
       this.CurrentUser = data;
+      this.currentUserName = data.firstName;
       if(this.CurrentUser != null){
         this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
           this.CurrentUser.role = data;

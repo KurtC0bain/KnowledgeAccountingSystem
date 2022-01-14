@@ -15,6 +15,7 @@ namespace SystemDAL.Administration.Interfaces
         Task<User> SignIn(SignIn model);
         Task DeleteUser(string email);
         Task<IEnumerable<User>> GetAllUsers();
+        Task<User> GetUserById(string id);
         Task<User> GetCurrentUser(string email);
         Task SignOut();
         Task<Message> ForgotPassword(ForgotPassword model);

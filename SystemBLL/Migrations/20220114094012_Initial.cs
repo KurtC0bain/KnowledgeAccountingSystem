@@ -223,7 +223,9 @@ namespace SystemDAL.Migrations
                     { 1, "ASP.NET" },
                     { 2, "Angular" },
                     { 3, "Java" },
-                    { 4, "TestArea" }
+                    { 4, "RUST" },
+                    { 5, "C++" },
+                    { 6, "PHP" }
                 });
 
             migrationBuilder.InsertData(
@@ -231,9 +233,9 @@ namespace SystemDAL.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "f1bc0496-7582-4270-a8e5-71954724a7da", "b0cc9c0a-caba-4d5c-808e-c5c2352a1ff8", "programmer", "PROGRAMMER" },
-                    { "dabb8944-efcc-4aae-84db-0487a54cc42f", "bac97242-bef6-4836-a2d2-605acca89f32", "manager", "MANAGER" },
-                    { "1a8d4917-23d0-4b1e-9154-ebe9fcb468d8", "6d8429a2-66d1-4529-8178-c0f1fd888545", "admin", "ADMIN" }
+                    { "cbaa153a-ba6e-46a3-9c14-33785f568308", "c272b462-2226-4067-a573-d9f81ae8dabb", "programmer", "PROGRAMMER" },
+                    { "452e66dd-50be-467e-87e3-7c4db59c42dc", "db739943-9c88-4786-ad92-fcf8f860a193", "manager", "MANAGER" },
+                    { "a9ddfff0-485c-423c-b4b4-4266c4f332b2", "fbe53a68-6aeb-46d2-9268-2f494f7656a7", "admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

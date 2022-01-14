@@ -10,7 +10,7 @@ using SystemDAL.Entities.Context;
 namespace SystemDAL.Migrations
 {
     [DbContext(typeof(KnowledgeContext))]
-    [Migration("20220106113320_Initial")]
+    [Migration("20220114094012_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace SystemDAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f1bc0496-7582-4270-a8e5-71954724a7da",
-                            ConcurrencyStamp = "b0cc9c0a-caba-4d5c-808e-c5c2352a1ff8",
+                            Id = "cbaa153a-ba6e-46a3-9c14-33785f568308",
+                            ConcurrencyStamp = "c272b462-2226-4067-a573-d9f81ae8dabb",
                             Name = "programmer",
                             NormalizedName = "PROGRAMMER"
                         },
                         new
                         {
-                            Id = "dabb8944-efcc-4aae-84db-0487a54cc42f",
-                            ConcurrencyStamp = "bac97242-bef6-4836-a2d2-605acca89f32",
+                            Id = "452e66dd-50be-467e-87e3-7c4db59c42dc",
+                            ConcurrencyStamp = "db739943-9c88-4786-ad92-fcf8f860a193",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "1a8d4917-23d0-4b1e-9154-ebe9fcb468d8",
-                            ConcurrencyStamp = "6d8429a2-66d1-4529-8178-c0f1fd888545",
+                            Id = "a9ddfff0-485c-423c-b4b4-4266c4f332b2",
+                            ConcurrencyStamp = "fbe53a68-6aeb-46d2-9268-2f494f7656a7",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -281,7 +281,17 @@ namespace SystemDAL.Migrations
                         new
                         {
                             Id = 4,
-                            Name = "TestArea"
+                            Name = "RUST"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "C++"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "PHP"
                         });
                 });
 
@@ -389,29 +399,35 @@ namespace SystemDAL.Migrations
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.Knowledge", b =>
                 {
-                    b.HasOne("SystemDAL.Administration.Account.Models.User", null)
-                        .WithMany("Knowledges")
+                    b.HasOne("SystemDAL.Administration.Account.Models.User", "User")
+                        .WithMany("Knowledge")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.KnowledgeArea", b =>
                 {
-                    b.HasOne("SystemDAL.Entities.Knowledges.Area", null)
+                    b.HasOne("SystemDAL.Entities.Knowledges.Area", "Area")
                         .WithMany("Knowledges")
                         .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SystemDAL.Entities.Knowledges.Knowledge", null)
+                    b.HasOne("SystemDAL.Entities.Knowledges.Knowledge", "Knowledge")
                         .WithMany("Areas")
                         .HasForeignKey("KnowledgeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Area");
+
+                    b.Navigation("Knowledge");
                 });
 
             modelBuilder.Entity("SystemDAL.Administration.Account.Models.User", b =>
                 {
-                    b.Navigation("Knowledges");
+                    b.Navigation("Knowledge");
                 });
 
             modelBuilder.Entity("SystemDAL.Entities.Knowledges.Area", b =>

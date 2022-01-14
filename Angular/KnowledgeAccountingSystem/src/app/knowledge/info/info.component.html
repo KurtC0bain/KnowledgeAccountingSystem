@@ -1,4 +1,4 @@
-<ng-container *ngIf="KnowledgeList == null">
+<ng-container *ngIf="Knowledge != null">
     <article>
         <h2>{{Knowledge.title}}</h2>
         <p>{{Knowledge.description}}</p>
@@ -7,7 +7,11 @@
                 {{item.name}} - {{item.rating}}
             </li>
         </ul>
-        {{Knowledge.userId}}
+        <b>Programmer:</b><br>
+        <ul>
+            <li>Email :<a class="try-me" mat-raised-button color="accent" (click)="sendMail()">{{UserEmail}}</a></li>
+            <li>Full Name : {{UserFullName}}</li>
+        </ul>
     </article>
 </ng-container>
 

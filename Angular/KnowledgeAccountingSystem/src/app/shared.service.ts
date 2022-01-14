@@ -85,6 +85,11 @@ readonly APIUrl = "https://localhost:44392/api";
     return this.http.get<User[]>(this.APIUrl+'/User/Users', {withCredentials: true});
   }
 
+  GetUserById(id:String): Observable<User>{
+    console.log(id);
+    return this.http.get<User>(this.APIUrl + '/User/' + id, {withCredentials: true})
+  }
+
   DeleteUser(user:any) {
     this.http.delete(this.APIUrl+'/User/DeleteUser'+ user, {withCredentials: true});
   }
