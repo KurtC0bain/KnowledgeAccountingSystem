@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { first, map } from 'rxjs';
+import { EmailService } from 'src/app/email-service.service';
 import { Area } from 'src/app/models/Area';
 import { AreaRating } from 'src/app/models/AreaRating';
 import { Knowledge } from 'src/app/models/Knowledge';
@@ -15,7 +16,7 @@ import {InfoComponent} from '../info/info.component'
 })
 export class ShowKnowComponent implements OnInit {
 
-  constructor(public service: SharedService, public info: InfoComponent) { }
+  constructor(public service: SharedService, public info: InfoComponent, private emailService: EmailService) { }
 
   @Input() KnowledgeList: Knowledge[] = [];
 
@@ -28,7 +29,7 @@ export class ShowKnowComponent implements OnInit {
 
   know: Knowledge;
 
-
+  ifManager:boolean = false;
 
   KnowledgeArea:any=[];
   AreaName:string="";
@@ -55,7 +56,6 @@ export class ShowKnowComponent implements OnInit {
   }
 
 
-
   addClick(){
     this.know={
       id: 0,
@@ -67,6 +67,17 @@ export class ShowKnowComponent implements OnInit {
 
     this.ModalTitle = "Add Knowledge";
     this.ActivateAddEditKnow = true;
+  }
+
+  generateReportClick(knowledge:Knowledge){
+    this.service.GetUserById(knowledge.userId).subscribe(data => {
+      this.emailService.mailto.receiver = data.email;
+      this.emailService.userFullName = data.firstName + " " + data.lastName;
+    });
+
+    this.emailService.managerFullName = this.CurrentUser.firstName + " " + this.CurrentUser.lastName;
+    this.emailService.knowledgeTitle = knowledge.title;
+    this.emailService.sendMail();
   }
 
   editClick(knowledge: Knowledge){
@@ -106,6 +117,17 @@ export class ShowKnowComponent implements OnInit {
     });
     this.service.GetCurrentUser().pipe(first()).subscribe(data => {
       this.CurrentUser = data;
+      if(this.CurrentUser != null){
+        this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
+          this.CurrentUser.role = data;
+          this.CurrentUser.role.forEach((r) => {
+            if(r.toString() == 'manager'){
+            this.ifManager = true;
+        }
+      })
+        })
+      }
+      
     });
     
 

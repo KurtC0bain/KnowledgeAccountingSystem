@@ -19,7 +19,6 @@
         </div>
         <div class="modal-body">
             <app-add-edit-know [know]="know" *ngIf="ActivateAddEditKnow"></app-add-edit-know> 
-            
             <app-info [Knowledge]="know" *ngIf="ActivateInfo"></app-info>        
         </div>
       </div>
@@ -67,6 +66,8 @@
             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
           </svg>
     </button>
+
+    <button type="button" class="btn btn-light mr-1" (click)="generateReportClick(knowledge)" *ngIf="this.CurrentUser != null && ifManager">Generate Report</button>
 
   <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editClick(knowledge)" data-backdrop="static" data-keyboard="false" *ngIf="this.CurrentUser != null && knowledge.userId == this.CurrentUser.id">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

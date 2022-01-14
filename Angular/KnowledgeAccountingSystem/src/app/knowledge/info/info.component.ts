@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 import { Knowledge } from 'src/app/models/Knowledge';
 import { SharedService } from '../../shared.service';
-import { Mailto, NgxMailtoService } from 'ngx-mailto';
 
 
 @Component({
@@ -14,7 +13,7 @@ import { Mailto, NgxMailtoService } from 'ngx-mailto';
 
 export class InfoComponent implements OnInit {
 
-  constructor(private service: SharedService, private mailtoService: NgxMailtoService) { }
+  constructor(private service: SharedService, ) { }
 
 
   @Input() Knowledge:Knowledge;
@@ -22,11 +21,8 @@ export class InfoComponent implements OnInit {
   UserEmail:string = "";
   UserFullName:string = "";
   
-  
+  UserRoles:string[] = [];
 
-  mailto: Mailto = {
-    receiver: ""
-  };
 
 
   ngOnInit(): void {
@@ -34,10 +30,6 @@ export class InfoComponent implements OnInit {
     console.log(this.KnowledgeList)
   }
 
-  sendMail(): void {
-    this.mailto.receiver = this.UserEmail;
-    this.mailtoService.open(this.mailto);
-  }
 
   getKnowledge(): any {
     if(this.Knowledge != null) {

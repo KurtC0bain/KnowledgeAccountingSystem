@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   //KnowledgeList: Knowledge[] = [];
   @Input() User: User;
 
+
   ngOnInit(): void {
     this.service.GetCurrentUser().pipe(first()).subscribe(user => {
       console.log(user);
@@ -28,7 +29,7 @@ export class UserProfileComponent implements OnInit {
         this.User.role = data;
       })
     });
-
   }
+
 
 }

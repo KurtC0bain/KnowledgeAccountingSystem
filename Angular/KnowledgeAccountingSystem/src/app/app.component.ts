@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
     console.log(this.ifLoggedIn);
     this.service.GetCurrentUser().pipe(first()).subscribe(data => {
       this.CurrentUser = data;
-      this.currentUserName = data.firstName;
       if(this.CurrentUser != null){
+        this.currentUserName = data.firstName;
         this.service.GetUserRoles(this.CurrentUser.email).pipe(first()).subscribe(data => {
           this.CurrentUser.role = data;
           this.CurrentUser.role.forEach((r) => {
