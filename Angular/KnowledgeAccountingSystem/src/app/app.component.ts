@@ -21,10 +21,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.ifLoggedIn = this.admin.ifLoggedIn();
-    //if(this.ifLoggedIn){
-  //    this.service.GetCurrentUserMail().subscribe(data => this.currentUserName = data)
-   // }
-    console.log(this.ifLoggedIn);
     this.service.GetCurrentUser().pipe(first()).subscribe(data => {
       this.CurrentUser = data;
       if(this.CurrentUser != null){

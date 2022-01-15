@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AdministrationService } from '../administration.service';
 import { ResetPassword } from '../models/ResetPassword';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
@@ -41,16 +42,13 @@ export class ResetPasswordComponent implements OnInit {
       email: this._email
     }
 
-    this.admin.ResetPassword(resetPassModel)
-    .subscribe(() => {
-      console.log("aee")
+    this.admin.ResetPassword(resetPassModel).pipe(first()).subscribe(data => {
       this.showSuccess = true;
     },
     err => {
-      console.log("!aee")
       this.showError = true;
-      this.errorMessage = "Wrong Email";
-    },
+      this.errorMessage = "Wrong Input";
+    }
     )
   }
 }

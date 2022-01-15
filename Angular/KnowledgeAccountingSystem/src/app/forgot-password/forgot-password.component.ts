@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 import { AdministrationService } from '../administration.service';
 import { ForgotPassword } from '../models/ForgotPassword';
 
@@ -40,17 +41,14 @@ export class ForgotPasswordComponent implements OnInit {
       clientUri: 'http://localhost:4200/resetPass'
     }
 
-    this.admin.ForgotPassword(forgotPassDto)
-    .subscribe(() => {
-      console.log("aee")
+    this.admin.ForgotPassword(forgotPassDto).pipe(first()).subscribe(data => {
       this.showSuccess = true;
-      this.successMessage = 'The link has been sent, please check your email to reset your password.'
+      this.successMessage = data;
     },
     err => {
-      console.log("!aee")
       this.showError = true;
-      this.errorMessage = "Wrong Email";
-    },
+      this.errorMessage = "Wrong Email!";
+    }
     )
   }
 

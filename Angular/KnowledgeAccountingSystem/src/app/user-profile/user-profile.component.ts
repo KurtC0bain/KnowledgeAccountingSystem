@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
         this.User.knowledge = data;
       });
 
-      this.service.GetUserRoles(this.User.email).pipe(first()).subscribe(data => {
+      this.service.GetUserRoles(this.User.email).subscribe(data => {
         this.User.role = data;
       })
     });

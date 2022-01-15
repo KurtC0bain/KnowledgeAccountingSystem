@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using SystemDAL.Administration.Account.Models;
-using SystemDAL.Administration.Interfaces;
+using SystemBLL.DTO.Auth;
+using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {

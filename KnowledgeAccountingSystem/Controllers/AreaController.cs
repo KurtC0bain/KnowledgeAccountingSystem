@@ -70,13 +70,13 @@ namespace KnowledgeAccountingSystem.Controllers
             return Ok();
         }
 
-        [HttpGet]
+/*        [HttpGet]
         [Route("knowledge/{id}")]
         public async Task<IActionResult> GetKnowladgeAreasById(int id)
         {
             return  Ok(await _areaService.GetKnowledgeAreasById(id));
         }
-
+*/
         [HttpGet]
         [Route("{name}")]
         public async Task<IActionResult> GetAreaIdByName(string areaName)

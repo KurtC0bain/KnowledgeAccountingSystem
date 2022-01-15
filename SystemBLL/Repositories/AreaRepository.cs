@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SystemDAL.Entities;
-using SystemDAL.Entities.Context;
+using SystemDAL.Context;
+using SystemDAL.DTO.Knowledge;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
 

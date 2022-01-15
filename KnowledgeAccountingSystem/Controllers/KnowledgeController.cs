@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SystemBLL.DTO.Knowledge;
 using SystemBLL.Interfaces;
-using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
 
 namespace KnowledgeAccountingSystem.Controllers

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystemDAL.Entities;
+using SystemBLL.DTO.Knowledge;
 using SystemDAL.Entities.Knowledges;
 
 namespace SystemBLL.Interfaces

@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ForgotPassword } from './models/ForgotPassword';
 import { ResetPassword } from './models/ResetPassword';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +34,12 @@ SignOut(){
   this.cookieService.deleteAll();
 }
 
-ForgotPassword = (model: ForgotPassword) => {
-  console.log(model);
-  return this.http.post(this.APIUrl + '/ForgotPassword', model , {withCredentials: true})
+ForgotPassword(model: ForgotPassword): Observable<string> {
+  return this.http.post<any>(this.APIUrl + '/ForgotPassword', model , {withCredentials: true,  responseType: 'text' as 'json'})
 }
 
-ResetPassword = (model: ResetPassword) => {
-  console.log(model);
-  return this.http.post(this.APIUrl + '/ResetPassword', model, {withCredentials: true})
+ResetPassword(model: ResetPassword): Observable<string>{
+  return this.http.post<any>(this.APIUrl + '/ResetPassword', model, {withCredentials: true , responseType: 'text' as 'json'})
 }
 
 ifLoggedIn():boolean {

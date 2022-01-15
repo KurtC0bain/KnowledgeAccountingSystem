@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SystemDAL.Administration.Account.Models;
-using SystemDAL.Entities;
-using SystemDAL.Entities.Context;
+using SystemDAL.Context;
+using SystemDAL.DTO.Knowledge;
 using SystemDAL.Entities.Knowledges;
 using SystemDAL.Interfaces;
 using Z.EntityFramework.Plus;

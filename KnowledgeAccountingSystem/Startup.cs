@@ -18,12 +18,12 @@ using System.Collections.Generic;
 using System.Text;
 using SystemBLL.Interfaces;
 using SystemBLL.Services;
-using SystemDAL.Administration.Account.Models;
-using SystemDAL.Administration.Account.Services;
-using SystemDAL.Administration.Interfaces;
-using SystemDAL.Entities.Context;
+using SystemBLL.UoF;
+using SystemDAL.Context;
+using SystemDAL.Entities.Users;
 using SystemDAL.Interfaces;
 using SystemDAL.Repositories;
+using SystemDAL.UoW;
 
 namespace KnowledgeAccountingSystem
 {
@@ -48,6 +48,7 @@ namespace KnowledgeAccountingSystem
                     .AllowCredentials());
             });
 
+            services.AddAutoMapper(typeof(Startup));
 
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")

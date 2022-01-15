@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SystemDAL.Entities;
+using SystemBLL.DTO.Knowledge;
 using SystemDAL.Entities.Knowledges;
 
 namespace SystemBLL.Interfaces
@@ -17,8 +15,8 @@ namespace SystemBLL.Interfaces
         Task<IEnumerable<FullArea>> FindFullAreas();
         Task<Area> GetByIdAsync(int id);
 
-        Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
-        Task<int> GetAreaIdByName(string name);
+/*        Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
+*/        Task<int> GetAreaIdByName(string name);
         Task<double> GetAverageAreaRating(int id);
     }
 }

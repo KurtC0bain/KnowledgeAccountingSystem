@@ -1,9 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SystemDAL.Administration.Account.Models;
+using SystemDAL.Entities.Users;
 using static SystemDAL.Attributes.CustomValidation;
 
 

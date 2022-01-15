@@ -142,7 +142,6 @@ export class ShowKnowComponent implements OnInit {
   FilterByName(){
     var KnowledgeTitleFilter = this.KnowledgeTitleFilter;
 
-    console.log(KnowledgeTitleFilter)
     this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
       return el.title.toString().toLowerCase().includes(
         KnowledgeTitleFilter.toString().trim().toLowerCase()
@@ -157,7 +156,7 @@ export class ShowKnowComponent implements OnInit {
     if(KnowledgeEmailFilter != ""){
       this.service.GetUserId(KnowledgeEmailFilter).pipe(first()).subscribe(data => {
         KnowledgeUserIdFilter = data;
-        console.log(KnowledgeUserIdFilter);
+
         this.KnowledgeList = this.KnowledgeListWithoutFilter.filter(function (el){
           return el.userId.toString().toLowerCase().includes(
             KnowledgeUserIdFilter.toString().trim().toLowerCase())

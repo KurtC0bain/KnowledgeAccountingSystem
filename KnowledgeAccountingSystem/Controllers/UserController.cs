@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using SystemDAL.Administration.Interfaces;
+using SystemBLL.DTO.Users;
+using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
@@ -23,6 +23,14 @@ namespace KnowledgeAccountingSystem.Controllers
         public async Task<IActionResult> DeleteUser(string mail)
         {
             await _unitOfWork.UserService.DeleteUser(mail);
+            return Ok();
+        }
+
+        [HttpPatch]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(UserDTO user)
+        {
+            await _unitOfWork.UserService.UpdateUser(user);
             return Ok();
         }
 

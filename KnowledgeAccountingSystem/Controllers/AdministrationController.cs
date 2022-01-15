@@ -7,8 +7,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
-using SystemDAL.Administration.Account.Models;
-using SystemDAL.Administration.Interfaces;
+using SystemBLL.DTO.Auth;
+using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
@@ -32,7 +32,7 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("SignUp")]
         public async Task<IActionResult> Register(SignUp signUp)
         {
-            await _unitOfWork.UserService.SignUp(new SignUp
+            await _unitOfWork.AuthService.SignUp(new SignUp
             {
                 FirstName = signUp.FirstName,
                 LastName = signUp.LastName,
@@ -42,18 +42,13 @@ namespace KnowledgeAccountingSystem.Controllers
             });
             return Ok();
                 
-/*                await LogIn(new SignIn
-            {
-                Email = signUp.Email,
-                Password = signUp.Password
-            }));
-*/        }
+        }
 
         [HttpPost]
         [Route("SignIn")]
         public async Task<IActionResult> LogIn(SignIn signIn)
         {
-            var user = await _unitOfWork.UserService.SignIn(new SignIn
+            var user = await _unitOfWork.AuthService.SignIn(new SignIn
             {
                 Email = signIn.Email,
                 Password = signIn.Password
@@ -83,7 +78,7 @@ namespace KnowledgeAccountingSystem.Controllers
         [Authorize]
         public async Task<IActionResult> LogOut()
         {
-            await _unitOfWork.UserService.SignOut();
+            await _unitOfWork.AuthService.SignOut();
             foreach (var cookie in Request.Cookies.Keys)
             {
                 Response.Cookies.Delete(cookie);
@@ -95,15 +90,14 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("ForgotPassword")]
         public async Task<IActionResult> ForgotPassword(ForgotPassword model)
         {
-            await _emailSender.SendEmailAsync(await _unitOfWork.UserService.ForgotPassword(model));
+            await _emailSender.SendEmailAsync(await _unitOfWork.AuthService.ForgotPassword(model));
             return Ok("Message sent");
         }
-
         [HttpPost]
         [Route("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPassword model)
         {
-            return Ok(await _unitOfWork.UserService.ResetPassword(model));
+            return Ok(await _unitOfWork.AuthService.ResetPassword(model));
         }
     }
 }

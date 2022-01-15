@@ -1,29 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using AutoMapper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
+using SystemBLL.DTO.Knowledge;
 using SystemBLL.Interfaces;
-using SystemDAL.Administration.Interfaces;
-using SystemDAL.Entities;
 using SystemDAL.Entities.Knowledges;
-using SystemDAL.Interfaces;
-using SystemDAL.Repositories;
+using SystemDAL.UoW;
 
 namespace SystemBLL.Services
 {
     /////// VALIDATION!!!
-
- 
-
-
-
-
+    
     public class KnowledgeService : IKnowledgeService
     {
         private IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public IUnitOfWork UnitOfWork { get 
             { 
@@ -36,11 +26,20 @@ namespace SystemBLL.Services
         public KnowledgeService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            var config = new MapperConfiguration(c =>
+            {
+                c.CreateMap<SystemDAL.DTO.Knowledge.FullKnowledge, FullKnowledge>().ReverseMap();
+                c.CreateMap<SystemDAL.DTO.Knowledge.AreaRating, AreaRating>().ReverseMap();
+                });
+            _mapper = new Mapper(config);
         }
 
         public async Task AddAsync(FullKnowledge entity, string email)
         {
-            await _unitOfWork.Knowledge.AddAsync(entity, email);
+            //MAPPER
+            var fullKnowledge = _mapper.Map<FullKnowledge, SystemDAL.DTO.Knowledge.FullKnowledge>(entity);
+
+            await _unitOfWork.Knowledge.AddAsync(fullKnowledge, email);
             await _unitOfWork.SaveAsync();
         }
         public async Task DeleteAsync(Knowledge entity)
@@ -54,27 +53,39 @@ namespace SystemBLL.Services
             await _unitOfWork.SaveAsync();
         }
 
-
-        public async Task<IEnumerable<FullKnowledge>> GetAllAsync()
-        {
-            return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
-        }
         public async Task<FullKnowledge> GetByIdAsync(int id)
         {
-            return await _unitOfWork.Knowledge.GetByIdAsync(id);
+            var fullKnowledge =  await _unitOfWork.Knowledge.GetByIdAsync(id);
+            return _mapper.Map<SystemDAL.DTO.Knowledge.FullKnowledge, FullKnowledge>(fullKnowledge);
         }
         public async Task<IEnumerable<FullKnowledge>> GetUserKnowledge(string email)
         {
-            return await _unitOfWork.Knowledge.GetUserKnowledges(email);
+            var userKnowledge = await _unitOfWork.Knowledge.GetUserKnowledges(email);
+            List<FullKnowledge> result = new List<FullKnowledge>();
+            foreach (var item in userKnowledge)
+            {
+                result.Add(_mapper.Map<SystemDAL.DTO.Knowledge.FullKnowledge, FullKnowledge>(item));
+            }
+            return result;
+
         }
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
         {
-            return await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
+            var findAll = await _unitOfWork.Knowledge.FindAllWithDetailsAsync();
+
+            List<FullKnowledge> result = new List<FullKnowledge>();
+
+            foreach (var item in findAll)
+            {
+                result.Add(_mapper.Map<SystemDAL.DTO.Knowledge.FullKnowledge, FullKnowledge>(item));
+            }
+            return result;
         }
 
         public async Task UpdateAsync(FullKnowledge entity)
         {
-            await _unitOfWork.Knowledge.UpdateAsync(entity);
+            var fullKnowledge = _mapper.Map<FullKnowledge,SystemDAL.DTO.Knowledge.FullKnowledge>(entity);
+            await _unitOfWork.Knowledge.UpdateAsync(fullKnowledge);
         }
     }
 }
