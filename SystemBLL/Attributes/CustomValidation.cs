@@ -15,7 +15,7 @@ namespace SystemDAL.Attributes
                 }
                 else
                 {
-                    return new ValidationResult("VALIDATION");
+                    return new ValidationResult("First letter must be capital");
                 }
             }
 

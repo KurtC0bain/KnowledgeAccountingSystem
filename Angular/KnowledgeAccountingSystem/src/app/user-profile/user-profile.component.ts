@@ -18,7 +18,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.GetCurrentUser().pipe(first()).subscribe(user => {
-      console.log(user);
       this.User = user;
 
       this.service.GetUserKnowledge(this.User.email).pipe(first()).subscribe(data => {

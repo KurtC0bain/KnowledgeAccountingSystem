@@ -19,9 +19,6 @@ import { AddEditKnowComponent } from './knowledge/add-edit-know/add-edit-know.co
 import { AreaComponent } from './area/area.component';
 import { ShowAreaComponent } from './area/show-area/show-area.component';
 import { AddEditAreaComponent } from './area/add-edit-area/add-edit-area.component';
-import { UserComponent } from './user/user.component';
-import { ShowUserComponent } from './user/show-user/show-user.component';
-import { AddEditUserComponent } from './user/add-edit-user/add-edit-user.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component'
 
 import {SharedService} from './shared.service'
@@ -50,9 +47,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AreaComponent,
     ShowAreaComponent,
     AddEditAreaComponent,
-    UserComponent,
-    ShowUserComponent,
-    AddEditUserComponent,
     RoleComponent,
     AddEditRoleComponent,
     ShowRoleComponent,

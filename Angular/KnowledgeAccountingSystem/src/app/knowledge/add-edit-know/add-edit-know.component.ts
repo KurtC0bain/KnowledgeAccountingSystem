@@ -30,7 +30,6 @@ export class AddEditKnowComponent implements OnInit {
       this.currentUser = this.know.userId;
     }
     else if(this.know.id !== 0){
-      console.log(this.know.id);
       this.currentId = this.know.id;
     }
     this.initForm();
@@ -69,11 +68,9 @@ export class AddEditKnowComponent implements OnInit {
 
   submit(){
     if(this.know.id === 0){
-      console.log(this.knowledgeForm.getRawValue());
       this.service.AddKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
     }
     else{
-      console.log(this.knowledgeForm.getRawValue());
       this.service.UpdateKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
     }
 

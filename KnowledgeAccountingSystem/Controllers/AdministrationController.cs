@@ -1,4 +1,5 @@
 ﻿using EmailService;
+using KnowledgeAccountingSystem.Filters;
 using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,7 @@ using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
+    [ModelStateFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class AdministrationController : ControllerBase
@@ -48,16 +50,7 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("SignIn")]
         public async Task<IActionResult> LogIn(SignIn signIn)
         {
-            var user = await _unitOfWork.AuthService.SignIn(new SignIn
-            {
-                Email = signIn.Email,
-                Password = signIn.Password
-            });
-            if(user is null)
-            {
-                return BadRequest();
-            }
-
+            var user = await _unitOfWork.AuthService.SignIn(signIn);
             var roles = await _unitOfWork.RoleService.GetUserRoles(user.Email);
 
             var token = JwtHelper.GenerateJwt(user, roles, _jwtSettings);
@@ -79,10 +72,13 @@ namespace KnowledgeAccountingSystem.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _unitOfWork.AuthService.SignOut();
-            foreach (var cookie in Request.Cookies.Keys)
-            {
-                Response.Cookies.Delete(cookie);
-            }
+            HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", "",
+                 new CookieOptions
+                 {
+                     MaxAge = TimeSpan.FromMilliseconds(1),
+                     SameSite = SameSiteMode.None,
+                     Secure = true
+                 });
             return Ok();
         }
 

@@ -31,12 +31,10 @@ export class AddEditAreaComponent implements OnInit {
   }
 
   updateArea(){
-    console.log(this.AreaId)
     var val = {
       Id: this.AreaId,
       Name: this.AreaName,
     }
-    console.log(val);
     this.service.UpdateArea(val).subscribe();  
     this.comp.closeClick();
   }

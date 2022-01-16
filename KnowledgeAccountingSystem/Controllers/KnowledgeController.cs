@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KnowledgeAccountingSystem.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using SystemDAL.Entities.Knowledges;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
+    [ModelStateFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class KnowledgeController : ControllerBase
@@ -40,16 +42,9 @@ namespace KnowledgeAccountingSystem.Controllers
         [Authorize(Roles = "programmer, admin")]
         public async Task<IActionResult> PostKnowledge(FullKnowledge knowledge)
         {
-            try
-            {
-                var email = User.FindFirst(ClaimTypes.Name)?.Value;
-                await _knowledgeService.AddAsync(knowledge, email);
-                return Ok();
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return BadRequest("You dont have enough right!");
-            }
+            var email = User.FindFirst(ClaimTypes.Name)?.Value;
+            await _knowledgeService.AddAsync(knowledge, email);
+            return Ok();
         }
 
         [HttpDelete]

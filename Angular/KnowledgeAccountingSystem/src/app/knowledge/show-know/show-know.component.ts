@@ -94,7 +94,6 @@ export class ShowKnowComponent implements OnInit {
 
   deleteClick(knowledge: Knowledge){
     if(confirm('Are you sure?')){
-      alert(knowledge);
       this.service.DeleteKnowledge(knowledge.id).subscribe();
       this.refreshKnowledgeList();
     }

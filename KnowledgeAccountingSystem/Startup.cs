@@ -1,4 +1,5 @@
 using EmailService;
+using KnowledgeAccountingSystem.Filters;
 using KnowledgeAccountingSystem.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -54,13 +55,17 @@ namespace KnowledgeAccountingSystem
                 .GetSection("EmailConfiguration")
                 .Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
+
             services.AddScoped<IEmailSender, EmailSender>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpContextAccessor();
 
 
-            services.AddControllersWithViews()
+            services.AddControllersWithViews(opt =>
+            {
+                opt.Filters.Add<CustomExceptionFilter>();
+            })
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -68,7 +73,7 @@ namespace KnowledgeAccountingSystem
 
             services.AddCors();
 
-            services.AddControllers();
+            services.AddControllers(); 
             services.AddSwaggerGen();
 
 
@@ -90,6 +95,7 @@ namespace KnowledgeAccountingSystem
                 options.Password.RequiredLength = 5;
             }).AddEntityFrameworkStores<KnowledgeContext>()
             .AddDefaultTokenProviders();
+
             services.Configure<DataProtectionTokenProviderOptions>(opt =>
                 opt.TokenLifespan = TimeSpan.FromHours(1));
 
@@ -105,7 +111,6 @@ namespace KnowledgeAccountingSystem
                 })
                 .AddCookie(options => {
                     options.LoginPath = "/Administration/SignIn/";
-                    options.AccessDeniedPath = "/Account/Forbidden/";
                 })
                 .AddJwtBearer(options =>
                 {

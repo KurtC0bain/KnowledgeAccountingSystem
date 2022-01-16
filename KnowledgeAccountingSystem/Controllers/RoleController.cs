@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KnowledgeAccountingSystem.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SystemBLL.DTO.Auth;
@@ -6,6 +7,7 @@ using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
+    [ModelStateFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class RoleController : ControllerBase

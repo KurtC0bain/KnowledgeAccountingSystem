@@ -27,7 +27,6 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKnowledge();
-    console.log(this.KnowledgeList)
   }
 
 
@@ -36,7 +35,6 @@ export class InfoComponent implements OnInit {
       this.service.GetKnowledge(this.Knowledge.id).subscribe(data => {
         this.Knowledge = data;
         this.service.GetUserById(data.userId).pipe(first()).subscribe(data => {
-          console.log(data);
           this.UserEmail = data.email;
           this.UserFullName = data.firstName + " " + data.lastName;
         })

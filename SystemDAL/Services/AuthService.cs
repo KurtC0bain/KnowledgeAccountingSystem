@@ -25,9 +25,9 @@ namespace SystemBLL.Services
             var result = _userManager.Users.SingleOrDefault(x => x.UserName == model.Email);
             if (result is null)
             {
-                throw new Exception($"User not found: '{model.Email}'.");
+                throw new ArgumentException($"User not found: '{model.Email}'.");
             }
-            return await _userManager.CheckPasswordAsync(result, model.Password) ? result : null;
+            return await _userManager.CheckPasswordAsync(result, model.Password) ? result : throw new ArgumentException("Wrong password");
         }
         public async Task SignOut()
         {
@@ -35,6 +35,9 @@ namespace SystemBLL.Services
         }
         public async Task SignUp(SignUp model)
         {
+            if (model.Role.ToUpper() == "ADMIN")
+                throw new Exception("Admin role can be given only by other admins. Pleace, choose from 'Programmer' and 'Manager'");
+            
             var result = await _userManager.CreateAsync(new User
             {
                 FirstName = model.FirstName,
@@ -60,7 +63,8 @@ namespace SystemBLL.Services
         public async Task<Message> ForgotPassword(ForgotPassword model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null) throw new ArgumentNullException();
+            if (user is null) throw new ArgumentException($"User not found: '{model.Email}'.");
+
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var param = new Dictionary<string, string>
@@ -77,10 +81,11 @@ namespace SystemBLL.Services
         public async Task<string> ResetPassword(ResetPassword model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user is null) throw new ArgumentException($"User not found: '{model.Email}'.");
 
-            var resetPass = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-
-            return new String("Please, log in with a new password");
+            var res = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            if (!res.Succeeded) throw new Exception("Password validation problems");
+            return new string("Please, log in with a new password");
         }
     }
 }

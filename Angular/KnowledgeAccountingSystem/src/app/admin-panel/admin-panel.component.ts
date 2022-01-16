@@ -42,7 +42,6 @@ export class AdminPanelComponent implements OnInit {
           user.knowledge = knowledge;
         })
       })
-      console.log(this.UserList);
     })
   }
 }

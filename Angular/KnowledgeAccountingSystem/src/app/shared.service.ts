@@ -65,7 +65,6 @@ readonly APIUrl = "https://localhost:44392/api";
   }
 
   AddArea(area:any) {
-    console.log(area);
     return this.http.post(this.APIUrl+'/Area', area, {withCredentials: true, responseType: 'json' as 'json'});
   }
 
@@ -86,7 +85,6 @@ readonly APIUrl = "https://localhost:44392/api";
   }
 
   GetUserById(id:String): Observable<User>{
-    console.log(id);
     return this.http.get<User>(this.APIUrl + '/User/' + id, {withCredentials: true})
   }
 

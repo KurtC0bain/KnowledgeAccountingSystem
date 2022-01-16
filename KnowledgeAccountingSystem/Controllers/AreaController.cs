@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KnowledgeAccountingSystem.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using SystemDAL.Entities.Knowledges;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
+    [ModelStateFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class AreaController : ControllerBase
@@ -70,13 +72,6 @@ namespace KnowledgeAccountingSystem.Controllers
             return Ok();
         }
 
-/*        [HttpGet]
-        [Route("knowledge/{id}")]
-        public async Task<IActionResult> GetKnowladgeAreasById(int id)
-        {
-            return  Ok(await _areaService.GetKnowledgeAreasById(id));
-        }
-*/
         [HttpGet]
         [Route("{name}")]
         public async Task<IActionResult> GetAreaIdByName(string areaName)
@@ -88,7 +83,6 @@ namespace KnowledgeAccountingSystem.Controllers
         [Route("/AvRating/{id}")]
         public async Task<IActionResult> GetAreaAverageRating(int id)
         {
-            
             return Ok(await _areaService.GetAverageAreaRating(id));
         }
     }

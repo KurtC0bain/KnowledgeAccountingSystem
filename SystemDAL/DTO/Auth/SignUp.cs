@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static SystemDAL.Attributes.CustomValidation;
 
 namespace SystemBLL.DTO.Auth
 {
@@ -6,8 +7,13 @@ namespace SystemBLL.DTO.Auth
     {
 
         [Required]
+        [MinLength(2), MaxLength(25)]
+        [CheckCapitalized]
         public string FirstName { get; set; }
-        
+
+        [Required]
+        [MinLength(2), MaxLength(25)]
+        [CheckCapitalized]
         public string LastName { get; set; }
         
         [Required]

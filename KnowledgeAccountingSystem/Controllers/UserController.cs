@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KnowledgeAccountingSystem.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using SystemBLL.UoF;
 
 namespace KnowledgeAccountingSystem.Controllers
 {
+    [ModelStateFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -53,7 +55,6 @@ namespace KnowledgeAccountingSystem.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        /*[Authorize(Roles = "admin")]*/
         public async Task<IActionResult> GetUserById(string id)
         {
             return Ok(await _unitOfWork.UserService.GetUserById(id));

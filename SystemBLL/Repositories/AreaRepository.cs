@@ -115,7 +115,7 @@ namespace SystemDAL.Repositories
 
         public async Task UpdateAsync(Area entity)
         {
-            var element = await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == entity.Id);
+            var element = await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Id == entity.Id);
             if(element != null)
             {
                 element.Knowledges = entity.Knowledges;

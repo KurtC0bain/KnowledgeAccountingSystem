@@ -31,6 +31,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    this.admin.SignUp(this.form.getRawValue());
+    this.admin.SignUp(this.form.getRawValue())
   }
 }
