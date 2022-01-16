@@ -160,6 +160,9 @@ export class ShowKnowComponent implements OnInit {
           return el.userId.toString().toLowerCase().includes(
             KnowledgeUserIdFilter.toString().trim().toLowerCase())
         });    
+      },
+      err => {
+        this.KnowledgeList = [];
       });  
     };
 

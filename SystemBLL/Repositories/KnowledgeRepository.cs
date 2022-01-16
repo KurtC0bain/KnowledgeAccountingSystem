@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,15 +40,15 @@ namespace SystemDAL.Repositories
                 });
             }
 
-            await _knowledgeContext.AddAsync(new Knowledge
+           await _knowledgeContext.AddAsync(new Knowledge
             {
                 Id = entity.Id,
                 Title = entity.Title,
                 Description = entity.Description,
                 UserId = entity.UserId,
                 Areas = list
-            });
-
+           });
+            
             await _knowledgeContext.SaveChangesAsync();
         }
         public async Task Delete(Knowledge entity)
@@ -91,6 +92,8 @@ namespace SystemDAL.Repositories
         public async Task<FullKnowledge> GetByIdAsync(int id)
         {
             var knowledge = await _knowledgeContext.Knowledges.FirstOrDefaultAsync(x => x.Id == id);
+            if (knowledge == null)
+                throw new ArgumentException($"There is no Knowledge with id {id}");
             return new FullKnowledge
             {
                 Id = knowledge.Id,

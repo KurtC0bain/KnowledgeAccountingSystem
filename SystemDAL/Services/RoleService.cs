@@ -23,6 +23,9 @@ namespace SystemBLL.Services
 
         public async Task CreateRole(string roleName)
         {
+            if (_roleManager.Roles.Select(r => r.NormalizedName).Contains(roleName.ToUpper()))
+                throw new ArgumentException($"Role with name '{roleName}' already exists");
+
             var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
             if (!result.Succeeded)
             {
@@ -38,12 +41,17 @@ namespace SystemBLL.Services
         public async Task<IEnumerable<string>> GetUserRoles(string mail)
         {
             var currentUser = await _userManager.FindByEmailAsync(mail);
+            if(currentUser == null)
+                throw new ArgumentException($"User with email '{mail}' does not exists");
+
             return await _userManager.GetRolesAsync(currentUser);
         }
 
         public async Task<IEnumerable<string>> AssignUserToRoles(AddRoleToUser addRoleToUser)
         {
             var currentUser = await _userManager.FindByEmailAsync(addRoleToUser.Email);
+            if (currentUser == null)
+                throw new ArgumentException($"User with email '{addRoleToUser.Email}' does not exists");
 
             var roles = _roleManager.Roles.ToList().Where(r => addRoleToUser.Roles.Contains(r.Name, StringComparer.OrdinalIgnoreCase))
                 .Select(r => r.NormalizedName).ToList();

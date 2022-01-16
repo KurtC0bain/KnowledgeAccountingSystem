@@ -74,7 +74,7 @@ export class AddEditKnowComponent implements OnInit {
       this.service.UpdateKnowledge(this.knowledgeForm.getRawValue()).subscribe();  
     }
 
-    this.comp.refresh();
+    //this.comp.refresh();
   }
 
 

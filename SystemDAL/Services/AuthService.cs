@@ -84,7 +84,8 @@ namespace SystemBLL.Services
             if (user is null) throw new ArgumentException($"User not found: '{model.Email}'.");
 
             var res = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-            if (!res.Succeeded) throw new Exception("Password validation problems");
+            if (!res.Succeeded) 
+                throw new Exception("Password validation problems");
             return new string("Please, log in with a new password");
         }
     }

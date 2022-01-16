@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystemBLL.DTO.Knowledge;
@@ -36,7 +37,8 @@ namespace SystemBLL.Services
 
         public async Task AddAsync(FullKnowledge entity, string email)
         {
-            //MAPPER
+            if (entity == null || email == null)
+                throw new ArgumentNullException($"{entity} or {email} is null");
             var fullKnowledge = _mapper.Map<FullKnowledge, SystemDAL.DTO.Knowledge.FullKnowledge>(entity);
 
             await _unitOfWork.Knowledge.AddAsync(fullKnowledge, email);
@@ -44,11 +46,16 @@ namespace SystemBLL.Services
         }
         public async Task DeleteAsync(Knowledge entity)
         {
+            if (await _unitOfWork.Knowledge.GetByIdAsync(entity.Id) == null)
+                throw new ArgumentException($"There is no Knowledge like {entity}");
+
             await _unitOfWork.Knowledge.Delete(entity);
             await _unitOfWork.SaveAsync();
         }
         public async Task DeleteByIdAsync(int id)
         {
+            if (await _unitOfWork.Knowledge.GetByIdAsync(id) == null)
+                throw new ArgumentException($"There is no Knowledge with id {id}");
             await _unitOfWork.Knowledge.DeleteByIdAsync(id);
             await _unitOfWork.SaveAsync();
         }
@@ -67,7 +74,6 @@ namespace SystemBLL.Services
                 result.Add(_mapper.Map<SystemDAL.DTO.Knowledge.FullKnowledge, FullKnowledge>(item));
             }
             return result;
-
         }
         public async Task<IEnumerable<FullKnowledge>> FindAllWithDetailsAsync()
         {
@@ -81,9 +87,10 @@ namespace SystemBLL.Services
             }
             return result;
         }
-
         public async Task UpdateAsync(FullKnowledge entity)
         {
+            if (await _unitOfWork.Knowledge.GetByIdAsync(entity.Id) == null)
+                throw new ArgumentException($"There is no Knowledge like {entity}");
             var fullKnowledge = _mapper.Map<FullKnowledge,SystemDAL.DTO.Knowledge.FullKnowledge>(entity);
             await _unitOfWork.Knowledge.UpdateAsync(fullKnowledge);
         }
