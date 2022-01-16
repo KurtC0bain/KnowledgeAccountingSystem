@@ -9,9 +9,13 @@ namespace SystemDAL.Entities.Users
     public class User : IdentityUser
     {
         [Required]
+        [CheckCapitalized]
+        [MinLength(2), MaxLength(25)]
         public string FirstName { get; set;}
 
         [Required]
+        [CheckCapitalized]
+        [MinLength(2), MaxLength(25)]
         public string LastName { get; set; }
 
         public ICollection<Knowledge> Knowledge { get; set; }

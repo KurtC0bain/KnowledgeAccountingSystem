@@ -13,7 +13,6 @@ namespace SystemDAL.Interfaces
         Task UpdateAsync(Area entity);
 
         Task<Area> GetByIdAsync(int id);
-        Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id);
         Task<int> GetAreaIdByName(string name);
         Task<double> GetAreaAverageRating(int id);
         Task<IEnumerable<FullArea>> FindFullAreas();

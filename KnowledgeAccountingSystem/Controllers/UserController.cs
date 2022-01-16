@@ -41,7 +41,6 @@ namespace KnowledgeAccountingSystem.Controllers
         public async Task<IActionResult> GetCurrentUser()
         {
             string email = User.FindFirst(ClaimTypes.Name)?.Value;
-            if(email == null) { return Ok(null);}
             return Ok(await _unitOfWork.UserService.GetCurrentUser(email));
         }
 

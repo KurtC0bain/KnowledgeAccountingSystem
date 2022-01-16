@@ -96,23 +96,6 @@ namespace SystemDAL.Repositories
             return await _knowledgeContext.Areas.Include(x => x.Knowledges).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<AreaRating>> GetKnowledgeAreasById(int id)
-        {
-            List<Area> areas = await FindAll().ToListAsync();
-            List<KnowledgeArea> knowledgeAreas = await _knowledgeContext.KnowledgeAreas.ToListAsync();
-
-           return areas.Join(knowledgeAreas.Where(x => x.KnowledgeId == id),
-                area => area,
-                knowAr => knowAr.Area,
-                (area, rating) => new AreaRating
-                {
-                    Id = area.Id,
-                    Name = area.Name,
-                    Rating = rating.Rating
-                });
-
-        }
-
         public async Task UpdateAsync(Area entity)
         {
             var element = await _knowledgeContext.Areas.FirstOrDefaultAsync(x => x.Id == entity.Id);
