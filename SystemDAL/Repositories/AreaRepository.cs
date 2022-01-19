@@ -32,7 +32,6 @@ namespace SystemDAL.Repositories
                 _knowledgeContext.Areas.Remove(element);
             }
             await _knowledgeContext.SaveChangesAsync();
-
         }
 
         public async Task DeleteByIdAsync(int id)
