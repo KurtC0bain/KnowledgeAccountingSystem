@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using SystemBLL.DTO.Auth;
 using SystemBLL.UoF;

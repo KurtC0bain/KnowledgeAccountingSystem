@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj": {}
+    "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj": {}
   },
   "projects": {
-    "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
+    "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
+        "projectUniqueName": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
         "projectName": "EmailService",
-        "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
+        "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
         "packagesPath": "C:\\Users\\esusm\\.nuget\\packages\\",
-        "outputPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\obj\\",
+        "outputPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\esusm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,25 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj": {
+    "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
         "projectName": "KnowledgeAccountingSystem",
-        "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
+        "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
         "packagesPath": "C:\\Users\\esusm\\.nuget\\packages\\",
-        "outputPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\obj\\",
+        "outputPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\esusm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,14 +88,14 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
-                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj"
+              "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
+                "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj"
               },
-              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
-                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj"
+              "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
+                "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj"
               },
-              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj": {
-                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj"
+              "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj": {
+                "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj"
               }
             }
           }
@@ -167,12 +159,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.22, 3.1.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -181,25 +167,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
+    "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj",
+        "projectUniqueName": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj",
         "projectName": "SystemDAL",
-        "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj",
+        "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj",
         "packagesPath": "C:\\Users\\esusm\\.nuget\\packages\\",
-        "outputPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\obj\\",
+        "outputPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\esusm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -213,8 +195,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
-                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj"
+              "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj": {
+                "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj"
               }
             }
           }
@@ -275,25 +257,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj": {
+    "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
+        "projectUniqueName": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
         "projectName": "SystemBLL",
-        "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
+        "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\SystemBLL.csproj",
         "packagesPath": "C:\\Users\\esusm\\.nuget\\packages\\",
-        "outputPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemDAL\\obj\\",
+        "outputPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemDAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\esusm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -307,8 +285,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
-                "projectPath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj"
+              "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj": {
+                "projectPath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\SystemBLL\\SystemDAL.csproj"
               }
             }
           }
@@ -343,7 +321,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

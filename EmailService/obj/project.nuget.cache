@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZhtIoVG0o6maUeygtgvDO+eXEgARj4WJ/wD3HIHSIXFTSy+Qr57UQ5OKUEtUEUmA+KMgNIjHSlOb2HhewIgKwg==",
+  "dgSpecHash": "GRyGXdV2gMbgvyYkBXno9RhCzYtlvCmHb5bGN5AbmzS/VvXsQgy98HvjpCIhNEBL+8ZZS3ZtthJLXuVpVqbW7g==",
   "success": true,
-  "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
+  "projectFilePath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\EmailService\\EmailService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\esusm\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",
     "C:\\Users\\esusm\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.4\\microsoft.extensions.dependencyinjection.3.1.4.nupkg.sha512",

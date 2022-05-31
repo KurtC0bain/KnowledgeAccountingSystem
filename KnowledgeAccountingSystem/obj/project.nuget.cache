@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7/0S2NCWwML6k8bxoVC8Lnj3eBc9rfSJPh18IYPhvJb/I5Lxly9NgbIyovjH86XbiYaDa9LNCUmHVBbKGmA2cQ==",
+  "dgSpecHash": "MiYQNa7ZkjrS5sGqrH9njZca/2oUJKq6FEljccx5Gbii10HMkWs3sHgbMxjDmYoTeIw0aMHnnpoxYUaoFAhx1w==",
   "success": true,
-  "projectFilePath": "D:\\EPAM\\Final Project\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
+  "projectFilePath": "C:\\Users\\esusm\\Desktop\\New folder\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem\\KnowledgeAccountingSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\esusm\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\esusm\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -183,8 +183,7 @@
     "C:\\Users\\esusm\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\esusm\\.nuget\\packages\\z.entityframework.extensions\\5.1.13\\z.entityframework.extensions.5.1.13.nupkg.sha512",
     "C:\\Users\\esusm\\.nuget\\packages\\z.entityframework.plus.ef6\\5.1.13\\z.entityframework.plus.ef6.5.1.13.nupkg.sha512",
-    "C:\\Users\\esusm\\.nuget\\packages\\z.expressions.eval\\4.0.29\\z.expressions.eval.4.0.29.nupkg.sha512",
-    "C:\\Users\\esusm\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
+    "C:\\Users\\esusm\\.nuget\\packages\\z.expressions.eval\\4.0.29\\z.expressions.eval.4.0.29.nupkg.sha512"
   ],
   "logs": []
 }

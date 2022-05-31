@@ -8,3 +8,13 @@ D:\EPAM\Final Project\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreap
 D:\EPAM\Final Project\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
 D:\EPAM\Final Project\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
 D:\EPAM\Final Project\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.AssemblyReference.cache
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+C:\Users\esusm\Desktop\New folder\KnowledgeAccountingSystem\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
